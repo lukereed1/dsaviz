@@ -27,7 +27,6 @@ export default function HomePage() {
 						bgcolor: "primary.main",
 						color: "white",
 						borderRadius: "10px",
-						boxShadow: "none",
 						paddingX: 5.5,
 					}}>
 					Get Started

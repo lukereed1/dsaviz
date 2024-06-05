@@ -10,14 +10,26 @@ export default function Header() {
 			justifyContent={"space-between"}
 			paddingLeft={10}
 			paddingRight={4}
-			paddingY={2}>
+			paddingY={2.5}>
 			<img src={Logo} alt="DsaViz Logo" />
 			<IconButton
 				sx={{
+					padding: 0,
 					marginTop: 0,
-					"&:hover": { backgroundColor: "transparent" },
+					"&:hover": {
+						backgroundColor: "transparent",
+					},
 				}}>
-				<Avatar sx={{ padding: 3, bgcolor: "primary.main" }}>
+				<Avatar
+					sx={{
+						padding: 3,
+						"&:hover": {
+							backgroundColor: "background.default",
+							boxShadow: 10,
+						},
+						bgcolor: "primary.main",
+						boxShadow: 3,
+					}}>
 					<LightModeIcon sx={{ fontSize: 22, color: "white" }} />
 				</Avatar>
 			</IconButton>

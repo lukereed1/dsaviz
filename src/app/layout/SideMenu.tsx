@@ -69,7 +69,7 @@ export default function SideMenu() {
 	return (
 		<>
 			<Box
-				// onMouseEnter={handleMenu}
+				onMouseEnter={handleMenu}
 				sx={{
 					position: "absolute",
 					left: 0,
