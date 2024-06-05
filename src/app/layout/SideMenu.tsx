@@ -4,6 +4,7 @@ import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import {
 	Box,
 	Collapse,
+	Divider,
 	Drawer,
 	List,
 	ListItem,
@@ -13,6 +14,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import React from "react";
 
 export default function SideMenu() {
 	const [menuOpen, setMenuOpen] = useState(false);
@@ -35,13 +37,13 @@ export default function SideMenu() {
 		{
 			label: "Main Menu",
 			path: "#",
-			icon: <HomeIcon sx={{ fontSize: 22 }} />,
+			icon: <HomeIcon sx={{ fontSize: 20 }} />,
 			nested: false,
 		},
 		{
 			label: "Data Structures",
 			path: "#",
-			icon: <DataArrayIcon sx={{ fontSize: 22 }} />,
+			icon: <DataArrayIcon sx={{ fontSize: 20 }} />,
 			nested: true,
 			items: [
 				{ label: "Array", path: "#" },
@@ -53,7 +55,7 @@ export default function SideMenu() {
 		{
 			label: "Algorithms ",
 			path: "#",
-			icon: <AccountTreeIcon sx={{ fontSize: 22 }} />,
+			icon: <AccountTreeIcon sx={{ fontSize: 20 }} />,
 			nested: true,
 			items: [
 				{ label: "Quick Sort", path: "#" },
@@ -67,11 +69,11 @@ export default function SideMenu() {
 	return (
 		<>
 			<Box
-				onMouseEnter={handleMenu}
+				// onMouseEnter={handleMenu}
 				sx={{
 					position: "absolute",
 					left: 0,
-					height: "100%",
+					minHeight: "100vh",
 					width: 46,
 					backgroundColor: "primary.main",
 				}}>
@@ -79,13 +81,16 @@ export default function SideMenu() {
 					sx={{
 						display: "flex",
 						flexDirection: "column",
-						marginTop: 2,
+						marginTop: 1,
 						gap: 1,
 					}}>
 					{menuItems.map(({ label, icon }) => (
-						<ListItem key={label} sx={{ justifyContent: "center" }}>
-							{icon}
-						</ListItem>
+						<React.Fragment key={label}>
+							<ListItem sx={{ justifyContent: "center" }}>
+								{icon}
+							</ListItem>
+							<Divider />
+						</React.Fragment>
 					))}
 				</List>
 			</Box>
@@ -108,10 +113,9 @@ export default function SideMenu() {
 						}}>
 						{menuItems.map((item) =>
 							item.nested ? (
-								<>
+								<React.Fragment key={item.label}>
 									<ListItemButton
 										sx={{ paddingY: 0.5 }}
-										key={item.label}
 										onClick={item.function}>
 										<ListItemIcon>{item.icon}</ListItemIcon>
 										<ListItemText
@@ -141,10 +145,10 @@ export default function SideMenu() {
 											{item.items?.map((item) => (
 												<ListItemButton
 													sx={{
+														fontSize: 18,
 														justifyContent:
 															"center",
-														fontSize: 18,
-														paddingY: 0,
+														paddingY: 0.5,
 													}}
 													key={item.label}>
 													{item.label}
@@ -152,19 +156,23 @@ export default function SideMenu() {
 											))}
 										</List>
 									</Collapse>
-								</>
+									<Divider />
+								</React.Fragment>
 							) : (
-								<ListItemButton
-									sx={{ paddingY: 0.5 }}
-									key={item.label}>
-									<ListItemIcon>{item.icon}</ListItemIcon>
-									<ListItemText
-										primaryTypographyProps={{
-											fontSize: "20px",
-										}}
-										primary={item.label}
-									/>
-								</ListItemButton>
+								<React.Fragment key={item.label}>
+									<ListItemButton
+										sx={{ paddingY: 0.5 }}
+										key={item.label}>
+										<ListItemIcon>{item.icon}</ListItemIcon>
+										<ListItemText
+											primaryTypographyProps={{
+												fontSize: "20px",
+											}}
+											primary={item.label}
+										/>
+									</ListItemButton>
+									<Divider />
+								</React.Fragment>
 							)
 						)}
 					</List>

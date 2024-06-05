@@ -5,21 +5,22 @@ import { Box, Avatar, IconButton } from "@mui/material";
 
 export default function Header() {
 	return (
-		<>
-			<Box
-				display={"flex"}
-				justifyContent={"space-between"}
-				paddingLeft={10}
-				paddingRight={4}
-				paddingY={2.5}>
-				<img src={Logo} alt="DsaViz Logo" />
-				<IconButton
-					sx={{ "&:hover": { backgroundColor: "transparent" } }}>
-					<Avatar sx={{ padding: 3, bgcolor: "primary.main" }}>
-						<LightModeIcon sx={{ fontSize: 22, color: "white" }} />
-					</Avatar>
-				</IconButton>
-			</Box>
-		</>
+		<Box
+			display={"flex"}
+			justifyContent={"space-between"}
+			paddingLeft={10}
+			paddingRight={4}
+			paddingY={2}>
+			<img src={Logo} alt="DsaViz Logo" />
+			<IconButton
+				sx={{
+					marginTop: 0,
+					"&:hover": { backgroundColor: "transparent" },
+				}}>
+				<Avatar sx={{ padding: 3, bgcolor: "primary.main" }}>
+					<LightModeIcon sx={{ fontSize: 22, color: "white" }} />
+				</Avatar>
+			</IconButton>
+		</Box>
 	);
 }
