@@ -71,9 +71,10 @@ export default function SideMenu() {
 			<Box
 				onMouseEnter={handleMenu}
 				sx={{
-					position: "absolute",
+					position: "fixed",
 					left: 0,
-					minHeight: "100vh",
+					top: 0,
+					bottom: 0,
 					width: 46,
 					backgroundColor: "primary.main",
 				}}>

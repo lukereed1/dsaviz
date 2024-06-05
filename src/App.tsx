@@ -14,7 +14,7 @@ export default function App() {
 			<Box display={"flex"} minHeight={"100vh"} flexDirection={"column"}>
 				<SideMenu />
 				<Header />
-				<Container sx={{ flex: 1, mt: 3 }}>
+				<Container sx={{ mt: 3 }}>
 					<HomePage />
 				</Container>
 				<Footer />
