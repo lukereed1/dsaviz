@@ -9,54 +9,34 @@ interface Props {
 
 export default function DataStructurePage(props: Props) {
 	return (
-		<Box
-			paddingLeft={10}
-			paddingRight={5}
-			display={"flex"}
-			flexDirection={"column"}
-			textAlign={"center"}>
+		<Box textAlign={"center"} paddingLeft={10} paddingRight={5}>
 			<Typography variant="h2">{props.header}</Typography>
-			<Box height={680} display={"flex"} gap={5} marginTop={3}>
+			<Box display={"flex"} textAlign={"center"} gap={3} height={700}>
 				<Box
-					flex={1.75}
-					gap={5}
-					height={"100%"}
+					alignContent={"center"}
 					display={"flex"}
 					flexDirection={"column"}
-					justifyContent={"center"}
-					alignItems={"center"}>
-					<Box
-						display={"flex"}
-						justifyContent={"center"}
-						alignItems={"center"}
-						flex={1}
-						bgcolor={"background.default"}
-						borderRadius={"10px"}
-						overflow={"auto"}>
-						<Box>{props.dataStructure}</Box>
-					</Box>
-					<Box width={"100%"} flex={1} display={"flex"} gap={5}>
-						<Box
-							borderRadius={"10px"}
-							flex={1}
-							bgcolor={"primary.main"}>
-							{props.operations}
-						</Box>
-						<Box
-							borderRadius={"10px"}
-							flex={1.5}
-							bgcolor={"primary.main"}></Box>
-					</Box>
-				</Box>
-				<Box
+					textAlign={"center"}
 					flex={1}
-					bgcolor={"primary.main"}
-					display={"flex"}
-					justifyContent={"center"}
-					alignItems={"center"}
-					borderRadius={"10px"}>
+					overflow={"auto"}>
+					<Box alignContent={"center"} flex={1} overflow={"auto"}>
+						{props.dataStructure}
+					</Box>
+					<Box flex={1}>test</Box>
+				</Box>
+
+				<Box flex={1} bgcolor={"primary.main"} borderRadius={"10px"}>
 					test
 				</Box>
+			</Box>
+			<Box flex={1} gap={5} height={400}>
+				<Box borderRadius={"10px"} flex={1} bgcolor={"primary.main"}>
+					{props.operations}
+				</Box>
+				<Box
+					borderRadius={"10px"}
+					flex={1.5}
+					bgcolor={"primary.main"}></Box>
 			</Box>
 		</Box>
 	);
