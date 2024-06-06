@@ -4,7 +4,7 @@ import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import { Box, Divider, Drawer, List, ListItem } from "@mui/material";
 import { useState } from "react";
 import React from "react";
-import NestedList from "../components/NestedList";
+import NestedList from "./MenuNestedList";
 
 export default function SideMenu() {
 	const [menuOpen, setMenuOpen] = useState(false);
@@ -26,7 +26,7 @@ export default function SideMenu() {
 	const sideMenuItems = [
 		{
 			label: "Main Menu",
-			path: "#",
+			path: "/menu",
 			icon: <HomeIcon sx={{ fontSize: 20 }} />,
 			nested: false,
 		},
@@ -39,7 +39,7 @@ export default function SideMenu() {
 				{ label: "Array", path: "#" },
 				{ label: "Linked List", path: "#" },
 			],
-			function: () => handleDsMenu(),
+			menuToggle: () => handleDsMenu(),
 			open: dsMenuOpen,
 		},
 		{
@@ -51,7 +51,7 @@ export default function SideMenu() {
 				{ label: "Quick Sort", path: "#" },
 				{ label: "Merge Sort", path: "#" },
 			],
-			function: () => handleAlgoMenu(),
+			menuToggle: () => handleAlgoMenu(),
 			open: algoMenuOpen,
 		},
 	];
@@ -60,6 +60,7 @@ export default function SideMenu() {
 		<>
 			<Box
 				onMouseEnter={handleMenu}
+				zIndex={9}
 				sx={{
 					position: "fixed",
 					left: 0,

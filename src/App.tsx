@@ -12,12 +12,13 @@ import Header from "./app/layout/Header";
 import SideMenu from "./app/layout/SideMenu";
 import Footer from "./app/layout/Footer";
 import { useMemo, useState } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 
 export default function App() {
 	const [mode, setMode] = useState<PaletteMode>("dark");
+	const location = useLocation();
 
 	function toggleMode() {
-		console.log("secondary.main");
 		setMode((prevMode) => (prevMode === "dark" ? "light" : "dark"));
 	}
 
@@ -31,7 +32,7 @@ export default function App() {
 				<SideMenu />
 				<Header mode={mode} toggleMode={toggleMode} />
 				<Container sx={{ flex: 1, mt: 3 }}>
-					<HomePage />
+					{location.pathname === "/" ? <HomePage /> : <Outlet />}
 				</Container>
 				<Footer />
 			</Box>

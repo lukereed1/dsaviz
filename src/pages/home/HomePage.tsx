@@ -36,12 +36,14 @@ export default function HomePage() {
 					variant="contained"
 					sx={{
 						marginTop: 3,
+						color: "text.secondary",
 						fontSize: "26px",
-						bgcolor: "primary.main",
+						bgcolor: "secondary.main",
 						borderRadius: "10px",
 						paddingX: 5.5,
 						"&:hover": {
-							backgroundColor: "background.default",
+							backgroundColor: "primary.main",
+							color: "text.primary",
 							boxShadow: 8,
 						},
 					}}>

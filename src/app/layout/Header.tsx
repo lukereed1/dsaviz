@@ -17,7 +17,7 @@ export default function Header(props: Props) {
 			justifyContent={"space-between"}
 			paddingLeft={10}
 			paddingRight={4}
-			paddingY={2.5}>
+			paddingY={1}>
 			<img
 				src={theme.palette.mode === "dark" ? DarkLogo : LightLogo}
 				alt="DsaViz Logo"
@@ -26,7 +26,7 @@ export default function Header(props: Props) {
 				onClick={props.toggleMode}
 				sx={{
 					padding: 0,
-					marginTop: 0,
+					marginTop: 0.5,
 					"&:hover": {
 						backgroundColor: "transparent",
 					},
@@ -41,9 +41,15 @@ export default function Header(props: Props) {
 						bgcolor: "primary.main",
 						boxShadow: 3,
 					}}>
-					<LightModeIcon
-						sx={{ fontSize: 22, color: "text.primary" }}
-					/>
+					{theme.palette.mode === "dark" ? (
+						<LightModeIcon
+							sx={{ fontSize: 22, color: "text.primary" }}
+						/>
+					) : (
+						<DarkModeIcon
+							sx={{ fontSize: 22, color: "text.primary" }}
+						/>
+					)}
 				</Avatar>
 			</IconButton>
 		</Box>

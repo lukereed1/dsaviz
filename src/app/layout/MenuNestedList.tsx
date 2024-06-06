@@ -7,7 +7,8 @@ import {
 	Collapse,
 	Divider,
 } from "@mui/material";
-import React from "react";
+import { Fragment } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface MenuItem {
 	label: string;
@@ -15,7 +16,7 @@ interface MenuItem {
 	icon: React.ReactNode;
 	nested: boolean;
 	items?: SubMenuItem[];
-	function?: () => void;
+	menuToggle?: () => void;
 	open?: boolean;
 }
 
@@ -29,9 +30,11 @@ interface Props {
 }
 
 export default function NestedList(props: Props) {
+	const navigate = useNavigate();
 	return (
 		<List
 			sx={{
+				zIndex: 10,
 				display: "flex",
 				flexDirection: "column",
 				justifyContent: "space-between",
@@ -40,10 +43,10 @@ export default function NestedList(props: Props) {
 			}}>
 			{props.menuItems.map((item) =>
 				item.nested ? (
-					<React.Fragment key={item.label}>
+					<Fragment key={item.label}>
 						<ListItemButton
 							sx={{ paddingY: 0.5 }}
-							onClick={item.function}>
+							onClick={item.menuToggle}>
 							<ListItemIcon>{item.icon}</ListItemIcon>
 							<ListItemText
 								primaryTypographyProps={{
@@ -76,10 +79,13 @@ export default function NestedList(props: Props) {
 							</List>
 						</Collapse>
 						<Divider />
-					</React.Fragment>
+					</Fragment>
 				) : (
-					<React.Fragment key={item.label}>
-						<ListItemButton sx={{ paddingY: 0.5 }} key={item.label}>
+					<Fragment key={item.label}>
+						<ListItemButton
+							onClick={() => navigate(item.path)}
+							sx={{ paddingY: 0.5 }}
+							key={item.label}>
 							<ListItemIcon>{item.icon}</ListItemIcon>
 							<ListItemText
 								primaryTypographyProps={{
@@ -89,7 +95,7 @@ export default function NestedList(props: Props) {
 							/>
 						</ListItemButton>
 						<Divider />
-					</React.Fragment>
+					</Fragment>
 				)
 			)}
 		</List>
