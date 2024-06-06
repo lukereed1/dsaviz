@@ -1,20 +1,10 @@
 import DataArrayIcon from "@mui/icons-material/DataArray";
 import HomeIcon from "@mui/icons-material/Home";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
-import {
-	Box,
-	Collapse,
-	Divider,
-	Drawer,
-	List,
-	ListItem,
-	ListItemButton,
-	ListItemIcon,
-	ListItemText,
-} from "@mui/material";
+import { Box, Divider, Drawer, List, ListItem } from "@mui/material";
 import { useState } from "react";
-import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import React from "react";
+import NestedList from "../components/NestedList";
 
 export default function SideMenu() {
 	const [menuOpen, setMenuOpen] = useState(false);
@@ -33,7 +23,7 @@ export default function SideMenu() {
 		setAlgoMenuOpen(!algoMenuOpen);
 	}
 
-	const menuItems = [
+	const sideMenuItems = [
 		{
 			label: "Main Menu",
 			path: "#",
@@ -85,7 +75,7 @@ export default function SideMenu() {
 						marginTop: 1,
 						gap: 1,
 					}}>
-					{menuItems.map(({ label, icon }) => (
+					{sideMenuItems.map(({ label, icon }) => (
 						<React.Fragment key={label}>
 							<ListItem sx={{ justifyContent: "center" }}>
 								{icon}
@@ -99,84 +89,12 @@ export default function SideMenu() {
 				<Box
 					onMouseLeave={handleMenu}
 					sx={{
+						backgroundColor: "primary.main",
 						justifyContent: "center",
 						width: 250,
 						height: "100%",
-						backgroundColour: "primary.main",
 					}}>
-					<List
-						sx={{
-							display: "flex",
-							flexDirection: "column",
-							justifyContent: "space-between",
-							marginTop: 1,
-							gap: 1,
-						}}>
-						{menuItems.map((item) =>
-							item.nested ? (
-								<React.Fragment key={item.label}>
-									<ListItemButton
-										sx={{ paddingY: 0.5 }}
-										onClick={item.function}>
-										<ListItemIcon>{item.icon}</ListItemIcon>
-										<ListItemText
-											primaryTypographyProps={{
-												fontSize: "20px",
-											}}
-											primary={item.label}
-										/>
-										{item.open ? (
-											<ExpandLess />
-										) : (
-											<ExpandMore />
-										)}
-									</ListItemButton>
-									<Collapse
-										in={item.open}
-										timeout={"auto"}
-										unmountOnExit>
-										<List
-											sx={{
-												display: "flex",
-												flexDirection: "column",
-												marginTop: -0.5,
-											}}
-											component={"div"}
-											disablePadding>
-											{item.items?.map((item) => (
-												<ListItemButton
-													sx={{
-														fontSize: 18,
-														justifyContent:
-															"center",
-														paddingY: 0.5,
-													}}
-													key={item.label}>
-													{item.label}
-												</ListItemButton>
-											))}
-										</List>
-									</Collapse>
-									<Divider />
-								</React.Fragment>
-							) : (
-								<React.Fragment key={item.label}>
-									<ListItemButton
-										sx={{ paddingY: 0.5 }}
-										key={item.label}>
-										<ListItemIcon>{item.icon}</ListItemIcon>
-										<ListItemText
-											primaryTypographyProps={{
-												fontSize: "20px",
-											}}
-											primary={item.label}
-										/>
-									</ListItemButton>
-									<Divider />
-								</React.Fragment>
-							)
-						)}
-					</List>
+					<NestedList menuItems={sideMenuItems} />
 				</Box>
 			</Drawer>
 		</>

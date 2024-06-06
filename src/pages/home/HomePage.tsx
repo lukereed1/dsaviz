@@ -14,20 +14,36 @@ export default function HomePage() {
 					Learn by Visualisation
 				</Typography>
 				<Typography marginTop={2} variant="h4">
-					A Visual Approach to Learning{" "}
-					<span style={{ color: "#FE971D" }}>Data Structures</span>{" "}
-					and <span style={{ color: "#FE971D" }}>Algorithms</span>
+					{" "}
+					A Visual Approach to Learning
+					<Typography
+						color={"secondary.main"}
+						variant="h4"
+						component="span">
+						{" "}
+						Data Structures{" "}
+					</Typography>
+					and{" "}
+					<Typography
+						color={"secondary.main"}
+						variant="h4"
+						component="span">
+						{" "}
+						Algorithms
+					</Typography>
 				</Typography>
 				<Button
 					variant="contained"
 					sx={{
 						marginTop: 3,
 						fontSize: "26px",
-						fontWeight: "bold",
 						bgcolor: "primary.main",
-						color: "white",
 						borderRadius: "10px",
 						paddingX: 5.5,
+						"&:hover": {
+							backgroundColor: "background.default",
+							boxShadow: 8,
+						},
 					}}>
 					Get Started
 				</Button>

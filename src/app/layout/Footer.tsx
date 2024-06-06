@@ -5,7 +5,7 @@ export default function Footer() {
 		<>
 			<Box
 				display={"flex"}
-				marginTop={"auto"}
+				bottom={0}
 				marginBottom={1}
 				justifyContent={"center"}>
 				<Typography variant="h6">Built by Luke Reed</Typography>

@@ -1,23 +1,63 @@
-import { createTheme } from "@mui/material";
+/* eslint-disable no-mixed-spaces-and-tabs */
+import { PaletteMode } from "@mui/material";
 
-const theme = createTheme({
+export const getDesignTokens = (mode: PaletteMode) => ({
 	palette: {
-		mode: "dark",
-		primary: {
-			main: "#2C2C2E",
-		},
-		secondary: {
-			main: "#FE971D",
-		},
-		background: {
-			default: "#1C1C1E",
-		},
+		mode,
+		...(mode === "dark"
+			? {
+					primary: {
+						main: "#2C2C2E",
+					},
+					secondary: {
+						main: "#FE971D",
+					},
+					background: {
+						default: "#1C1C1E",
+					},
+					text: {
+						primary: "#FFFFFF",
+					},
+			  }
+			: {
+					primary: {
+						main: "#E0E0E0",
+					},
+					secondary: {
+						main: "#9800F6",
+					},
+					background: {
+						default: "#EDEDED",
+					},
+					text: {
+						primary: "#000000",
+					},
+			  }),
 	},
-
 	typography: {
 		fontFamily: "VT323",
 		fontWeightRegular: 400,
 	},
 });
 
-export default theme;
+// const theme = createTheme({
+// 	palette: {
+// 		mode: "dark",
+// 		primary: {
+// 			main: "#2C2C2E",
+// 		},
+// 		secondary: {
+// 			main: "#FE971D",
+// 		},
+// 		background: {
+// 			default: "#1C1C1E",
+// 		},
+// 	},
+
+// 	typography: {
+// 		fontFamily: "VT323",
+// 		fontWeightRegular: 400,
+// 	},
+// });
+
+// export default theme;
