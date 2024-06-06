@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 
 interface Props {
 	header: string;
+	dataStructure?: ReactNode;
 	operations?: ReactNode;
 }
 
@@ -25,12 +26,14 @@ export default function DataStructurePage(props: Props) {
 					justifyContent={"center"}
 					alignItems={"center"}>
 					<Box
-						width={"100%"}
 						display={"flex"}
+						justifyContent={"center"}
+						alignItems={"center"}
 						flex={1}
-						bgcolor={"primary.main"}
-						borderRadius={"10px"}>
-						test
+						bgcolor={"background.default"}
+						borderRadius={"10px"}
+						overflow={"auto"}>
+						<Box>{props.dataStructure}</Box>
 					</Box>
 					<Box width={"100%"} flex={1} display={"flex"} gap={5}>
 						<Box
