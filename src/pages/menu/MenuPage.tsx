@@ -18,9 +18,9 @@ export default function MenuPage() {
 		{
 			label: "Data Structures",
 			items: [
-				{ label: "Arrays", path: "#" },
-				{ label: "Linked List", path: "#" },
-				{ label: "Graph", path: "#" },
+				{ label: "Arrays", path: "/array" },
+				{ label: "Linked List", path: "/array" },
+				{ label: "Graph", path: "/array" },
 				{ label: "Arrays", path: "#" },
 				{ label: "Linked List", path: "#" },
 				{ label: "Graph", path: "#" },

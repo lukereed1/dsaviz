@@ -67,6 +67,7 @@ export default function NestedList(props: Props) {
 								disablePadding>
 								{item.items?.map((item) => (
 									<ListItemButton
+										onClick={() => navigate(item.path)}
 										sx={{
 											fontSize: 18,
 											justifyContent: "center",

@@ -36,8 +36,8 @@ export default function SideMenu() {
 			icon: <DataArrayIcon sx={{ fontSize: 20 }} />,
 			nested: true,
 			items: [
-				{ label: "Array", path: "#" },
-				{ label: "Linked List", path: "#" },
+				{ label: "Array", path: "/array" },
+				{ label: "Linked List", path: "/array" },
 			],
 			menuToggle: () => handleDsMenu(),
 			open: dsMenuOpen,
@@ -59,7 +59,7 @@ export default function SideMenu() {
 	return (
 		<>
 			<Box
-				onMouseEnter={handleMenu}
+				// onMouseEnter={handleMenu}
 				zIndex={9}
 				sx={{
 					position: "fixed",

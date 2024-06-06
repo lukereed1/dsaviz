@@ -1,6 +1,8 @@
 import { Box, Button, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
+	const navigate = useNavigate();
 	return (
 		<Box
 			display={"flex"}
@@ -33,6 +35,7 @@ export default function HomePage() {
 					</Typography>
 				</Typography>
 				<Button
+					onClick={() => navigate("/menu")}
 					variant="contained"
 					sx={{
 						marginTop: 3,

@@ -31,7 +31,7 @@ export default function App() {
 			<Box display={"flex"} minHeight={"100vh"} flexDirection={"column"}>
 				<SideMenu />
 				<Header mode={mode} toggleMode={toggleMode} />
-				<Container sx={{ flex: 1, mt: 3 }}>
+				<Container sx={{ flex: 1, minWidth: "100%" }}>
 					{location.pathname === "/" ? <HomePage /> : <Outlet />}
 				</Container>
 				<Footer />

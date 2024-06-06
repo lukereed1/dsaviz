@@ -7,6 +7,7 @@ import {
 	ListItemText,
 } from "@mui/material";
 import { Fragment } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface MenuItem {
 	label: string;
@@ -25,6 +26,7 @@ interface Props {
 }
 
 export default function NestedList(props: Props) {
+	const navigate = useNavigate();
 	return (
 		<List sx={{ minWidth: 750 }}>
 			{props.menuItems.map((item) => (
@@ -52,6 +54,7 @@ export default function NestedList(props: Props) {
 							disablePadding>
 							{item.items?.map((item) => (
 								<ListItemButton
+									onClick={() => navigate(item.path)}
 									sx={{
 										fontSize: 32,
 										justifyContent: "center",

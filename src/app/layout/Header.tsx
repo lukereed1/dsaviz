@@ -2,7 +2,15 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import DarkLogo from "../../assets/dark-logo.svg";
 import LightLogo from "../../assets/light-logo.svg";
-import { Box, Avatar, IconButton, PaletteMode, useTheme } from "@mui/material";
+import {
+	Box,
+	Avatar,
+	IconButton,
+	PaletteMode,
+	useTheme,
+	Button,
+} from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
 	mode: PaletteMode;
@@ -11,17 +19,22 @@ interface Props {
 
 export default function Header(props: Props) {
 	const theme = useTheme();
+	const navigate = useNavigate();
+
 	return (
 		<Box
+			paddingLeft={13}
+			paddingRight={8}
+			paddingY={1}
 			display={"flex"}
-			justifyContent={"space-between"}
-			paddingLeft={10}
-			paddingRight={4}
-			paddingY={1}>
-			<img
-				src={theme.palette.mode === "dark" ? DarkLogo : LightLogo}
-				alt="DsaViz Logo"
-			/>
+			justifyContent={"space-between"}>
+			<Button sx={{ padding: 0 }} onClick={() => navigate("/")}>
+				<img
+					src={theme.palette.mode === "dark" ? DarkLogo : LightLogo}
+					alt="DsaViz Logo"
+				/>
+			</Button>
+
 			<IconButton
 				onClick={props.toggleMode}
 				sx={{
