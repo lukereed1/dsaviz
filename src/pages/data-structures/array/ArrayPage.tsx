@@ -6,9 +6,9 @@ import ArrayOperations from "./ArrayOperations";
 import { Typography } from "@mui/material";
 
 export default function ArrayPage() {
-	const [valueInput, setValueInput] = useState("");
-	const [indexInput, setIndexInput] = useState("");
-	const [array, setArray] = useState([]);
+	const [valueInput, setValueInput] = useState<number>();
+	const [indexInput, setIndexInput] = useState<number>();
+	const [array, setArray] = useState([1, 77, 33, 888, 2]);
 
 	const arrayOperations = [
 		{
@@ -16,15 +16,23 @@ export default function ArrayPage() {
 			children: (
 				<ArrayOperations
 					operation="Append"
-					setValue={setValueInput}
+					array={array}
 					value={valueInput}
+					setValue={setValueInput}
+					setArray={setArray}
 				/>
 			),
 		},
 		{
 			label: "Pop",
 			children: (
-				<ArrayOperations operation="Pop" setValue={setValueInput} />
+				<ArrayOperations
+					operation="Pop"
+					array={array}
+					index={indexInput}
+					setIndex={setIndexInput}
+					setArray={setArray}
+				/>
 			),
 		},
 		{
@@ -60,7 +68,7 @@ export default function ArrayPage() {
 			<DataStructurePageTemplate
 				header="Array"
 				operations={<VerticalTabs operations={arrayOperations} />}
-				dataStructure={<Array2D data={[1, 1, 2, 2, 2, 2, 2, 2]} />}
+				dataStructure={<Array2D data={array} />}
 			/>
 			<Typography variant="h1">{valueInput}</Typography>
 			<Typography variant="h1">{indexInput}</Typography>

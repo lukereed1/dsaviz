@@ -49,7 +49,7 @@ export default function VerticalTabs({ operations }: VerticalTabsProps) {
 				bgcolor: "primary.main",
 				display: "flex",
 				height: "100%",
-				borderRadius: "5px",
+				borderRadius: "7px",
 			}}>
 			<Tabs
 				orientation="vertical"
@@ -66,7 +66,7 @@ export default function VerticalTabs({ operations }: VerticalTabsProps) {
 					<Tab
 						key={index}
 						sx={{
-							borderRadius: "5px",
+							borderRadius: "7px",
 							fontSize: 32,
 							color: "text.primary",
 							...(value === index && {

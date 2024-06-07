@@ -14,7 +14,7 @@ export default function Array2D({ data }: Props) {
 		if (svgRef.current) {
 			const svg = d3.select(svgRef.current);
 			const height = 80;
-			const cellSize = 40;
+			const cellSize = 45;
 			const width = data.length * cellSize + 5;
 
 			svg.attr("width", width)

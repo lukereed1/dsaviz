@@ -17,7 +17,8 @@ export default function DataStructurePageTemplate(props: Props) {
 				display={"flex"}
 				textAlign={"center"}
 				gap={3}
-				height={700}>
+				height={700}
+				marginTop={1}>
 				<Box
 					alignContent={"center"}
 					display={"flex"}

@@ -3,9 +3,15 @@ import { ChangeEvent } from "react";
 
 interface Props {
 	setIndex: (index: string) => void;
+	marginTop: number;
+	defaultValue?: number;
 }
 
-export default function IndexTextInput({ setIndex }: Props) {
+export default function IndexTextInput({
+	setIndex,
+	marginTop,
+	defaultValue,
+}: Props) {
 	const theme = useTheme();
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		setIndex(event.target.value);
@@ -13,7 +19,7 @@ export default function IndexTextInput({ setIndex }: Props) {
 
 	return (
 		<TextField
-			sx={{ marginTop: 2 }}
+			sx={{ marginTop: marginTop }}
 			onChange={handleChange}
 			inputProps={{
 				style: {
@@ -29,7 +35,8 @@ export default function IndexTextInput({ setIndex }: Props) {
 			}}
 			id="outlined-basic"
 			label="Index"
-			variant="outlined">
+			variant="outlined"
+			defaultValue={defaultValue === undefined ? "" : defaultValue}>
 			Index
 		</TextField>
 	);
