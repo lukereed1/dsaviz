@@ -18,10 +18,8 @@ export default function ArrayOperations(props: Props) {
 		props;
 
 	function handleAppend() {
-		if (value === undefined) {
-			return;
-		}
-		console.log(typeof value);
+		if (value === undefined || isNaN(value)) return;
+		if (value < 0 || value > 999) return;
 		setArray([...array, value!]);
 	}
 
@@ -71,7 +69,6 @@ export default function ArrayOperations(props: Props) {
 			return (
 				<Box sx={boxStyles}>
 					<ValueTextInput setValue={props.setValue!} />
-					<IndexTextInput setIndex={props.setIndex!} marginTop={2} />
 					<OperationButton label="Remove" />
 				</Box>
 			);

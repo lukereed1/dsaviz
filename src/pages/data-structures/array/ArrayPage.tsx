@@ -3,12 +3,11 @@ import { useState } from "react";
 import Array2D from "./Array2D";
 import VerticalTabs from "../../../app/components/VerticalTabs";
 import ArrayOperations from "./ArrayOperations";
-import { Typography } from "@mui/material";
 
 export default function ArrayPage() {
 	const [valueInput, setValueInput] = useState<number>();
 	const [indexInput, setIndexInput] = useState<number>();
-	const [array, setArray] = useState([1, 77, 33, 888, 2]);
+	const [array, setArray] = useState([1, 77, 33, 888, 222]);
 
 	const arrayOperations = [
 		{
@@ -40,8 +39,12 @@ export default function ArrayPage() {
 			children: (
 				<ArrayOperations
 					operation="Insert"
+					array={array}
+					value={valueInput}
+					index={indexInput}
 					setValue={setValueInput}
 					setIndex={setIndexInput}
+					setArray={setArray}
 				/>
 			),
 		},
@@ -50,6 +53,8 @@ export default function ArrayPage() {
 			children: (
 				<ArrayOperations
 					operation="Remove"
+					array={array}
+					setArray={setArray}
 					setValue={setValueInput}
 					setIndex={setIndexInput}
 				/>
@@ -70,8 +75,6 @@ export default function ArrayPage() {
 				operations={<VerticalTabs operations={arrayOperations} />}
 				dataStructure={<Array2D data={array} />}
 			/>
-			<Typography variant="h1">{valueInput}</Typography>
-			<Typography variant="h1">{indexInput}</Typography>
 		</>
 	);
 }

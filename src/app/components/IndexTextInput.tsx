@@ -2,7 +2,7 @@ import { TextField, useTheme } from "@mui/material";
 import { ChangeEvent } from "react";
 
 interface Props {
-	setIndex: (index: string) => void;
+	setIndex: (index: number) => void;
 	marginTop: number;
 	defaultValue?: number;
 }
@@ -14,7 +14,7 @@ export default function IndexTextInput({
 }: Props) {
 	const theme = useTheme();
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-		setIndex(event.target.value);
+		setIndex(parseInt(event.target.value));
 	};
 
 	return (

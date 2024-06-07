@@ -67,7 +67,7 @@ export default function VerticalTabs({ operations }: VerticalTabsProps) {
 						key={index}
 						sx={{
 							borderRadius: "7px",
-							fontSize: 32,
+							fontSize: 30,
 							color: "text.primary",
 							...(value === index && {
 								backgroundColor: "secondary.main",

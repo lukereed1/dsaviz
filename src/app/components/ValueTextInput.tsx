@@ -2,14 +2,14 @@ import { TextField, useTheme } from "@mui/material";
 import { ChangeEvent } from "react";
 
 interface Props {
-	setValue: (value: string) => void;
+	setValue: (value: number) => void;
 }
 
 export default function ValueTextInput({ setValue }: Props) {
 	const theme = useTheme();
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-		setValue(event.target.value);
+		setValue(parseInt(event.target.value));
 	};
 
 	return (
