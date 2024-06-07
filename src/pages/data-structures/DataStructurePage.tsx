@@ -9,34 +9,39 @@ interface Props {
 
 export default function DataStructurePage(props: Props) {
 	return (
-		<Box textAlign={"center"} paddingLeft={10} paddingRight={5}>
+		<Box textAlign={"center"} paddingLeft={10} paddingRight={6}>
 			<Typography variant="h2">{props.header}</Typography>
-			<Box display={"flex"} textAlign={"center"} gap={3} height={700}>
+
+			<Box
+				flex={1}
+				display={"flex"}
+				textAlign={"center"}
+				gap={3}
+				height={600}>
 				<Box
 					alignContent={"center"}
 					display={"flex"}
 					flexDirection={"column"}
 					textAlign={"center"}
 					flex={1}
+					gap={3}
 					overflow={"auto"}>
-					<Box alignContent={"center"} flex={1} overflow={"auto"}>
+					<Box alignContent={"center"} flex={0.5} overflow={"auto"}>
 						{props.dataStructure}
 					</Box>
-					<Box flex={1}>test</Box>
+					<Box display={"flex"} flex={1} gap={3}>
+						<Box flex={1}>{props.operations}</Box>
+						<Box bgcolor={"red"} flex={1.5}></Box>
+					</Box>
 				</Box>
 
-				<Box flex={1} bgcolor={"primary.main"} borderRadius={"10px"}>
+				<Box
+					flex={1}
+					bgcolor={"primary.main"}
+					borderRadius={"10px"}
+					maxWidth={"35%"}>
 					test
 				</Box>
-			</Box>
-			<Box flex={1} gap={5} height={400}>
-				<Box borderRadius={"10px"} flex={1} bgcolor={"primary.main"}>
-					{props.operations}
-				</Box>
-				<Box
-					borderRadius={"10px"}
-					flex={1.5}
-					bgcolor={"primary.main"}></Box>
 			</Box>
 		</Box>
 	);
