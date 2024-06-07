@@ -1,4 +1,4 @@
-import { Box, Divider, Tab, Tabs, Typography } from "@mui/material";
+import { Box, Tab, Tabs } from "@mui/material";
 import { ReactNode, SyntheticEvent, useState } from "react";
 
 interface TabPanelProps {
@@ -10,17 +10,12 @@ interface TabPanelProps {
 function TabPanel({ children, index, value, ...other }: TabPanelProps) {
 	return (
 		<div
+			style={{ flex: 1 }}
 			role="tabpanel"
 			hidden={value !== index}
 			id={`vertical-tabpabel-${index}`}
 			{...other}>
-			{value === index && (
-				<Box sx={{ p: 3 }}>
-					<Typography variant="h6" color={"text.primary"}>
-						{children}
-					</Typography>
-				</Box>
-			)}
+			{value === index && <Box sx={{ p: 1 }}>{children}</Box>}
 		</div>
 	);
 }
@@ -45,7 +40,6 @@ export default function VerticalTabs({ operations }: VerticalTabsProps) {
 
 	const handleChange = (event: SyntheticEvent, newValue: number) => {
 		setValue(newValue);
-		console.log(newValue);
 	};
 
 	return (
@@ -55,7 +49,7 @@ export default function VerticalTabs({ operations }: VerticalTabsProps) {
 				bgcolor: "primary.main",
 				display: "flex",
 				height: "100%",
-				borderRadius: "12px",
+				borderRadius: "5px",
 			}}>
 			<Tabs
 				orientation="vertical"
@@ -64,12 +58,15 @@ export default function VerticalTabs({ operations }: VerticalTabsProps) {
 				onChange={handleChange}
 				aria-label="Operations"
 				sx={{
+					width: 130,
 					borderRight: 2,
 					borderColor: "divider",
 				}}>
 				{operations.map((operation, index) => (
 					<Tab
+						key={index}
 						sx={{
+							borderRadius: "5px",
 							fontSize: 32,
 							color: "text.primary",
 							...(value === index && {
@@ -77,30 +74,15 @@ export default function VerticalTabs({ operations }: VerticalTabsProps) {
 							}),
 						}}
 						label={operation.label}
-						{...allyProps(index)}></Tab>
+						{...allyProps(index)}
+					/>
 				))}
 			</Tabs>
 			{operations.map((operation, index) => (
-				<TabPanel value={value} index={index}>
+				<TabPanel key={index} value={value} index={index}>
 					{operation.children}
 				</TabPanel>
 			))}
-
-			{/* <TabPanel value={value} index={0}>
-				234234234
-			</TabPanel>
-			<TabPanel value={value} index={1}>
-				2
-			</TabPanel>
-			<TabPanel value={value} index={2}>
-				3
-			</TabPanel>
-			<TabPanel value={value} index={3}>
-				4
-			</TabPanel>
-			<TabPanel value={value} index={4}>
-				5
-			</TabPanel> */}
 		</Box>
 	);
 }

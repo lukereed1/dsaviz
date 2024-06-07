@@ -6,7 +6,7 @@ interface Props {
 	data: number[];
 }
 
-export default function ArrayVisualizer({ data }: Props) {
+export default function Array2D({ data }: Props) {
 	const theme = useTheme();
 	const svgRef = useRef<SVGSVGElement | null>(null);
 
@@ -50,7 +50,8 @@ export default function ArrayVisualizer({ data }: Props) {
 				.attr("text-anchor", "middle")
 				.attr("dominant-baseline", "middle")
 				.attr("fill", theme.palette.text.primary)
-				.attr("font-size", "24px")
+				.attr("font-size", "20px")
+				.attr("font-family", "monospace")
 				.text((d) => d);
 
 			// Draws indexes
@@ -63,7 +64,8 @@ export default function ArrayVisualizer({ data }: Props) {
 				.attr("y", 10)
 				.attr("text-anchor", "middle")
 				.attr("dominant-baseline", "middle")
-				.attr("font-size", "20px")
+				.attr("font-size", "14px")
+				.attr("font-family", "monospace")
 				.attr("fill", theme.palette.text.primary)
 				.text((_, i) => i);
 		}

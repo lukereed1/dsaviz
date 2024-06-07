@@ -37,7 +37,7 @@ export const getDesignTokens = (mode: PaletteMode) => ({
 			  }),
 	},
 	typography: {
-		fontFamily: "VT323",
+		fontFamily: "VT323, sans-serif",
 		fontWeightRegular: 400,
 	},
 });

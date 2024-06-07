@@ -7,7 +7,7 @@ interface Props {
 	operations?: ReactNode;
 }
 
-export default function DataStructurePage(props: Props) {
+export default function DataStructurePageTemplate(props: Props) {
 	return (
 		<Box textAlign={"center"} paddingLeft={10} paddingRight={6}>
 			<Typography variant="h2">{props.header}</Typography>
@@ -17,7 +17,7 @@ export default function DataStructurePage(props: Props) {
 				display={"flex"}
 				textAlign={"center"}
 				gap={3}
-				height={600}>
+				height={700}>
 				<Box
 					alignContent={"center"}
 					display={"flex"}
@@ -26,7 +26,7 @@ export default function DataStructurePage(props: Props) {
 					flex={1}
 					gap={3}
 					overflow={"auto"}>
-					<Box alignContent={"center"} flex={0.5} overflow={"auto"}>
+					<Box alignContent={"center"} flex={1.5} overflow={"auto"}>
 						{props.dataStructure}
 					</Box>
 					<Box display={"flex"} flex={1} gap={3}>
