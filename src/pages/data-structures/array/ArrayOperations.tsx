@@ -38,7 +38,7 @@ export default function ArrayOperations(props: Props) {
 		{
 			label: "Append",
 			inputs: (
-				<Box sx={boxStyles}>
+				<Box sx={styles.box}>
 					<ValueTextInput setValue={setValue} />
 					<OperationButton label="Append" operation={handleAppend} />
 				</Box>
@@ -47,7 +47,7 @@ export default function ArrayOperations(props: Props) {
 		{
 			label: "Pop",
 			inputs: (
-				<Box sx={boxStyles}>
+				<Box sx={styles.box}>
 					<IndexTextInput
 						setIndex={setIndex}
 						marginTop={0}
@@ -60,7 +60,7 @@ export default function ArrayOperations(props: Props) {
 		{
 			label: "Insert",
 			inputs: (
-				<Box sx={boxStyles}>
+				<Box sx={styles.box}>
 					<ValueTextInput setValue={setValue} />
 					<IndexTextInput setIndex={setIndex} marginTop={2} />
 					<OperationButton label="Insert" />
@@ -70,7 +70,7 @@ export default function ArrayOperations(props: Props) {
 		{
 			label: "Remove",
 			inputs: (
-				<Box sx={boxStyles}>
+				<Box sx={styles.box}>
 					<ValueTextInput setValue={props.setValue} />
 					<OperationButton label="Remove" />
 				</Box>
@@ -79,7 +79,7 @@ export default function ArrayOperations(props: Props) {
 		{
 			label: "Search",
 			inputs: (
-				<Box sx={boxStyles}>
+				<Box sx={styles.box}>
 					<ValueTextInput setValue={props.setValue} />
 					<OperationButton label="Search" />
 				</Box>
@@ -95,9 +95,11 @@ export default function ArrayOperations(props: Props) {
 	);
 }
 
-const boxStyles = {
-	display: "flex",
-	flexDirection: "column",
-	padding: 2,
-	marginTop: 0,
+const styles = {
+	box: {
+		display: "flex",
+		flexDirection: "column",
+		padding: 2,
+		marginTop: 0,
+	},
 };

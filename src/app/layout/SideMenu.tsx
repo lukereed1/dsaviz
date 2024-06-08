@@ -58,27 +58,12 @@ export default function SideMenu() {
 
 	return (
 		<>
-			<Box
-				// onMouseEnter={handleMenu}
-				zIndex={9}
-				sx={{
-					position: "fixed",
-					left: 0,
-					top: 0,
-					bottom: 0,
-					width: 46,
-					backgroundColor: "primary.main",
-				}}>
-				<List
-					sx={{
-						display: "flex",
-						flexDirection: "column",
-						marginTop: 1,
-						gap: 1,
-					}}>
+			{/* onMouseEnter={handleMenu} */}
+			<Box onMouseEnter={handleMenu} sx={styles.sideMenuBox}>
+				<List sx={styles.sideMenuList}>
 					{sideMenuItems.map(({ label, icon }) => (
 						<React.Fragment key={label}>
-							<ListItem sx={{ justifyContent: "center" }}>
+							<ListItem sx={styles.sideMenuListItem}>
 								{icon}
 							</ListItem>
 							<Divider />
@@ -87,17 +72,37 @@ export default function SideMenu() {
 				</List>
 			</Box>
 			<Drawer anchor="left" open={menuOpen}>
-				<Box
-					onMouseLeave={handleMenu}
-					sx={{
-						backgroundColor: "primary.main",
-						justifyContent: "center",
-						width: 250,
-						height: "100%",
-					}}>
+				<Box onMouseLeave={handleMenu} sx={styles.drawerBox}>
 					<NestedList menuItems={sideMenuItems} />
 				</Box>
 			</Drawer>
 		</>
 	);
 }
+
+const styles = {
+	sideMenuBox: {
+		position: "fixed",
+		left: 0,
+		top: 0,
+		bottom: 0,
+		width: 46,
+		backgroundColor: "primary.main",
+		zIndex: 9,
+	},
+	sideMenuList: {
+		display: "flex",
+		flexDirection: "column",
+		marginTop: 1,
+		gap: 1,
+	},
+	sideMenuListItem: {
+		justifyContent: "center",
+	},
+	drawerBox: {
+		backgroundColor: "primary.main",
+		justifyContent: "center",
+		width: 250,
+		height: "100%",
+	},
+};

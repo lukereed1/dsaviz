@@ -28,38 +28,27 @@ interface Props {
 export default function NestedList(props: Props) {
 	const navigate = useNavigate();
 	return (
-		<List sx={{ minWidth: 750 }}>
+		<List sx={styles.list}>
 			{props.menuItems.map((item) => (
 				<Fragment key={item.label}>
 					<ListItemButton
-						sx={{ paddingX: 5 }}
+						sx={styles.listItemButton}
 						onClick={item.toggleMenu}>
 						<ListItemText
-							primaryTypographyProps={{
-								fontSize: "72px",
-							}}
+							primaryTypographyProps={styles.listItemText}
 							primary={item.label}
 						/>
 						{item.open ? <ExpandLess /> : <ExpandMore />}
 					</ListItemButton>
 					<Collapse in={item.open} timeout={"auto"} unmountOnExit>
 						<List
-							sx={{
-								display: "flex",
-								flexDirection: "column",
-								marginTop: -1,
-								marginBottom: 2,
-							}}
+							sx={styles.collapseList}
 							component={"div"}
 							disablePadding>
 							{item.items?.map((item) => (
 								<ListItemButton
 									onClick={() => navigate(item.path)}
-									sx={{
-										fontSize: 32,
-										justifyContent: "center",
-										paddingY: 0.5,
-									}}
+									sx={styles.collapseListItemButton}
 									key={item.label}>
 									{item.label}
 								</ListItemButton>
@@ -72,3 +61,26 @@ export default function NestedList(props: Props) {
 		</List>
 	);
 }
+
+const styles = {
+	list: {
+		minWidth: 750,
+	},
+	listItemButton: {
+		paddingX: 5,
+	},
+	listItemText: {
+		fontSize: "72px",
+	},
+	collapseList: {
+		display: "flex",
+		flexDirection: "column",
+		marginTop: -1,
+		marginBottom: 2,
+	},
+	collapseListItemButton: {
+		fontSize: 32,
+		justifyContent: "center",
+		paddingY: 0.5,
+	},
+};

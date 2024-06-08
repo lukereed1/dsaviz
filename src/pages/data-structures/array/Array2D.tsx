@@ -24,7 +24,7 @@ export default function Array2D({ data }: Props) {
 			svg.selectAll("*").remove();
 
 			const g = svg.append("g");
-			g.attr("transform", `translate(${3}, 0)`);
+			g.attr("transform", `translate(${3}, 0)`); // Slight width increase ensures left and right borders are shown
 
 			// Draws rectangles/cells
 			g.selectAll("rect")

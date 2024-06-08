@@ -4,22 +4,15 @@ import { useNavigate } from "react-router-dom";
 export default function HomePage() {
 	const navigate = useNavigate();
 	return (
-		<Box
-			display={"flex"}
-			justifyContent={"center"}
-			alignItems={"center"}
-			flexDirection={"column"}
-			textAlign={"center"}
-			marginTop={"5vh"}>
-			<Box maxWidth={650}>
-				<Typography lineHeight={0.9} variant="h1">
+		<Box sx={styles.mainBox}>
+			<Box sx={styles.innerBox}>
+				<Typography sx={styles.headerText} variant="h1">
 					Learn by Visualisation
 				</Typography>
-				<Typography marginTop={2} variant="h4">
-					{" "}
+				<Typography sx={styles.subHeaderText} variant="h4">
 					A Visual Approach to Learning
 					<Typography
-						color={"secondary.main"}
+						sx={styles.highlightedText}
 						variant="h4"
 						component="span">
 						{" "}
@@ -37,22 +30,46 @@ export default function HomePage() {
 				<Button
 					onClick={() => navigate("/menu")}
 					variant="contained"
-					sx={{
-						marginTop: 3,
-						color: "text.secondary",
-						fontSize: "26px",
-						bgcolor: "secondary.main",
-						borderRadius: "10px",
-						paddingX: 5.5,
-						"&:hover": {
-							backgroundColor: "primary.main",
-							color: "text.primary",
-							boxShadow: 8,
-						},
-					}}>
+					sx={styles.button}>
 					Get Started
 				</Button>
 			</Box>
 		</Box>
 	);
 }
+
+const styles = {
+	mainBox: {
+		display: "flex",
+		justifyContent: "center",
+		alignItems: "center",
+		flexDirection: "column",
+		textAlign: "center",
+		marginTop: "5vh",
+	},
+	innerBox: {
+		maxWidth: 650,
+	},
+	headerText: {
+		lineHeight: 0.9,
+	},
+	subHeaderText: {
+		marginTop: 2,
+	},
+	highlightedText: {
+		color: "secondary.main",
+	},
+	button: {
+		marginTop: 3,
+		color: "text.secondary",
+		fontSize: "26px",
+		bgcolor: "secondary.main",
+		borderRadius: "10px",
+		paddingX: 5.5,
+		"&:hover": {
+			backgroundColor: "primary.main",
+			color: "text.primary",
+			boxShadow: 8,
+		},
+	},
+};

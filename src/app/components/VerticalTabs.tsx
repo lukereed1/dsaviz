@@ -33,36 +33,18 @@ export default function VerticalTabs({
 	};
 
 	return (
-		<Box
-			sx={{
-				flexGrow: 1,
-				bgcolor: "primary.main",
-				display: "flex",
-				height: "100%",
-				borderRadius: "7px",
-			}}>
+		<Box sx={styles.box}>
 			<Tabs
 				orientation="vertical"
 				variant="scrollable"
 				value={tabIndex}
 				onChange={handleChange}
 				aria-label="Operations"
-				sx={{
-					width: 130,
-					borderRight: 2,
-					borderColor: "divider",
-				}}>
+				sx={styles.tabs}>
 				{operations.map((operation, index) => (
 					<Tab
 						key={index}
-						sx={{
-							borderRadius: "7px",
-							fontSize: 30,
-							color: "text.primary",
-							...(tabIndex === index && {
-								backgroundColor: "secondary.main",
-							}),
-						}}
+						sx={styles.tab(tabIndex, index)}
 						label={operation.label}
 						{...allyProps(index)}
 					/>
@@ -77,3 +59,26 @@ export default function VerticalTabs({
 		</Box>
 	);
 }
+
+const styles = {
+	box: {
+		flexGrow: 1,
+		bgcolor: "primary.main",
+		display: "flex",
+		height: "100%",
+		borderRadius: "7px",
+	},
+	tabs: {
+		width: 130,
+		borderRight: 2,
+		borderColor: "divider",
+	},
+	tab: (tabIndex: number, index: number) => ({
+		borderRadius: "7px",
+		fontSize: 30,
+		color: "text.primary",
+		...(tabIndex === index && {
+			backgroundColor: "secondary.main",
+		}),
+	}),
+};
