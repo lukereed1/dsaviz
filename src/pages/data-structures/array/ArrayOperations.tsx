@@ -55,6 +55,7 @@ export default function ArrayOperations(props: Props) {
 	function handleRemove() {
 		if (checkInvalidValue()) return;
 		const indexToRemove = array.indexOf(value!);
+		if (indexToRemove === -1) return; // Value not found
 		const newArray = [...array];
 		newArray.splice(indexToRemove, 1);
 		setArray(newArray);
@@ -111,7 +112,7 @@ export default function ArrayOperations(props: Props) {
 			inputs: (
 				<Box sx={styles.box}>
 					<ValueTextInput setValue={props.setValue} />
-					<OperationButton label="Search" />
+					<OperationButton label="Search" operation={handleSearch} />
 				</Box>
 			),
 		},
