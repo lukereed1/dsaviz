@@ -16,35 +16,52 @@ interface Props {
 export default function ArrayOperations(props: Props) {
 	const { value, array, index, setValue, setIndex, setArray } = props;
 
+	function checkInvalidValue() {
+		return (
+			value === undefined || isNaN(value) || value < -99 || value > 999
+		);
+	}
+
+	function checkInvalidIndex() {
+		// Ensures index input within available index range, allows neg index
+		return index === undefined || Math.abs(index) > array.length;
+	}
+
 	function handleAppend() {
-		if (value === undefined || value < 0 || value > 999) return;
+		if (checkInvalidValue()) return;
 		setArray([...array, value!]);
 	}
 
 	function handlePop() {
-		if (index === undefined) {
+		// Pop button auto removes last element unless index specified, uses -1 as default value
+		if (index === undefined) setIndex(-1);
+		if (checkInvalidIndex()) return;
+		if (index === -1) {
 			// Removes last element
 			setArray(array.slice(0, -1));
 		} else {
-			// Removes element at specific index
+			// Removes element at specified index
 			setArray(array.filter((_, i) => i !== index));
 		}
 	}
 
 	function handleInsert() {
-		if (
-			index === undefined ||
-			value === undefined ||
-			value < 0 ||
-			value > 999 ||
-			// Ensures index input within available index range, allows neg index
-			Math.abs(index) > array.length
-		)
-			return;
-
+		if (checkInvalidIndex() || checkInvalidValue()) return;
 		const newArray = [...array];
-		newArray.splice(index, 0, value);
+		newArray.splice(index!, 0, value!);
 		setArray(newArray);
+	}
+
+	function handleRemove() {
+		if (checkInvalidValue()) return;
+		const indexToRemove = array.indexOf(value!);
+		const newArray = [...array];
+		newArray.splice(indexToRemove, 1);
+		setArray(newArray);
+	}
+
+	function handleSearch() {
+		console.log("test");
 	}
 
 	const arrayOperations = [
@@ -85,7 +102,7 @@ export default function ArrayOperations(props: Props) {
 			inputs: (
 				<Box sx={styles.box}>
 					<ValueTextInput setValue={props.setValue} />
-					<OperationButton label="Remove" />
+					<OperationButton label="Remove" operation={handleRemove} />
 				</Box>
 			),
 		},
