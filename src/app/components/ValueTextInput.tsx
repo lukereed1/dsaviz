@@ -16,6 +16,7 @@ export default function ValueTextInput({ setValue }: Props) {
 		<TextField
 			onChange={handleChange}
 			inputProps={{
+				type: "number",
 				style: {
 					color: theme.palette.text.primary,
 					fontSize: 24,
@@ -29,7 +30,17 @@ export default function ValueTextInput({ setValue }: Props) {
 			}}
 			id="outlined-basic"
 			label="Value"
-			variant="outlined">
+			variant="outlined"
+			sx={{
+				"& input[type=number]": {
+					MozAppearance: "textfield",
+				},
+				"& input[type=number]::-webkit-outer-spin-button, & input[type=number]::-webkit-inner-spin-button":
+					{
+						WebkitAppearance: "none",
+						margin: 0,
+					},
+			}}>
 			Value
 		</TextField>
 	);

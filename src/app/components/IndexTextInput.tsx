@@ -19,7 +19,18 @@ export default function IndexTextInput({
 
 	return (
 		<TextField
-			sx={{ marginTop: marginTop }}
+			type="number"
+			sx={{
+				marginTop: marginTop,
+				"& input[type=number]": {
+					MozAppearance: "textfield",
+				},
+				"& input[type=number]::-webkit-outer-spin-button, & input[type=number]::-webkit-inner-spin-button":
+					{
+						WebkitAppearance: "none",
+						margin: 0,
+					},
+			}}
 			onChange={handleChange}
 			inputProps={{
 				style: {

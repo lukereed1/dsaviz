@@ -17,14 +17,12 @@ export default function ArrayOperations(props: Props) {
 	const { value, array, index, setValue, setIndex, setArray } = props;
 
 	function handleAppend() {
-		// To-do: implement toast notifcations for errors
-		if (!value) return;
-		if (value < 0 || value > 999) return;
+		if (value === undefined || value < 0 || value > 999) return;
 		setArray([...array, value!]);
 	}
 
 	function handlePop() {
-		if (!index) {
+		if (index === undefined) {
 			// Removes last element
 			setArray(array.slice(0, -1));
 		} else {
@@ -34,7 +32,16 @@ export default function ArrayOperations(props: Props) {
 	}
 
 	function handleInsert() {
-		if (!index || !value) return;
+		if (
+			index === undefined ||
+			value === undefined ||
+			value < 0 ||
+			value > 999 ||
+			// Ensures index input within available index range, allows neg index
+			Math.abs(index) > array.length
+		)
+			return;
+
 		const newArray = [...array];
 		newArray.splice(index, 0, value);
 		setArray(newArray);
