@@ -6,7 +6,7 @@ import ArrayOperations from "./ArrayOperations";
 export default function ArrayPage() {
 	const [valueInput, setValueInput] = useState<number | undefined>();
 	const [indexInput, setIndexInput] = useState<number | undefined>();
-	const [array, setArray] = useState([1, 77, 33, 888, 222]);
+	const [array, setArray] = useState<number[]>([1, 2, 3, 4, 5]);
 
 	return (
 		<>

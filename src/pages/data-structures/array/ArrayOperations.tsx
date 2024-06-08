@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import OperationButton from "../../../app/components/OperationButton";
 import ValueTextInput from "../../../app/components/ValueTextInput";
 import IndexTextInput from "../../../app/components/IndexTextInput";
-import VerticalTabs from "../../../app/components/VerticalTabs";
+import OperationBox from "../../../app/components/OperationBox";
 
 interface Props {
 	value: number | undefined;
@@ -17,21 +17,27 @@ export default function ArrayOperations(props: Props) {
 	const { value, array, index, setValue, setIndex, setArray } = props;
 
 	function handleAppend() {
-		if (value === undefined || isNaN(value)) return;
+		// To-do: implement toast notifcations for errors
+		if (!value) return;
 		if (value < 0 || value > 999) return;
 		setArray([...array, value!]);
 	}
 
 	function handlePop() {
-		if (index === undefined) {
+		if (!index) {
 			// Removes last element
-			console.log(array);
 			setArray(array.slice(0, -1));
 		} else {
 			// Removes element at specific index
-			array.splice(index, 1);
-			setArray([...array]);
+			setArray(array.filter((_, i) => i !== index));
 		}
+	}
+
+	function handleInsert() {
+		if (!index || !value) return;
+		const newArray = [...array];
+		newArray.splice(index, 0, value);
+		setArray(newArray);
 	}
 
 	const arrayOperations = [
@@ -63,7 +69,7 @@ export default function ArrayOperations(props: Props) {
 				<Box sx={styles.box}>
 					<ValueTextInput setValue={setValue} />
 					<IndexTextInput setIndex={setIndex} marginTop={2} />
-					<OperationButton label="Insert" />
+					<OperationButton label="Insert" operation={handleInsert} />
 				</Box>
 			),
 		},
@@ -88,10 +94,11 @@ export default function ArrayOperations(props: Props) {
 	];
 
 	return (
-		<VerticalTabs
+		<OperationBox
 			setValue={setValue}
 			setIndex={setIndex}
-			operations={arrayOperations}></VerticalTabs>
+			operations={arrayOperations}
+		/>
 	);
 }
 

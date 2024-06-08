@@ -10,7 +10,7 @@ interface Props {
 export default function DataStructurePageTemplate(props: Props) {
 	return (
 		<Box sx={styles.mainBox}>
-			<Typography sx={styles.headerText}>{props.header}</Typography>
+			<Typography variant="h2">{props.header}</Typography>
 
 			<Box sx={styles.contentBox}>
 				<Box sx={styles.leftColBox}>
@@ -35,9 +35,7 @@ const styles = {
 		paddingLeft: 10,
 		paddingRight: 6,
 	},
-	headerText: {
-		variant: "h2",
-	},
+
 	contentBox: {
 		flex: 1,
 		display: "flex",

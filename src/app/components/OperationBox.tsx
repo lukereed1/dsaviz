@@ -19,7 +19,7 @@ function allyProps(index: number) {
 	};
 }
 
-export default function VerticalTabs({
+export default function OperationBox({
 	operations,
 	setValue,
 	setIndex,
