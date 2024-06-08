@@ -1,23 +1,16 @@
 import { Box, Tab, Tabs } from "@mui/material";
 import { ReactNode, SyntheticEvent, useState } from "react";
+import TabPanel from "./TabPanel";
 
-interface TabPanelProps {
-	children?: ReactNode;
-	index: number;
-	value: number;
+interface Props {
+	operations: Operation[];
+	setValue: (value: number | undefined) => void;
+	setIndex: (value: number | undefined) => void;
 }
 
-function TabPanel({ children, index, value, ...other }: TabPanelProps) {
-	return (
-		<div
-			style={{ flex: 1 }}
-			role="tabpanel"
-			hidden={value !== index}
-			id={`vertical-tabpabel-${index}`}
-			{...other}>
-			{value === index && <Box sx={{ p: 1 }}>{children}</Box>}
-		</div>
-	);
+interface Operation {
+	label: string;
+	inputs: ReactNode;
 }
 
 function allyProps(index: number) {
@@ -26,20 +19,17 @@ function allyProps(index: number) {
 	};
 }
 
-interface VerticalTabsProps {
-	operations: Operation[];
-}
-
-interface Operation {
-	label: string;
-	children?: ReactNode;
-}
-
-export default function VerticalTabs({ operations }: VerticalTabsProps) {
-	const [value, setValue] = useState(0);
+export default function VerticalTabs({
+	operations,
+	setValue,
+	setIndex,
+}: Props) {
+	const [tabIndex, setTabIndex] = useState(0);
 
 	const handleChange = (event: SyntheticEvent, newValue: number) => {
-		setValue(newValue);
+		setTabIndex(newValue);
+		setValue(undefined);
+		setIndex(undefined);
 	};
 
 	return (
@@ -54,7 +44,7 @@ export default function VerticalTabs({ operations }: VerticalTabsProps) {
 			<Tabs
 				orientation="vertical"
 				variant="scrollable"
-				value={value}
+				value={tabIndex}
 				onChange={handleChange}
 				aria-label="Operations"
 				sx={{
@@ -69,7 +59,7 @@ export default function VerticalTabs({ operations }: VerticalTabsProps) {
 							borderRadius: "7px",
 							fontSize: 30,
 							color: "text.primary",
-							...(value === index && {
+							...(tabIndex === index && {
 								backgroundColor: "secondary.main",
 							}),
 						}}
@@ -78,9 +68,10 @@ export default function VerticalTabs({ operations }: VerticalTabsProps) {
 					/>
 				))}
 			</Tabs>
+
 			{operations.map((operation, index) => (
-				<TabPanel key={index} value={value} index={index}>
-					{operation.children}
+				<TabPanel key={index} value={tabIndex} index={index}>
+					{operation.inputs}
 				</TabPanel>
 			))}
 		</Box>
