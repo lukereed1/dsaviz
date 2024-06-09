@@ -34,15 +34,16 @@ export default function ArrayOperations(props: Props) {
 
 	function handlePop() {
 		// Pop button auto removes last element unless index specified, uses -1 as default value
-		if (index === undefined) setIndex(-1);
-		if (checkInvalidIndex()) return;
-		if (index === -1) {
-			// Removes last element
+		if (index === undefined) {
+			// Ensures pop button works even if no index specified
 			setArray(array.slice(0, -1));
-		} else {
-			// Removes element at specified index
-			setArray(array.filter((_, i) => i !== index));
+			return;
 		}
+		if (checkInvalidIndex()) return;
+
+		const newArray = [...array];
+		newArray.splice(index, 1);
+		setArray(newArray);
 	}
 
 	function handleInsert() {
