@@ -67,6 +67,7 @@ const styles = {
 		display: "flex",
 		height: "100%",
 		borderRadius: "7px",
+		boxShadow: 2,
 	},
 	tabs: {
 		width: 130,
@@ -75,7 +76,10 @@ const styles = {
 	},
 	tab: (tabIndex: number, index: number) => ({
 		borderRadius: "7px",
-		fontSize: 30,
+		fontSize: 22,
+		padding: 2,
+		fontFamily: "menlo",
+
 		color: "text.primary",
 		...(tabIndex === index && {
 			backgroundColor: "secondary.main",

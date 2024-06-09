@@ -35,13 +35,15 @@ export default function IndexTextInput({
 			inputProps={{
 				style: {
 					color: theme.palette.text.primary,
-					fontSize: 24,
+					fontSize: 18,
+					fontFamily: "menlo",
 				},
 			}}
 			InputLabelProps={{
 				style: {
 					color: theme.palette.text.primary,
-					fontSize: 24,
+					fontSize: 18,
+					fontFamily: "menlo",
 				},
 			}}
 			id="outlined-basic"

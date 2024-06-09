@@ -1,5 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { ReactNode } from "react";
+import Terminal from "../../app/components/Terminal";
+import { Height } from "@mui/icons-material";
 
 interface Props {
 	header: string;
@@ -19,7 +21,7 @@ export default function DataStructurePageTemplate(props: Props) {
 					</Box>
 					<Box sx={styles.lowerBox}>
 						<Box sx={styles.operationBox}>{props.operations}</Box>
-						<Box sx={styles.terminalBox}></Box>
+						<Terminal />
 					</Box>
 				</Box>
 
@@ -41,7 +43,7 @@ const styles = {
 		display: "flex",
 		textAlign: "center",
 		gap: 3,
-		height: 700,
+		height: 750,
 		marginTop: 1,
 	},
 	leftColBox: {
@@ -55,20 +57,19 @@ const styles = {
 	},
 	dataStructureBox: {
 		alignContent: "center",
-		flex: 1.5,
+		flex: 1.3,
 		overflow: "auto",
 	},
 	lowerBox: {
 		display: "flex",
+		alignItems: "start",
 		flex: 1,
 		gap: 3,
+		padding: 0.5,
 	},
 	operationBox: {
 		flex: 1,
-	},
-	terminalBox: {
-		bgcolor: "red",
-		flex: 1.5,
+		height: "100%",
 	},
 	codeEditorBox: {
 		flex: 1,

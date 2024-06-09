@@ -33,7 +33,7 @@ export default function ArrayOperations(props: Props) {
 	}
 
 	function handlePop() {
-		// Pop button auto removes last element unless index specified, uses -1 as default value
+		// Pop button auto removes last element unless index specified
 		if (index === undefined) {
 			// Ensures pop button works even if no index specified
 			setArray(array.slice(0, -1));

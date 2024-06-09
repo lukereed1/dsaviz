@@ -11,13 +11,14 @@ export default function OperationButton({ label, operation }: Props) {
 			variant="contained"
 			onClick={operation}
 			sx={{
-				minWidth: 150,
+				minWidth: 130,
 				marginTop: 2,
 				color: "text.secondary",
 				bgcolor: "secondary.main",
 				borderRadius: "5px",
-				paddingX: 6,
-				fontSize: 22,
+				paddingX: 3,
+				fontSize: 20,
+				fontFamily: "menlo",
 				"&:hover": {
 					backgroundColor: "background.default",
 					color: "text.primary",
