@@ -1,11 +1,4 @@
-import {
-	Box,
-	Divider,
-	InputBase,
-	List,
-	ListItem,
-	Typography,
-} from "@mui/material";
+import { Box, Divider, InputBase, Typography, useTheme } from "@mui/material";
 import { ChangeEvent, useEffect, useRef, useState, KeyboardEvent } from "react";
 
 interface Props {
@@ -13,6 +6,7 @@ interface Props {
 }
 
 export default function Terminal({ header }: Props) {
+	const theme = useTheme();
 	const inputRef = useRef<HTMLInputElement>(null);
 	const [inputValue, setInputValue] = useState("");
 	const [caretPosition, setCaretPosition] = useState(0);
@@ -71,17 +65,25 @@ export default function Terminal({ header }: Props) {
 							width: "100%",
 						}}>
 						guest@dsaviz.com~$ {beforeCaret}
-						<span style={styles.caret}>{caretChar}</span>
+						<span
+							style={
+								(styles.caret,
+								{
+									backgroundColor: theme.palette.text.primary,
+									color: theme.palette.text.secondary,
+								})
+							}>
+							{caretChar}
+						</span>
 					</span>
 					<span>{afterCaret.slice(1)}</span>
 				</pre>
 			</Box>
 			<InputBase
-				hidden
 				onChange={handleInputChange}
 				onKeyDown={handleKeyDown}
 				inputRef={inputRef}
-				sx={styles.input}
+				sx={styles.hidden}
 				autoFocus
 				spellCheck={false}
 				autoCorrect="off"
@@ -116,22 +118,16 @@ const styles = {
 		fontFamily: "menlo",
 		fontSize: 13,
 	},
-	input: {
-		color: "transparent",
-		fontFamily: "menlo",
-		fontSize: "12px",
-		"& .MuiInputBase-input": {
-			padding: 0,
-		},
+	hidden: {
+		position: "absolute",
+		left: "-9999px",
 	},
 	adornment: {
 		fontFamily: "menlo",
 		fontSize: 13,
 	},
 	caret: {
-		color: "black",
 		width: 7,
-		backgroundColor: "white",
 		height: 15,
 		marginBottom: 2,
 	},
