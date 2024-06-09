@@ -1,27 +1,30 @@
 import { Box, Typography } from "@mui/material";
 import { ReactNode } from "react";
 import Terminal from "../../app/components/Terminal";
-import { Height } from "@mui/icons-material";
 
 interface Props {
 	header: string;
-	dataStructure?: ReactNode;
-	operations?: ReactNode;
+	dataStructure: ReactNode;
+	operations: ReactNode;
 }
 
-export default function DataStructurePageTemplate(props: Props) {
+export default function DataStructurePageTemplate({
+	header,
+	dataStructure,
+	operations,
+}: Props) {
 	return (
 		<Box sx={styles.mainBox}>
-			<Typography variant="h2">{props.header}</Typography>
+			<Typography variant="h2">{header}</Typography>
 
 			<Box sx={styles.contentBox}>
 				<Box sx={styles.leftColBox}>
-					<Box sx={styles.dataStructureBox}>
-						{props.dataStructure}
-					</Box>
+					<Box sx={styles.dataStructureBox}>{dataStructure}</Box>
 					<Box sx={styles.lowerBox}>
-						<Box sx={styles.operationBox}>{props.operations}</Box>
-						<Terminal />
+						<Box sx={styles.operationBox}>{operations}</Box>
+						<Terminal
+							header={"data-structure/" + header.toLowerCase()}
+						/>
 					</Box>
 				</Box>
 
