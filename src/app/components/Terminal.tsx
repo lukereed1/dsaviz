@@ -15,8 +15,10 @@ interface Props {
 export default function Terminal({ header }: Props) {
 	const inputRef = useRef<HTMLInputElement>(null);
 	const [inputValue, setInputValue] = useState("");
-	const [valueAfterCaret, setValueAfterCaret] = useState("");
 	const [caretPosition, setCaretPosition] = useState(0);
+	const beforeCaret = inputValue.slice(0, caretPosition);
+	const afterCaret = inputValue.slice(caretPosition);
+	const caretChar = afterCaret.charAt(0) || " ";
 
 	useEffect(() => {
 		if (inputRef.current) {
@@ -26,17 +28,22 @@ export default function Terminal({ header }: Props) {
 
 	function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
 		setInputValue(event.target.value);
+		setCaretPosition(inputRef.current?.selectionStart || 0);
 	}
 
 	function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
 		if (event.key === "Enter") {
-			// handle enter key
-			console.log(`Command entered: ${inputValue}`);
+			console.log(inputValue);
 			inputRef.current!.value = "";
 			setInputValue("");
+		} else if (event.key === "ArrowLeft") {
+			setCaretPosition((prev) => Math.max(prev - 1, 0));
+		} else if (event.key === "ArrowRight") {
+			setCaretPosition((prev) => Math.min(prev + 1, inputValue.length));
 		}
 	}
 
+	// If user clicks inside terminal
 	function handleClick() {
 		if (inputRef.current) {
 			inputRef.current.focus();
@@ -48,26 +55,37 @@ export default function Terminal({ header }: Props) {
 			<Typography sx={styles.headerText}>/dsaviz/{header}</Typography>
 			<Divider sx={styles.divider} />
 			<Box sx={styles.ioBox}>
-				<List disablePadding>
-					<ListItem disablePadding sx={{ fontSize: 12 }}>
-						Type 'help' for a list of commands
-					</ListItem>
-					<ListItem disablePadding sx={{ fontSize: 12 }}>
-						guest@dsaviz.com~${" "}
-						<span style={{ marginLeft: 5 }}>{inputValue}</span>
-						<span style={styles.caret}></span>
-						<span>{valueAfterCaret}</span>
-						<InputBase
-							fullWidth
-							onChange={handleInputChange}
-							onKeyDown={handleKeyDown}
-							inputRef={inputRef}
-							sx={styles.input}
-							autoFocus
-						/>
-					</ListItem>
-				</List>
+				<pre style={{ margin: 0, fontFamily: "menlo" }}>
+					Type 'help' for a list of commands
+				</pre>
+				<pre
+					style={{
+						fontFamily: "menlo",
+						fontSize: 13,
+						wordWrap: "break-word",
+						whiteSpace: "pre-wrap",
+						margin: 0,
+					}}>
+					<span
+						style={{
+							width: "100%",
+						}}>
+						guest@dsaviz.com~$ {beforeCaret}
+						<span style={styles.caret}>{caretChar}</span>
+					</span>
+					<span>{afterCaret.slice(1)}</span>
+				</pre>
 			</Box>
+			<InputBase
+				hidden
+				onChange={handleInputChange}
+				onKeyDown={handleKeyDown}
+				inputRef={inputRef}
+				sx={styles.input}
+				autoFocus
+				spellCheck={false}
+				autoCorrect="off"
+			/>
 		</Box>
 	);
 }
@@ -111,9 +129,10 @@ const styles = {
 		fontSize: 13,
 	},
 	caret: {
+		color: "black",
 		width: 7,
-		height: 15,
 		backgroundColor: "white",
+		height: 15,
 		marginBottom: 2,
 	},
 };
