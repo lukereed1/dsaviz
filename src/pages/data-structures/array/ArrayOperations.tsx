@@ -25,7 +25,7 @@ export default function ArrayOperations(props: Props) {
 		setArray,
 		setTerminalOutputs,
 	} = props;
-	const inputPrefix = "guest@dsaviz.com~$";
+	const inputPrefix = "guest@dsaviz.com~$ ";
 
 	function checkInvalidValue() {
 		return (
@@ -35,14 +35,15 @@ export default function ArrayOperations(props: Props) {
 
 	function checkInvalidIndex() {
 		// Ensures index input within available index range, allows neg index
-		return index === undefined || Math.abs(index) > array.length;
+		return index === undefined || Math.abs(index) >= array.length;
 	}
 
 	function handleAppend() {
 		if (checkInvalidValue()) return;
-
 		setArray([...array, value!]);
-		const output = getOutput("Append", "Constant - O(1)");
+		const output = `${inputPrefix}${"append"} ${value}\n  Operation: Append\n  Value: ${value}\n  Index: ${
+			array.length
+		}\n  Time Complexity: Constant - O(1)`;
 		printOperation(output);
 	}
 
@@ -50,11 +51,25 @@ export default function ArrayOperations(props: Props) {
 		// Pop button auto removes last element unless index specified
 		if (index === undefined) {
 			// Ensures pop button works even if no index specified
+			const output = `${inputPrefix}${"pop"} -1\n  Operation: Pop\n  Value Removed: ${
+				array[array.length - 1]
+			}\n  Index: -1\n  Time Complexity: Constant - O(1)`;
 			setArray(array.slice(0, -1));
+			printOperation(output);
 			return;
 		}
+		console.log(index);
 		if (checkInvalidIndex()) return;
 
+		const valueRemoved =
+			index < 0 ? array.length + 1 - Math.abs(index) : array[index];
+
+		const output = `${inputPrefix}${"pop"} ${index}\n  Operation: Pop\n  Value Removed: ${valueRemoved}\n  Index: ${index}\n  Time Complexity: ${
+			array.length === 1 || index === array.length - 1 || index === -1
+				? "Constant - O(1)"
+				: "Linear O(n)"
+		}`;
+		printOperation(output);
 		const newArray = [...array];
 		newArray.splice(index, 1);
 		setArray(newArray);
@@ -85,7 +100,7 @@ export default function ArrayOperations(props: Props) {
 	}
 
 	function getOutput(operation: string, timeComplexity: string) {
-		return `${inputPrefix} ${operation} ${value}\n  Operation: ${operation}\n  Value: ${value}\n  Index: ${array.length}\n  Time Complexity: ${timeComplexity}`;
+		return;
 	}
 
 	const arrayOperations = [

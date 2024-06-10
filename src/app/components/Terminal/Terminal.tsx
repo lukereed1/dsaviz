@@ -30,7 +30,7 @@ export default function Terminal({
 	const beforeCaret = inputValue.slice(0, caretPosition);
 	const afterCaret = inputValue.slice(caretPosition);
 	const caretChar = afterCaret.charAt(0) || " ";
-	const inputPrefix = "guest@dsaviz.com~$";
+	const inputPrefix = "guest@dsaviz.com~$ ";
 
 	useEffect(() => {
 		focusTerminal();
@@ -111,7 +111,8 @@ export default function Terminal({
 						style={{
 							width: "100%",
 						}}>
-						{inputPrefix} {beforeCaret}
+						{inputPrefix}
+						{beforeCaret}
 						<span
 							style={
 								(styles.caret,
