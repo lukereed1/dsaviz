@@ -8,8 +8,8 @@ import {
 	Dispatch,
 	SetStateAction,
 } from "react";
-import TerminalOutput from "./TerminalOutput";
 import { getTerminalCommand } from "./TerminalCommands";
+import TerminalOutput from "./TerminalOutput";
 
 interface Props {
 	header: string;
@@ -27,7 +27,6 @@ export default function Terminal({
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [inputValue, setInputValue] = useState("");
 	const [caretPosition, setCaretPosition] = useState(0);
-
 	const beforeCaret = inputValue.slice(0, caretPosition);
 	const afterCaret = inputValue.slice(caretPosition);
 	const caretChar = afterCaret.charAt(0) || " ";
@@ -147,9 +146,7 @@ const styles = {
 		bgcolor: "primary.main",
 		flex: 2,
 		borderRadius: "7px",
-		width: 400,
 		height: "100%",
-		maxHeight: 312,
 	},
 	headerText: {
 		fontFamily: "menlo",

@@ -3,7 +3,7 @@ import { useState } from "react";
 import Array2D from "./Array2D";
 
 import ArrayOperations from "./ArrayOperations";
-import Terminal from "../../../app/components/Terminal/Terminal";
+import Terminal from "../../../app/components/terminal/Terminal";
 
 export default function ArrayPage() {
 	const [valueInput, setValueInput] = useState<number | undefined>();

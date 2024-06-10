@@ -65,7 +65,7 @@ const styles = {
 	lowerBox: {
 		display: "flex",
 		alignItems: "start",
-		flex: 1,
+		flex: 1.1,
 		gap: 3,
 		padding: 0.5,
 	},
