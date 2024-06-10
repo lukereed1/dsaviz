@@ -1,5 +1,6 @@
 import { Box, Divider, InputBase, Typography, useTheme } from "@mui/material";
 import { ChangeEvent, useEffect, useRef, useState, KeyboardEvent } from "react";
+import TerminalOutput from "./TerminalOutput";
 
 interface Props {
 	header: string;
@@ -8,17 +9,30 @@ interface Props {
 export default function Terminal({ header }: Props) {
 	const theme = useTheme();
 	const inputRef = useRef<HTMLInputElement>(null);
+	const containerRef = useRef<HTMLDivElement>(null);
 	const [inputValue, setInputValue] = useState("");
 	const [caretPosition, setCaretPosition] = useState(0);
+	const welcomeString = "Type 'help' for a list of commands";
+	const [terminalOutputs, setTerminalOutputs] = useState<string[]>([
+		welcomeString,
+	]);
 	const beforeCaret = inputValue.slice(0, caretPosition);
 	const afterCaret = inputValue.slice(caretPosition);
 	const caretChar = afterCaret.charAt(0) || " ";
 
 	useEffect(() => {
-		if (inputRef.current) {
-			inputRef.current.focus(); // Focuses terminal input upon page loading
-		}
+		focusTerminal();
 	}, []);
+
+	useEffect(() => {
+		if (containerRef.current) {
+			containerRef.current.scrollTop = containerRef.current?.scrollHeight;
+		}
+	}, [terminalOutputs]);
+
+	function handleClick() {
+		focusTerminal();
+	}
 
 	function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
 		setInputValue(event.target.value);
@@ -27,31 +41,44 @@ export default function Terminal({ header }: Props) {
 
 	function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
 		if (event.key === "Enter") {
-			console.log(inputValue);
+			if (inputValue === "clear") {
+				clearTerminal();
+				return;
+			}
+			if (inputValue) {
+				console.log(inputValue.length);
+				setTerminalOutputs((prevArray) => [...prevArray, inputValue]);
+			}
 			inputRef.current!.value = "";
 			setInputValue("");
 		} else if (event.key === "ArrowLeft") {
+			// Ensures caret doesn't go out of bounds
 			setCaretPosition((prev) => Math.max(prev - 1, 0));
 		} else if (event.key === "ArrowRight") {
 			setCaretPosition((prev) => Math.min(prev + 1, inputValue.length));
 		}
 	}
 
-	// If user clicks inside terminal
-	function handleClick() {
+	function focusTerminal() {
 		if (inputRef.current) {
 			inputRef.current.focus();
 		}
 	}
 
+	function clearTerminal() {
+		let arrCopy = [...terminalOutputs];
+		arrCopy = [];
+		setTerminalOutputs(arrCopy);
+	}
+
 	return (
-		<Box onClick={handleClick} sx={styles.window}>
-			<Typography sx={styles.headerText}>/dsaviz/{header}</Typography>
+		<Box onClick={handleClick} sx={styles.window} ref={containerRef}>
+			<Typography sx={styles.headerText}>~/dsaviz/{header}</Typography>
 			<Divider sx={styles.divider} />
 			<Box sx={styles.ioBox}>
-				<pre style={{ margin: 0, fontFamily: "menlo" }}>
-					Type 'help' for a list of commands
-				</pre>
+				{terminalOutputs.map((output, index) => (
+					<TerminalOutput key={index}>{output}</TerminalOutput>
+				))}
 				<pre
 					style={{
 						fontFamily: "menlo",
@@ -102,6 +129,8 @@ const styles = {
 		borderRadius: "7px",
 		width: 400,
 		height: "100%",
+		maxHeight: 312,
+		overflow: "auto",
 	},
 	headerText: {
 		fontFamily: "menlo",

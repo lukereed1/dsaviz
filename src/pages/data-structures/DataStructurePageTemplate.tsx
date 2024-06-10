@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { ReactNode } from "react";
-import Terminal from "../../app/components/Terminal";
+import Terminal from "../../app/components/Terminal/Terminal";
 
 interface Props {
 	header: string;
