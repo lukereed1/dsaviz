@@ -30,6 +30,7 @@ export default function Terminal({
 	const beforeCaret = inputValue.slice(0, caretPosition);
 	const afterCaret = inputValue.slice(caretPosition);
 	const caretChar = afterCaret.charAt(0) || " ";
+	const inputPrefix = "guest@dsaviz.com~$";
 
 	useEffect(() => {
 		focusTerminal();
@@ -54,12 +55,12 @@ export default function Terminal({
 	function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
 		if (event.key === "Enter") {
 			if (!inputValue || inputValue.trim() === "") {
-				const input = "guest@dsaviz.com~$ " + inputValue;
+				const input = inputPrefix + inputValue;
 				setTerminalOutputs((prevArray) => [...prevArray, input]);
 			} else if (inputValue === "clear") {
 				clearTerminal();
 			} else {
-				const input = "guest@dsaviz.com~$ " + inputValue;
+				const input = inputPrefix + inputValue;
 				const terminalCommand = getTerminalCommand(inputValue);
 
 				setTerminalOutputs((prevArray) => [
@@ -110,7 +111,7 @@ export default function Terminal({
 						style={{
 							width: "100%",
 						}}>
-						guest@dsaviz.com~$ {beforeCaret}
+						{inputPrefix} {beforeCaret}
 						<span
 							style={
 								(styles.caret,
@@ -147,6 +148,7 @@ const styles = {
 		flex: 2,
 		borderRadius: "7px",
 		height: "100%",
+		maxHeight: 342,
 	},
 	headerText: {
 		fontFamily: "menlo",
@@ -168,10 +170,7 @@ const styles = {
 		position: "absolute",
 		left: "-9999px",
 	},
-	adornment: {
-		fontFamily: "menlo",
-		fontSize: 13,
-	},
+	output: {},
 	caret: {
 		width: 7,
 		height: 15,

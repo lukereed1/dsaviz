@@ -16,7 +16,16 @@ interface Props {
 }
 
 export default function ArrayOperations(props: Props) {
-	const { value, array, index, setValue, setIndex, setArray } = props;
+	const {
+		value,
+		array,
+		index,
+		setValue,
+		setIndex,
+		setArray,
+		setTerminalOutputs,
+	} = props;
+	const inputPrefix = "guest@dsaviz.com~$";
 
 	function checkInvalidValue() {
 		return (
@@ -31,7 +40,10 @@ export default function ArrayOperations(props: Props) {
 
 	function handleAppend() {
 		if (checkInvalidValue()) return;
+
 		setArray([...array, value!]);
+		const output = getOutput("Append", "Constant - O(1)");
+		printOperation(output);
 	}
 
 	function handlePop() {
@@ -66,6 +78,14 @@ export default function ArrayOperations(props: Props) {
 
 	function handleSearch() {
 		console.log("test");
+	}
+
+	function printOperation(output: string) {
+		setTerminalOutputs((prevArray) => [...prevArray, output]);
+	}
+
+	function getOutput(operation: string, timeComplexity: string) {
+		return `${inputPrefix} ${operation} ${value}\n  Operation: ${operation}\n  Value: ${value}\n  Index: ${array.length}\n  Time Complexity: ${timeComplexity}`;
 	}
 
 	const arrayOperations = [

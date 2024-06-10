@@ -35,14 +35,7 @@ export default function OperationBox({
 	return (
 		<Box sx={styles.box}>
 			<Box>
-				<Typography
-					sx={{
-						fontFamily: "menlo",
-						fontSize: 15,
-						paddingTop: 2,
-						paddingBottom: 1.75,
-					}}
-					variant="h6">
+				<Typography sx={styles.headerText} variant="h6">
 					Operations
 				</Typography>
 				<Divider sx={{ borderBottomWidth: 3 }} />
@@ -90,6 +83,12 @@ const styles = {
 		width: 130,
 		borderRight: 2,
 		borderColor: "divider",
+	},
+	headerText: {
+		fontFamily: "menlo",
+		fontSize: 15,
+		paddingTop: 2,
+		paddingBottom: 1.75,
 	},
 	tab: (tabIndex: number, index: number) => ({
 		borderRadius: "7px",
