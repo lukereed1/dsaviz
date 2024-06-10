@@ -1,17 +1,18 @@
 import { Box, Typography } from "@mui/material";
 import { ReactNode } from "react";
-import Terminal from "../../app/components/Terminal/Terminal";
 
 interface Props {
 	header: string;
 	dataStructure: ReactNode;
 	operations: ReactNode;
+	terminal: ReactNode;
 }
 
 export default function DataStructurePageTemplate({
 	header,
 	dataStructure,
 	operations,
+	terminal,
 }: Props) {
 	return (
 		<Box sx={styles.mainBox}>
@@ -22,9 +23,7 @@ export default function DataStructurePageTemplate({
 					<Box sx={styles.dataStructureBox}>{dataStructure}</Box>
 					<Box sx={styles.lowerBox}>
 						<Box sx={styles.operationBox}>{operations}</Box>
-						<Terminal
-							header={"data-structure/" + header.toLowerCase()}
-						/>
+						{terminal}
 					</Box>
 				</Box>
 

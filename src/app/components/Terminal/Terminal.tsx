@@ -1,21 +1,33 @@
 import { Box, Divider, InputBase, Typography, useTheme } from "@mui/material";
-import { ChangeEvent, useEffect, useRef, useState, KeyboardEvent } from "react";
+import {
+	ChangeEvent,
+	useEffect,
+	useRef,
+	useState,
+	KeyboardEvent,
+	Dispatch,
+	SetStateAction,
+} from "react";
 import TerminalOutput from "./TerminalOutput";
+import { getTerminalCommand } from "./TerminalCommands";
 
 interface Props {
 	header: string;
+	terminalOutputs: string[];
+	setTerminalOutputs: Dispatch<SetStateAction<string[]>>;
 }
 
-export default function Terminal({ header }: Props) {
+export default function Terminal({
+	header,
+	terminalOutputs,
+	setTerminalOutputs,
+}: Props) {
 	const theme = useTheme();
 	const inputRef = useRef<HTMLInputElement>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [inputValue, setInputValue] = useState("");
 	const [caretPosition, setCaretPosition] = useState(0);
-	const welcomeString = "Type 'help' for a list of commands";
-	const [terminalOutputs, setTerminalOutputs] = useState<string[]>([
-		welcomeString,
-	]);
+
 	const beforeCaret = inputValue.slice(0, caretPosition);
 	const afterCaret = inputValue.slice(caretPosition);
 	const caretChar = afterCaret.charAt(0) || " ";
@@ -26,6 +38,7 @@ export default function Terminal({ header }: Props) {
 
 	useEffect(() => {
 		if (containerRef.current) {
+			// Auto scrolls terminal when filled with outputs
 			containerRef.current.scrollTop = containerRef.current?.scrollHeight;
 		}
 	}, [terminalOutputs]);
@@ -43,12 +56,17 @@ export default function Terminal({ header }: Props) {
 		if (event.key === "Enter") {
 			if (inputValue === "clear") {
 				clearTerminal();
-				return;
+			} else {
+				const input = "guest@dsaviz.com~$ " + inputValue;
+				const terminalCommand = getTerminalCommand(inputValue);
+
+				setTerminalOutputs((prevArray) => [
+					...prevArray,
+					input,
+					terminalCommand,
+				]);
 			}
-			if (inputValue) {
-				console.log(inputValue.length);
-				setTerminalOutputs((prevArray) => [...prevArray, inputValue]);
-			}
+
 			inputRef.current!.value = "";
 			setInputValue("");
 		} else if (event.key === "ArrowLeft") {
@@ -72,10 +90,10 @@ export default function Terminal({ header }: Props) {
 	}
 
 	return (
-		<Box onClick={handleClick} sx={styles.window} ref={containerRef}>
+		<Box onClick={handleClick} sx={styles.window}>
 			<Typography sx={styles.headerText}>~/dsaviz/{header}</Typography>
 			<Divider sx={styles.divider} />
-			<Box sx={styles.ioBox}>
+			<Box sx={styles.ioBox} ref={containerRef}>
 				{terminalOutputs.map((output, index) => (
 					<TerminalOutput key={index}>{output}</TerminalOutput>
 				))}
@@ -130,7 +148,6 @@ const styles = {
 		width: 400,
 		height: "100%",
 		maxHeight: 312,
-		overflow: "auto",
 	},
 	headerText: {
 		fontFamily: "menlo",
@@ -146,6 +163,7 @@ const styles = {
 		paddingY: 1.5,
 		fontFamily: "menlo",
 		fontSize: 13,
+		overflow: "auto",
 	},
 	hidden: {
 		position: "absolute",
