@@ -26,6 +26,7 @@ export default function ArrayPage() {
 						setValue={setValueInput}
 						setIndex={setIndexInput}
 						setArray={setArray}
+						setTerminalOutputs={setTerminalOutputs}
 					/>
 				}
 				dataStructure={<Array2D data={array} />}

@@ -54,7 +54,10 @@ export default function Terminal({
 
 	function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
 		if (event.key === "Enter") {
-			if (inputValue === "clear") {
+			if (!inputValue || inputValue.trim() === "") {
+				const input = "guest@dsaviz.com~$ " + inputValue;
+				setTerminalOutputs((prevArray) => [...prevArray, input]);
+			} else if (inputValue === "clear") {
 				clearTerminal();
 			} else {
 				const input = "guest@dsaviz.com~$ " + inputValue;
@@ -66,7 +69,6 @@ export default function Terminal({
 					terminalCommand,
 				]);
 			}
-
 			inputRef.current!.value = "";
 			setInputValue("");
 		} else if (event.key === "ArrowLeft") {
