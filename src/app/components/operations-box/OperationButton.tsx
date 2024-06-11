@@ -17,7 +17,7 @@ export default function OperationButton({ label, operation }: Props) {
 				bgcolor: "secondary.main",
 				borderRadius: "5px",
 				paddingX: 3,
-				fontSize: 20,
+				fontSize: 16,
 				fontFamily: "menlo",
 				"&:hover": {
 					backgroundColor: "background.default",

@@ -19,14 +19,14 @@ export default function ValueTextInput({ setValue }: Props) {
 				type: "number",
 				style: {
 					color: theme.palette.text.primary,
-					fontSize: 18,
+					fontSize: 16,
 					fontFamily: "menlo",
 				},
 			}}
 			InputLabelProps={{
 				style: {
 					color: theme.palette.text.primary,
-					fontSize: 18,
+					fontSize: 16,
 					fontFamily: "menlo",
 				},
 			}}

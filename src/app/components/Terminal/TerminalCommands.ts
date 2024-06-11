@@ -1,20 +1,28 @@
+import { useNavigate } from "react-router-dom";
 import { openNewTab } from "../../util/util";
 
-export function getTerminalCommand(dataStructure: string, input: string) {
+export function getTerminalCommand(
+	dataStructure: string,
+	input: string,
+	navigate: ReturnType<typeof useNavigate>
+) {
 	switch (dataStructure) {
 		case "data-structure/array": {
-			return arrayCommands(input);
+			return arrayCommands(input, navigate);
 			break;
 		}
 		default:
-			return "test";
+			return;
 	}
 }
 
-function arrayCommands(input: string) {
+function arrayCommands(
+	input: string,
+	navigate: ReturnType<typeof useNavigate>
+) {
 	switch (input) {
 		case "help":
-			return "  Available Commands:\n  - help: display available commands\n  - info: more information on arrays\n  - time: display time complexities for array operations\n  - clear: clear terminal\n  - pwd: print working directory\n  - ls: list all files \n  - code: show source code";
+			return "  Available Commands:\n  - help: display available commands\n  - info: more information on arrays\n  - time: display time complexities for array operations\n  - clear: clear terminal\n  - pwd: print working directory\n  - ls: list all files \n  - code: show source code\n  - cd .. : return to main menu";
 			break;
 		case "info": {
 			const url =
@@ -39,8 +47,10 @@ function arrayCommands(input: string) {
 				openNewTab(url);
 			}
 			break;
-
-		default: // Code . ??
+		case "cd ..":
+			navigate("/menu");
+			break;
+		default:
 			return `  "${input}" command not found`;
 			break;
 	}

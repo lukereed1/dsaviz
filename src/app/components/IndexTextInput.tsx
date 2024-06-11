@@ -35,14 +35,14 @@ export default function IndexTextInput({
 			inputProps={{
 				style: {
 					color: theme.palette.text.primary,
-					fontSize: 18,
+					fontSize: 16,
 					fontFamily: "menlo",
 				},
 			}}
 			InputLabelProps={{
 				style: {
 					color: theme.palette.text.primary,
-					fontSize: 18,
+					fontSize: 16,
 					fontFamily: "menlo",
 				},
 			}}

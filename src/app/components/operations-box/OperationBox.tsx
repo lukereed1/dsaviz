@@ -70,27 +70,27 @@ export default function OperationBox({
 
 const styles = {
 	box: {
-		flexGrow: 1,
 		bgcolor: "primary.main",
 		display: "flex",
 		flexDirection: "column",
 		borderRadius: "7px",
-		boxShadow: 2,
+		boxShadow: 1,
 	},
 	tabs: {
-		width: 130,
+		width: 100,
 		borderRight: 2,
 		borderColor: "divider",
 	},
 	headerText: {
 		fontFamily: "menlo",
+		fontWeight: "bold",
 		fontSize: 16,
 		paddingTop: 2,
 		paddingBottom: 1.75,
 	},
 	tab: (tabIndex: number, index: number) => ({
 		borderRadius: "7px",
-		fontSize: 20,
+		fontSize: 16,
 		padding: 2,
 		fontFamily: "menlo",
 

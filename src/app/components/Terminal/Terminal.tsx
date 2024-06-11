@@ -10,6 +10,7 @@ import {
 } from "react";
 import { getTerminalCommand } from "./TerminalCommands";
 import TerminalOutput from "./TerminalOutput";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
 	header: string;
@@ -22,6 +23,7 @@ export default function Terminal({
 	terminalOutputs,
 	setTerminalOutputs,
 }: Props) {
+	const navigate = useNavigate();
 	const theme = useTheme();
 	const inputRef = useRef<HTMLInputElement>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
@@ -63,7 +65,7 @@ export default function Terminal({
 			} else {
 				const inputWithPrefix = inputPrefix + inputValue;
 				const terminalCommand =
-					getTerminalCommand(header, inputValue) || "";
+					getTerminalCommand(header, inputValue, navigate) || "";
 
 				setTerminalOutputs((prevArray) => [
 					...prevArray,
@@ -95,7 +97,7 @@ export default function Terminal({
 
 	return (
 		<Box onClick={handleClick} sx={styles.window}>
-			<Typography sx={styles.headerText}>~/dsaviz/{header}</Typography>
+			<Typography sx={styles.headerText}>Terminal</Typography>
 			<Divider sx={styles.divider} />
 			<Box sx={styles.ioBox} ref={containerRef}>
 				{terminalOutputs.map((output, index) => (
@@ -104,7 +106,7 @@ export default function Terminal({
 				<pre
 					style={{
 						fontFamily: "menlo",
-						fontSize: 13,
+						fontSize: 12,
 						wordWrap: "break-word",
 						whiteSpace: "pre-wrap",
 						margin: 0,
@@ -146,19 +148,20 @@ const styles = {
 	window: {
 		display: "flex",
 		flexDirection: "column",
-		boxShadow: 2,
+		boxShadow: 1,
 		bgcolor: "primary.main",
 		flex: 2,
 		borderRadius: "7px",
 		height: "100%",
-		maxHeight: 342,
-		minWidth: 450,
+		maxHeight: 317,
+		minWidth: 400,
 	},
 	headerText: {
 		fontFamily: "menlo",
 		fontSize: 16,
 		paddingTop: 2,
 		paddingBottom: 1.75,
+		fontWeight: "bold",
 	},
 	divider: { borderBottomWidth: 3 },
 	ioBox: {
@@ -167,7 +170,7 @@ const styles = {
 		paddingX: 2,
 		paddingY: 1.5,
 		fontFamily: "menlo",
-		fontSize: 13,
+		fontSize: 12,
 		overflow: "auto",
 	},
 	hidden: {

@@ -19,7 +19,7 @@ export default function Array2D({ data }: Props) {
 
 			svg.attr("width", width)
 				.attr("height", height)
-				.style("background-color", theme.palette.background.default);
+				.style("background-color", theme.palette.primary.main);
 
 			svg.selectAll("*").remove();
 
@@ -35,7 +35,7 @@ export default function Array2D({ data }: Props) {
 				.attr("y", 30)
 				.attr("width", cellSize)
 				.attr("height", cellSize)
-				.attr("fill", theme.palette.primary.main)
+				.attr("fill", theme.palette.background.default)
 				.attr("stroke-width", 2)
 				.attr("stroke", theme.palette.text.primary);
 
