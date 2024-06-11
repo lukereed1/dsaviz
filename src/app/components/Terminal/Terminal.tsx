@@ -106,7 +106,7 @@ export default function Terminal({
 				<pre
 					style={{
 						fontFamily: "menlo",
-						fontSize: 12,
+						fontSize: 11,
 						wordWrap: "break-word",
 						whiteSpace: "pre-wrap",
 						margin: 0,
@@ -169,7 +169,7 @@ const styles = {
 		paddingX: 2,
 		paddingY: 1.5,
 		fontFamily: "menlo",
-		fontSize: 12,
+		fontSize: 11,
 		overflow: "auto",
 	},
 	hidden: {

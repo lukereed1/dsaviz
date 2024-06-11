@@ -81,7 +81,7 @@ const styles = {
 		backgroundColor: "primary.main",
 		borderRadius: "7px",
 		height: "60%",
-		padding: 0.5,
+		paddingBottom: 0.5,
 		boxShadow: 1,
 	},
 	innerDsBox: { marginTop: 10, flex: 1 },
@@ -89,7 +89,7 @@ const styles = {
 		display: "flex",
 		gap: 4,
 		height: "45%",
-		padding: 0.5,
+		paddingBottom: 0.5,
 	},
 	operationBox: {
 		flex: 1,

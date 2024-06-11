@@ -1,6 +1,6 @@
 import Editor, { OnMount, useMonaco } from "@monaco-editor/react";
 import { useTheme } from "@mui/material";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import * as monacoEditor from "monaco-editor";
 
 export default function CodeEditor() {
@@ -14,27 +14,13 @@ export default function CodeEditor() {
 	const handleEditorDidMount: OnMount = (editor, monaco) => {
 		editorRef.current = editor;
 		monacoRef.current = monaco;
-		monaco!.editor.defineTheme("custom", {
-			base: theme.palette.mode === "dark" ? "vs-dark" : "vs",
-			inherit: true,
-			rules: [],
-			colors: {
-				"editorWhitespace.foreground": theme.palette.primary.main,
-				"editor.background": theme.palette.primary.main,
-				"editor.foreground": theme.palette.text.primary,
-				"editorLineNumber.foreground": theme.palette.text.primary,
-				"editorGutter.background": theme.palette.primary.main,
-				"editorCursor.foreground": theme.palette.text.primary,
-				"editor.lineHighlightBackground": theme.palette.primary.main,
-			},
-		});
-
+		defineCustomTheme(monaco);
 		monaco!.editor.setTheme("custom");
 	};
 
-	useEffect(() => {
-		if (monacoRef.current) {
-			monaco!.editor.defineTheme("custom", {
+	const defineCustomTheme = useCallback(
+		(monaco: typeof monacoEditor) => {
+			monaco.editor.defineTheme("custom", {
 				base: theme.palette.mode === "dark" ? "vs-dark" : "vs",
 				inherit: true,
 				rules: [],
@@ -49,10 +35,17 @@ export default function CodeEditor() {
 						theme.palette.primary.main,
 				},
 			});
+		},
+		[theme]
+	);
+
+	useEffect(() => {
+		if (monacoRef.current) {
+			defineCustomTheme(monaco!);
 
 			monaco!.editor.setTheme("custom");
 		}
-	}, [monaco, theme]);
+	}, [defineCustomTheme, monaco]);
 
 	return (
 		<Editor
