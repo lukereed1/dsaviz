@@ -55,17 +55,19 @@ export default function Terminal({
 	function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
 		if (event.key === "Enter") {
 			if (!inputValue || inputValue.trim() === "") {
+				// Empty input
 				const input = inputPrefix + inputValue;
 				setTerminalOutputs((prevArray) => [...prevArray, input]);
 			} else if (inputValue === "clear") {
 				clearTerminal();
 			} else {
-				const input = inputPrefix + inputValue;
-				const terminalCommand = getTerminalCommand(inputValue);
+				const inputWithPrefix = inputPrefix + inputValue;
+				const terminalCommand =
+					getTerminalCommand(header, inputValue) || "";
 
 				setTerminalOutputs((prevArray) => [
 					...prevArray,
-					input,
+					inputWithPrefix,
 					terminalCommand,
 				]);
 			}
