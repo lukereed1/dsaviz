@@ -6,7 +6,7 @@ interface Props {
 	data: number[];
 }
 
-export default function Array2D({ data }: Props) {
+export default function Array({ data }: Props) {
 	const theme = useTheme();
 	const svgRef = useRef<SVGSVGElement | null>(null);
 

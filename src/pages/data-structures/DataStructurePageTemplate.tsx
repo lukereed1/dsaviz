@@ -1,12 +1,12 @@
 import { Box, Divider, Typography } from "@mui/material";
 import { ReactNode } from "react";
-import CodeEditor from "../../app/components/code-editor/CodeEditor";
 
 interface Props {
 	header: string;
 	dataStructure: ReactNode;
 	operations: ReactNode;
 	terminal: ReactNode;
+	codeEditor: ReactNode;
 }
 
 export default function DataStructurePageTemplate({
@@ -14,6 +14,7 @@ export default function DataStructurePageTemplate({
 	dataStructure,
 	operations,
 	terminal,
+	codeEditor,
 }: Props) {
 	return (
 		<>
@@ -37,9 +38,7 @@ export default function DataStructurePageTemplate({
 						</Box>
 					</Box>
 
-					<Box sx={styles.codeEditorBox}>
-						<CodeEditor />
-					</Box>
+					<Box sx={styles.codeEditorBox}>{codeEditor}</Box>
 				</Box>
 			</Box>
 		</>

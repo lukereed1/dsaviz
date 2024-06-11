@@ -1,9 +1,11 @@
 import DataStructurePageTemplate from "../DataStructurePageTemplate";
 import { useState } from "react";
-import Array2D from "./Array2D";
+import Array from "../../../app/d3/Array";
 
 import ArrayOperations from "./ArrayOperations";
 import Terminal from "../../../app/components/terminal/Terminal";
+import CodeEditor from "../../../app/components/code-editor/CodeEditor";
+import { arrayFiles } from "./arrayFiles";
 
 export default function ArrayPage() {
 	const [valueInput, setValueInput] = useState<number | undefined>();
@@ -29,7 +31,7 @@ export default function ArrayPage() {
 						setTerminalOutputs={setTerminalOutputs}
 					/>
 				}
-				dataStructure={<Array2D data={array} />}
+				dataStructure={<Array data={array} />}
 				terminal={
 					<Terminal
 						terminalOutputs={terminalOutputs}
@@ -37,6 +39,7 @@ export default function ArrayPage() {
 						header="data-structure/array"
 					/>
 				}
+				codeEditor={<CodeEditor arrayFiles={arrayFiles} />}
 			/>
 		</>
 	);
