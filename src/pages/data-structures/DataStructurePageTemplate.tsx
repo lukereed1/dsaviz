@@ -29,9 +29,7 @@ export default function DataStructurePageTemplate({
 							</Typography>
 							<Divider sx={styles.divider} />
 
-							<Box sx={{ marginTop: 8, flex: 3 }}>
-								{dataStructure}
-							</Box>
+							<Box sx={styles.innerDsBox}>{dataStructure}</Box>
 						</Box>
 						<Box sx={styles.lowerBox}>
 							<Box sx={styles.operationBox}>{operations}</Box>
@@ -70,42 +68,45 @@ const styles = {
 		display: "flex",
 		flexDirection: "column",
 		textAlign: "center",
-		flex: 1,
+		flex: 2,
 		gap: 4,
 		overflow: "auto",
+		height: "100%",
 	},
 	dataStructureBox: {
 		display: "flex",
 		flexDirection: "column",
-		height: "100%",
-		width: "100%",
+		flex: 1,
 		overflow: "auto",
 		backgroundColor: "primary.main",
-		borderRadius: "10px",
+		borderRadius: "7px",
+		height: "60%",
 		padding: 0.5,
 		boxShadow: 1,
 	},
+	innerDsBox: { marginTop: 10, flex: 1 },
 	lowerBox: {
 		display: "flex",
 		gap: 4,
+		height: "45%",
 		padding: 0.5,
-		height: "50%",
 	},
 	operationBox: {
 		flex: 1,
+		height: "100%",
 	},
 	subHeaderText: {
 		fontFamily: "menlo",
-		fontWeight: "bold",
 		fontSize: 16,
-		paddingTop: 2,
-		paddingBottom: 1.75,
+		fontWeight: "bold",
+		paddingTop: 1.5,
+		paddingBottom: 1.25,
 	},
 	divider: { borderBottomWidth: 3 },
 	codeEditorBox: {
 		flex: 1,
 		bgcolor: "primary.main",
-		borderRadius: "10px",
+		borderRadius: "7px",
 		overflow: "hidden",
 		maxWidth: "35%",
 		boxShadow: 1,

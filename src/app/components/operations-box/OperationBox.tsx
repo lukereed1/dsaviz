@@ -75,6 +75,7 @@ const styles = {
 		flexDirection: "column",
 		borderRadius: "7px",
 		boxShadow: 1,
+		height: "100%",
 	},
 	tabs: {
 		width: 100,
@@ -85,8 +86,8 @@ const styles = {
 		fontFamily: "menlo",
 		fontWeight: "bold",
 		fontSize: 16,
-		paddingTop: 2,
-		paddingBottom: 1.75,
+		paddingTop: 1.5,
+		paddingBottom: 1.25,
 	},
 	tab: (tabIndex: number, index: number) => ({
 		borderRadius: "7px",
