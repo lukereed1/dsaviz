@@ -9,7 +9,7 @@ export function getTerminalCommand(input: string) {
 		case "time":
 			return "time";
 			break;
-		default:
+		default: // Code . ??
 			return `  "${input}" command not found`;
 			break;
 	}

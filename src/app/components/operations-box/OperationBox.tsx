@@ -35,9 +35,7 @@ export default function OperationBox({
 	return (
 		<Box sx={styles.box}>
 			<Box>
-				<Typography sx={styles.headerText} variant="h6">
-					Operations
-				</Typography>
+				<Typography sx={styles.headerText}>Operations</Typography>
 				<Divider sx={{ borderBottomWidth: 3 }} />
 			</Box>
 
@@ -86,7 +84,7 @@ const styles = {
 	},
 	headerText: {
 		fontFamily: "menlo",
-		fontSize: 15,
+		fontSize: 16,
 		paddingTop: 2,
 		paddingBottom: 1.75,
 	},

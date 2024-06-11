@@ -44,7 +44,7 @@ export default function ArrayOperations(props: Props) {
 		const output = `${inputPrefix}${"append"} ${value}\n  Operation: Append\n  Value: ${value}\n  Index: ${
 			array.length
 		}\n  Time Complexity: Constant - O(1)`;
-		printOperation(output);
+		printToTerminal(output);
 	}
 
 	function handlePop() {
@@ -55,21 +55,19 @@ export default function ArrayOperations(props: Props) {
 				array[array.length - 1]
 			}\n  Index: -1\n  Time Complexity: Constant - O(1)`;
 			setArray(array.slice(0, -1));
-			printOperation(output);
+			printToTerminal(output);
 			return;
 		}
-		console.log(index);
 		if (checkInvalidIndex()) return;
 
 		const valueRemoved =
 			index < 0 ? array.length + 1 - Math.abs(index) : array[index];
-
-		const output = `${inputPrefix}${"pop"} ${index}\n  Operation: Pop\n  Value Removed: ${valueRemoved}\n  Index: ${index}\n  Time Complexity: ${
+		const output = `${inputPrefix}"pop" ${index}\n  Operation: Pop\n  Value Removed: ${valueRemoved}\n  Index: ${index}\n  Time Complexity: ${
 			array.length === 1 || index === array.length - 1 || index === -1
 				? "Constant - O(1)"
 				: "Linear O(n)"
 		}`;
-		printOperation(output);
+		printToTerminal(output);
 		const newArray = [...array];
 		newArray.splice(index, 1);
 		setArray(newArray);
@@ -77,6 +75,9 @@ export default function ArrayOperations(props: Props) {
 
 	function handleInsert() {
 		if (checkInvalidIndex() || checkInvalidValue()) return;
+
+		const output = `${inputPrefix}insert ${value} at index ${index}\n  Operation: Insert\n  Value Added: ${value}\n  Index: ${index}\n  Time Complexity: Linear - O(n)`;
+		printToTerminal(output);
 		const newArray = [...array];
 		newArray.splice(index!, 0, value!);
 		setArray(newArray);
@@ -85,22 +86,35 @@ export default function ArrayOperations(props: Props) {
 	function handleRemove() {
 		if (checkInvalidValue()) return;
 		const indexToRemove = array.indexOf(value!);
-		if (indexToRemove === -1) return; // Value not found
+		if (indexToRemove === -1) {
+			printToTerminal(`  Value: '${value}' not found`);
+			return;
+		}
+
+		const output = `${inputPrefix}remove ${value}\n  Operation: Remove\n  Value Removed: ${value}\n  Index: ${indexToRemove}\n  Time Complexity: ${
+			indexToRemove === array.length - 1
+				? "Constant - O(1)"
+				: "Linear O(n)"
+		}`;
+		printToTerminal(output);
 		const newArray = [...array];
 		newArray.splice(indexToRemove, 1);
 		setArray(newArray);
 	}
 
 	function handleSearch() {
-		console.log("test");
+		if (checkInvalidValue()) return;
+		const valueIndex = array.indexOf(value!);
+		if (valueIndex === -1) {
+			printToTerminal(`  Value: '${value}' not found`);
+			return;
+		}
+		const output = `${inputPrefix}search ${value}\n  Operation: Search\n  Value: ${value}\n  Index: ${valueIndex}\n  Time Complexity: Linear O(n)`;
+		printToTerminal(output);
 	}
 
-	function printOperation(output: string) {
+	function printToTerminal(output: string) {
 		setTerminalOutputs((prevArray) => [...prevArray, output]);
-	}
-
-	function getOutput(operation: string, timeComplexity: string) {
-		return;
 	}
 
 	const arrayOperations = [

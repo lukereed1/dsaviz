@@ -150,10 +150,11 @@ const styles = {
 		borderRadius: "7px",
 		height: "100%",
 		maxHeight: 342,
+		minWidth: 450,
 	},
 	headerText: {
 		fontFamily: "menlo",
-		fontSize: 15,
+		fontSize: 16,
 		paddingTop: 2,
 		paddingBottom: 1.75,
 	},
