@@ -59,7 +59,7 @@ const styles = {
 		textAlign: "center",
 		gap: 4,
 		height: 700,
-		width: 1240,
+		width: 1280,
 		marginTop: 1,
 	},
 	leftColBox: {
