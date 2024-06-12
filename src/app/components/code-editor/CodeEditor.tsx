@@ -1,5 +1,5 @@
 import Editor, { OnMount, useMonaco } from "@monaco-editor/react";
-import { Box, Divider, Tab, Tabs, useTheme } from "@mui/material";
+import { Divider, Tab, Tabs, useTheme } from "@mui/material";
 import {
 	SyntheticEvent,
 	useCallback,
@@ -82,7 +82,7 @@ export default function CodeEditor({ arrayFiles }: Props) {
 			borderTop: tabIndex === index ? 3 : 0,
 			borderTopColor: "secondary.main",
 			boxShadow: 1,
-			marginX: index !== 0 && index !== arrayFiles.length - 1 ? 0.5 : 0,
+			marginRight: index !== arrayFiles.length - 1 ? 0.5 : 0,
 			backgroundColor: "primary.main",
 			fontFamily: "menlo",
 			fontSize: 12,
@@ -95,10 +95,6 @@ export default function CodeEditor({ arrayFiles }: Props) {
 		}),
 		divider: {
 			borderBottomWidth: 3,
-		},
-		editorBox: {
-			marginTop: 2,
-			height: "100%",
 		},
 	};
 
@@ -118,20 +114,22 @@ export default function CodeEditor({ arrayFiles }: Props) {
 				))}
 			</Tabs>
 			<Divider sx={styles.divider} />
-			<Box sx={styles.editorBox}>
-				<Editor
-					height="100%"
-					defaultLanguage={arrayFiles[currentTab].language}
-					defaultValue={"console.log(test)"}
-					options={{
-						lineNumbersMinChars: 4,
-						minimap: {
-							enabled: false,
-						},
-					}}
-					onMount={handleEditorDidMount}
-				/>
-			</Box>
+
+			<Editor
+				height="100%"
+				defaultLanguage={arrayFiles[currentTab].language}
+				defaultValue={arrayFiles[currentTab].code}
+				options={{
+					padding: {
+						top: 12,
+					},
+					lineNumbersMinChars: 4,
+					minimap: {
+						enabled: false,
+					},
+				}}
+				onMount={handleEditorDidMount}
+			/>
 		</>
 	);
 }

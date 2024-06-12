@@ -38,7 +38,7 @@ function arrayCommands(
 			return `  /dsaviz/data-structures/array`;
 			break;
 		case "ls":
-			return "  ArrayPage.tsx\n  DataStructurePageTemplate.tsx\n  OperationsBox.tsx\n  Terminal.tsx\n  Array2D.tsx\n  CodeEditor.tsx";
+			return "  ArrayPage.tsx\n  DataStructurePageTemplate.tsx\n  OperationsBox.tsx\n  Terminal.tsx\n  Array.tsx\n  CodeEditor.tsx";
 			break;
 		case "code":
 			{
