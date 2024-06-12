@@ -4,9 +4,10 @@ import { useTheme } from "@mui/material/styles";
 
 interface Props {
 	data: number[];
+	highlightValue?: number;
 }
 
-export default function Array({ data }: Props) {
+export default function Array({ data, highlightValue }: Props) {
 	const theme = useTheme();
 	const svgRef = useRef<SVGSVGElement | null>(null);
 
@@ -35,7 +36,11 @@ export default function Array({ data }: Props) {
 				.attr("y", 30)
 				.attr("width", cellSize)
 				.attr("height", cellSize)
-				.attr("fill", theme.palette.background.default)
+				.attr("fill", (d) =>
+					d === highlightValue
+						? theme.palette.secondary.main
+						: theme.palette.background.default
+				)
 				.attr("stroke-width", 1.5)
 				.attr("stroke", theme.palette.text.primary);
 
@@ -49,7 +54,11 @@ export default function Array({ data }: Props) {
 				.attr("y", cellSize / 2 + 30)
 				.attr("text-anchor", "middle")
 				.attr("dominant-baseline", "middle")
-				.attr("fill", theme.palette.text.primary)
+				.attr("fill", (d) =>
+					d === highlightValue
+						? theme.palette.text.secondary
+						: theme.palette.text.primary
+				)
 				.attr("font-size", "20px")
 				.attr("font-family", "menlo")
 				.text((d) => d);
@@ -75,6 +84,8 @@ export default function Array({ data }: Props) {
 		theme.palette.primary.main,
 		theme.palette.text.primary,
 		theme.palette.text.secondary,
+		highlightValue,
+		theme.palette.secondary.main,
 	]);
 
 	return <svg ref={svgRef}></svg>;

@@ -15,7 +15,9 @@ export default function ArrayPage() {
 		welcomeString,
 	]);
 	const [array, setArray] = useState<number[]>([1, 2, 3, 4, 5]);
-
+	const [hightlightedValue, setHighlightedValue] = useState<
+		number | undefined
+	>(undefined);
 	return (
 		<>
 			<DataStructurePageTemplate
@@ -28,10 +30,13 @@ export default function ArrayPage() {
 						setValue={setValueInput}
 						setIndex={setIndexInput}
 						setArray={setArray}
+						setHighlightedValue={setHighlightedValue}
 						setTerminalOutputs={setTerminalOutputs}
 					/>
 				}
-				dataStructure={<Array data={array} />}
+				dataStructure={
+					<Array data={array} highlightValue={hightlightedValue} />
+				}
 				terminal={
 					<Terminal
 						terminalOutputs={terminalOutputs}

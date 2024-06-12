@@ -13,6 +13,7 @@ interface Props {
 	setIndex: (value: number | undefined) => void;
 	setArray: (nums: number[]) => void;
 	setTerminalOutputs: Dispatch<SetStateAction<string[]>>;
+	setHighlightedValue: (value: number | undefined) => void;
 }
 
 export default function ArrayOperations(props: Props) {
@@ -24,6 +25,7 @@ export default function ArrayOperations(props: Props) {
 		setIndex,
 		setArray,
 		setTerminalOutputs,
+		setHighlightedValue,
 	} = props;
 	const inputPrefix = "guest@dsaviz.com~$ ";
 
@@ -114,6 +116,8 @@ export default function ArrayOperations(props: Props) {
 		}
 		const output = `${inputPrefix}search ${value}\n  Operation: Search\n  Value: ${value}\n  Index: ${valueIndex}\n  Time Complexity: Linear O(n)`;
 		printToTerminal(output);
+		setHighlightedValue(value!);
+		setTimeout(() => setHighlightedValue(undefined), 1000);
 	}
 
 	function printToTerminal(output: string) {
