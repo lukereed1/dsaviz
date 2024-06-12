@@ -13,7 +13,7 @@ export default function Array({ data }: Props) {
 	useEffect(() => {
 		if (svgRef.current) {
 			const svg = d3.select(svgRef.current);
-			const height = 80;
+			const height = 180;
 			const cellSize = 45;
 			const width = data.length * cellSize + 5;
 
@@ -24,7 +24,7 @@ export default function Array({ data }: Props) {
 			svg.selectAll("*").remove();
 
 			const g = svg.append("g");
-			g.attr("transform", `translate(${3}, 0)`); // Slight width increase ensures left and right borders are shown
+			g.attr("transform", `translate(3, 70)`); // Slight width increase ensures left and right borders are shown
 
 			// Draws rectangles/cells
 			g.selectAll("rect")
@@ -36,7 +36,7 @@ export default function Array({ data }: Props) {
 				.attr("width", cellSize)
 				.attr("height", cellSize)
 				.attr("fill", theme.palette.background.default)
-				.attr("stroke-width", 2)
+				.attr("stroke-width", 1.5)
 				.attr("stroke", theme.palette.text.primary);
 
 			// Draws data
@@ -51,7 +51,7 @@ export default function Array({ data }: Props) {
 				.attr("dominant-baseline", "middle")
 				.attr("fill", theme.palette.text.primary)
 				.attr("font-size", "20px")
-				.attr("font-family", "monospace")
+				.attr("font-family", "menlo")
 				.text((d) => d);
 
 			// Draws indexes
@@ -65,7 +65,7 @@ export default function Array({ data }: Props) {
 				.attr("text-anchor", "middle")
 				.attr("dominant-baseline", "middle")
 				.attr("font-size", "14px")
-				.attr("font-family", "monospace")
+				.attr("font-family", "menlo")
 				.attr("fill", theme.palette.text.primary)
 				.text((_, i) => i);
 		}

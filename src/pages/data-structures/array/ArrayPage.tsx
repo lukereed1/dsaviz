@@ -1,6 +1,6 @@
 import DataStructurePageTemplate from "../DataStructurePageTemplate";
 import { useState } from "react";
-import Array from "../../../app/d3/Array";
+import Array from "../d3/Array";
 
 import ArrayOperations from "./ArrayOperations";
 import Terminal from "../../../app/components/terminal/Terminal";

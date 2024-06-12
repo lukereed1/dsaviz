@@ -17,7 +17,10 @@ export default function MenuPage() {
 	const menuItems = [
 		{
 			label: "Data Structures",
-			items: [{ label: "Arrays", path: "/array" }],
+			items: [
+				{ label: "Arrays", path: "/array" },
+				{ label: "Hash Table", path: "/hash-table" },
+			],
 			open: dsMenuOpen,
 			toggleMenu: () => handleDsMenu(),
 		},

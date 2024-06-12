@@ -126,14 +126,7 @@ for (int i = 0; i < array.size(); i++) {
     System.out.println(array.get(i));
 }`;
 
-const cppCode = `#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <sstream>
-
-using namespace std;
-
-// Initialising array
+const cppCode = `// Initialising array
 vector<int> array = {1, 2, 3, 4, 5};
 
 // Read from array
@@ -146,7 +139,7 @@ array.push_back(6);
 // Insert at index
 int valueToInsert = 100;
 int index = 3;
-array.insert(array.begin() + index, valueToInsert);
+array.insert(array.begin()+index, valueToInsert);
 
 // Remove from array by index
 array.erase(array.begin() + 2);
@@ -179,25 +172,25 @@ for(size_t i = 0; i < array.size(); ++i) {
 
 export const arrayFiles = [
 	{
-		file: "code.js",
+		file: "array.js",
 		language: "javascript",
 		code: javascriptCode,
 		icon: JavascriptLogo,
 	},
 	{
-		file: "code.py",
+		file: "array.py",
 		language: "python",
 		code: pythonCode,
 		icon: PythonLogo,
 	},
 	{
-		file: "code.java",
+		file: "array.java",
 		language: "java",
 		code: javaCode,
 		icon: JavaLogo,
 	},
 	{
-		file: "code.cpp",
+		file: "array.cpp",
 		language: "cpp",
 		code: cppCode,
 		icon: CppLogo,

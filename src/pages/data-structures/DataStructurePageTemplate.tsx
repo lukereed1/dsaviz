@@ -83,7 +83,7 @@ const styles = {
 		paddingBottom: 0.5,
 		boxShadow: 1,
 	},
-	innerDsBox: { marginTop: 10, flex: 1 },
+	innerDsBox: { flex: 1 },
 	lowerBox: {
 		display: "flex",
 		gap: 4,
@@ -98,8 +98,8 @@ const styles = {
 		fontFamily: "menlo",
 		fontSize: 16,
 		fontWeight: "bold",
-		paddingTop: 1.65,
-		paddingBottom: 1.4,
+		paddingTop: 2.4,
+		paddingBottom: 2.15,
 	},
 	divider: { borderBottomWidth: 3 },
 	codeEditorBox: {

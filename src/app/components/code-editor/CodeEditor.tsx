@@ -94,13 +94,14 @@ export default function CodeEditor({ arrayFiles }: Props) {
 			"&.Mui-selected": {
 				color: "text.primary",
 			},
-			minHeight: 48,
+			minHeight: 60,
+			paddingY: 0,
 		}),
 		divider: {
 			borderBottomWidth: 3,
 		},
 		img: {
-			width: 16,
+			width: 17,
 		},
 	};
 
@@ -113,7 +114,6 @@ export default function CodeEditor({ arrayFiles }: Props) {
 				onChange={handleTabChange}>
 				{arrayFiles.map((file, index) => (
 					<Tab
-						iconPosition="start"
 						icon={<img src={file.icon} style={styles.img} />}
 						sx={styles.tab(currentTab, index)}
 						label={file.file}

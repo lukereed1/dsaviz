@@ -107,7 +107,9 @@ export default function ArrayOperations(props: Props) {
 		if (checkInvalidValue()) return;
 		const valueIndex = array.indexOf(value!);
 		if (valueIndex === -1) {
-			printToTerminal(`  Value: '${value}' not found`);
+			printToTerminal(
+				`${inputPrefix}search ${value}\n  Value: '${value}' not found\n  Time Complexity: Linear O(n)`
+			);
 			return;
 		}
 		const output = `${inputPrefix}search ${value}\n  Operation: Search\n  Value: ${value}\n  Index: ${valueIndex}\n  Time Complexity: Linear O(n)`;
