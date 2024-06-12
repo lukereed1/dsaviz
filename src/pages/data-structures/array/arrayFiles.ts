@@ -9,10 +9,13 @@ let secondElement = array[1];
 array.push(6);
 
 // Insert at index
-array.splice(3, 0, 'newElement');
+let newElement = 9;
+let index = 3;
+array.splice(index, 0, newElement);
 
 // Remove from array by index
-array.splice(2, 1);
+let indexToRemove = 1;
+array.splice(indexToRemove, 1);
 
 // Remove last element
 array.pop();
@@ -23,9 +26,6 @@ array.shift();
 // Find index of element
 let index = array.indexOf(3);
 
-// Check if element exists
-let exists = array.includes(4);
-
 // Sort array
 array.sort((a, b) => a - b);
 
@@ -33,34 +33,10 @@ array.sort((a, b) => a - b);
 array.reverse();
 
 // Iterate through array
-array.forEach((element, index) => {
-  console.log('Element:', element,
-              'at index:', index);
+array.forEach((element) => {
+    console.log(element);
 });
-
-// Find element
-let foundElement = array.find(element =>
-  element === 3);
-
-// Find index of element
-let foundIndex = array.findIndex(element =>
-  element === 3);
-
-// Slice array (extract subarray)
-let subArray = array.slice(1, 4);
-
-// Concat arrays
-let concatenatedArray = array.concat([6, 7, 8]);
-
-// Join array elements into a string
-let arrayString = array.join(', ');
-
-// Split string into array
-let string = '1,2,3,4,5';
-let splitArray = string.split(',');
-
-// Convert array to string
-let arrayToString = array.toString();`;
+`;
 
 const pythonCode = `# Initialising array
 array = [1, 2, 3, 4, 5]
@@ -73,10 +49,13 @@ second_element = array[1]
 array.append(6)
 
 # Insert at index
-array.insert(3, 'new_element')
+new_element = 9
+index = 3
+array.insert(index, new_element)
 
 # Remove from array by index
-array.pop(index)
+index_to_remove = 1
+array.pop(index_to_remove)
 
 # Remove last element
 array.pop()
@@ -87,9 +66,6 @@ array.pop(0)
 # Find index of element
 index = array.index(3)
 
-# Check if element exists
-exists = 4 in array
-
 # Sort array
 array.sort()
 
@@ -98,92 +74,61 @@ array.reverse()
 
 # Iterate through array
 for i in range(len(array)):
-    print(array[i])
+    print(array[i])`;
 
-# Slice array (extract subarray)
-sub_array = array[1:4]
+const javaCode = `// Initialising array
+ArrayList<Integer> array = new ArrayList<>();
 
-# Concat arrays
-concatenated_array = array + [6, 7, 8]
-
-# Join array elements into a string
-array_string = ', '.join(map(str, array))
-
-# Split string into array
-string = '1,2,3,4,5';
-split_array = '1,2,3,4,5'.split(',')
-
-# Convert array to string
-array_to_string = str(array)`;
-
-const javaCode = `// Arrays in Java
-int[] array = {1, 2, 3, 4, 5};
+// Append to array
+array.add(6);
 
 // Read from array
-int firstElement = array[0];
-int secondElement = array[1];
-
-// Append to array (Java arrays are fixed size, so we use ArrayList)
-ArrayList<Integer> arrayList = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
-arrayList.add(6);
+int firstElement = array.get(0);
+int secondElement = array.get(1);
 
 // Insert at index
-arrayList.add(3, "newElement");
+int newElement = 9;
+int index = 3;
+array.add(index, newElement);
 
 // Remove from array by index
-arrayList.remove(2);
+array.remove(2);
 
 // Remove last element
-arrayList.remove(arrayList.size() - 1);
+array.remove(array.size() - 1);
 
 // Remove first element
-arrayList.remove(0);
+array.remove(0);
 
 // Find index of element
-int index = arrayList.indexOf(3);
-
-// Check if element exists
-boolean exists = arrayList.contains(4);
-
-// Sort array
-Collections.sort(arrayList);
-
-// Reverse array
-Collections.reverse(arrayList);
-
-// Iterate through array
-for (int i = 0; i < arrayList.size(); i++) {
-    System.out.println(arrayList.get(i));
+int index = -1;
+int elementToFind = 3;
+for (int i = 0; i < array.size(); i++) {
+    if (array.get(i) == elementToFind) {
+        index = i;
+        break;
+    }
 }
 
-// Slice array (extract subarray)
-List<Integer> subArray = arrayList.subList(1, 4);
+// Sort array
+Collections.sort(array);
 
-// Concat arrays
-ArrayList<Integer> concatenatedArray = new ArrayList<>(arrayList);
-concatenatedArray.addAll(Arrays.asList(6, 7, 8));
+// Reverse array
+Collections.reverse(array);
 
-// Join array elements into a string
-String arrayString = arrayList.stream()
-                              .map(String::valueOf)
-                              .collect(Collectors.joining(", "));
+// Iterate through array
+for (int i = 0; i < array.size(); i++) {
+    System.out.println(array.get(i));
+}`;
 
-// Split string into array
-String[] splitArray = "1,2,3,4,5".split(",");
-
-// Convert array to string
-String arrayToString = arrayList.toString();
-`;
-
-const cppCode = `// Arrays in C++
-#include <iostream>
+const cppCode = `#include <iostream>
 #include <vector>
 #include <algorithm>
-#include <numeric>
 #include <sstream>
 
 using namespace std;
 
+// Initialising array
 vector<int> array = {1, 2, 3, 4, 5};
 
 // Read from array
@@ -194,7 +139,9 @@ int secondElement = array[1];
 array.push_back(6);
 
 // Insert at index
-array.insert(array.begin() + 3, 100);
+int valueToInsert = 100;
+int index = 3;
+array.insert(array.begin() + index, valueToInsert);
 
 // Remove from array by index
 array.erase(array.begin() + 2);
@@ -206,11 +153,13 @@ array.pop_back();
 array.erase(array.begin());
 
 // Find index of element
-auto it = find(array.begin(), array.end(), 3);
-int index = (it != array.end()) ? distance(array.begin(), it) : -1;
-
-// Check if element exists
-bool exists = find(array.begin(), array.end(), 4) != array.end();
+int index = -1;
+for (int i = 0; i < array.size(); i++) {
+    if (array.get(i) == 3) {
+        index = i;
+        break;
+    }
+}
 
 // Sort array
 sort(array.begin(), array.end());
@@ -221,38 +170,7 @@ reverse(array.begin(), array.end());
 // Iterate through array
 for(size_t i = 0; i < array.size(); ++i) {
     cout << array[i] << endl;
-}
-
-// Slice array (extract subarray)
-vector<int> subArray(array.begin() + 1, array.begin() + 4);
-
-// Concat arrays
-vector<int> anotherArray = {6, 7, 8};
-array.insert(array.end(), anotherArray.begin(), anotherArray.end());
-
-// Join array elements into a string
-ostringstream oss;
-for (const auto& item : array) {
-    oss << item << ", ";
-}
-string arrayString = oss.str();
-arrayString = arrayString.substr(0, arrayString.length() - 2); // Remove the last ", "
-
-// Split string into array
-string str = "1,2,3,4,5";
-vector<int> splitArray;
-istringstream ss(str);
-string token;
-while (getline(ss, token, ',')) {
-    splitArray.push_back(stoi(token));
-}
-
-// Convert array to string
-ostringstream oss2;
-copy(array.begin(), array.end(), ostream_iterator<int>(oss2, " "));
-string arrayToString = oss2.str();
-arrayToString = arrayToString.substr(0, arrayToString.length() - 1); // Remove the last space
-`;
+}`;
 
 export const arrayFiles = [
 	{ file: "code.js", language: "javascript", code: javascriptCode },

@@ -154,6 +154,7 @@ const styles = {
 		borderRadius: "7px",
 		height: "100%",
 		maxHeight: 317,
+		minWidth: 450,
 	},
 	headerText: {
 		fontFamily: "menlo",

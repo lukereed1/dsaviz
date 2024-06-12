@@ -50,6 +50,7 @@ export default function ArrayOperations(props: Props) {
 	function handlePop() {
 		// Pop button auto removes last element unless index specified
 		if (index === undefined) {
+			if (array.length === 0) return;
 			// Ensures pop button works even if no index specified
 			const output = `${inputPrefix}${"pop"} -1\n  Operation: Pop\n  Value Removed: ${
 				array[array.length - 1]
