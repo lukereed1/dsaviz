@@ -4,9 +4,15 @@ import { useEffect, useRef } from "react";
 
 interface Props {
 	data: number[][];
+	rectHighlight: number | undefined;
+	circleHighlight: number | undefined;
 }
 
-export default function HashTable({ data }: Props) {
+export default function HashTable({
+	data,
+	rectHighlight,
+	circleHighlight,
+}: Props) {
 	const theme = useTheme();
 	const svgRef = useRef<SVGSVGElement | null>(null);
 
@@ -38,7 +44,12 @@ export default function HashTable({ data }: Props) {
 					.attr("y", rectY)
 					.attr("width", cellSize)
 					.attr("height", cellSize)
-					.attr("fill", theme.palette.background.default)
+					.attr(
+						"fill",
+						index === rectHighlight
+							? theme.palette.secondary.main
+							: theme.palette.background.default
+					)
 					.attr("stroke-width", 1.5)
 					.attr("stroke", theme.palette.text.primary);
 
@@ -48,7 +59,12 @@ export default function HashTable({ data }: Props) {
 					.attr("y", rectY + cellSize / 2)
 					.attr("text-anchor", "middle")
 					.attr("dominant-baseline", "middle")
-					.attr("fill", theme.palette.text.primary)
+					.attr(
+						"fill",
+						index === rectHighlight
+							? theme.palette.text.secondary
+							: theme.palette.text.primary
+					)
 					.attr("font-size", "16px")
 					.attr("font-family", "menlo")
 					.text("H");
@@ -73,7 +89,14 @@ export default function HashTable({ data }: Props) {
 						.attr("cx", circleX)
 						.attr("cy", circleY)
 						.attr("r", cellSize / 2)
-						.attr("fill", theme.palette.background.default)
+						.attr(
+							"fill",
+							index === rectHighlight
+								? chainIndex === circleHighlight
+									? theme.palette.secondary.main
+									: theme.palette.background.default
+								: theme.palette.background.default
+						)
 						.attr("stroke-width", 1.5)
 						.attr("stroke", theme.palette.text.primary);
 
@@ -83,7 +106,14 @@ export default function HashTable({ data }: Props) {
 						.attr("y", circleY)
 						.attr("text-anchor", "middle")
 						.attr("dominant-baseline", "middle")
-						.attr("fill", theme.palette.text.primary)
+						.attr(
+							"fill",
+							index === rectHighlight
+								? chainIndex === circleHighlight
+									? theme.palette.text.secondary
+									: theme.palette.text.primary
+								: theme.palette.text.primary
+						)
 						.attr("font-size", "14px")
 						.attr("font-family", "menlo")
 						.text(value);
@@ -110,9 +140,12 @@ export default function HashTable({ data }: Props) {
 			});
 		}
 	}, [
+		circleHighlight,
 		data,
+		rectHighlight,
 		theme.palette.background.default,
 		theme.palette.primary.main,
+		theme.palette.secondary.main,
 		theme.palette.text.primary,
 	]);
 

@@ -7,7 +7,10 @@ import Terminal from "../../../app/components/terminal/Terminal";
 export default function HashTablePage() {
 	const data: number[][] = [[], [], [], [], [], [], [], [], [], []];
 	const [value, setValue] = useState<number | undefined>();
-	const [index, setIndex] = useState<number | undefined>(); // for cell highlighting
+	const [rectHighlight, setRectHighlight] = useState<number | undefined>();
+	const [circleHighlight, setCircleHighlight] = useState<
+		number | undefined
+	>();
 	const [terminalOutputs, setTerminalOutputs] = useState<string[]>([
 		"Type 'help' for a list of commands",
 	]);
@@ -16,15 +19,22 @@ export default function HashTablePage() {
 	return (
 		<DataStructurePageTemplate
 			header={"Hash Table"}
-			dataStructure={<HashTable data={hashTable} />}
+			dataStructure={
+				<HashTable
+					rectHighlight={rectHighlight}
+					circleHighlight={circleHighlight}
+					data={hashTable}
+				/>
+			}
 			operations={
 				<HashTableOperations
 					value={value}
-					index={index}
 					hashTable={hashTable}
 					setValue={setValue}
-					setIndex={setIndex}
+					setRectHighlight={setRectHighlight}
+					setCircleHighlight={setCircleHighlight}
 					setHashTable={setHashTable}
+					setTerminalOutputs={setTerminalOutputs}
 				/>
 			}
 			terminal={

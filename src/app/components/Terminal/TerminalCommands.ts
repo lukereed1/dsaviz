@@ -73,6 +73,7 @@ function hashTableCommands(
 			const url =
 				"https://www.geeksforgeeks.org/hash-table-data-structure/";
 			openNewTab(url);
+			return "  Seperate chaining being used here for collisions";
 			break;
 		}
 		case "time": {

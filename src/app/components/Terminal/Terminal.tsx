@@ -18,6 +18,8 @@ interface Props {
 	setTerminalOutputs: Dispatch<SetStateAction<string[]>>;
 }
 
+export const inputPrefix = "guest@dsaviz.com~$ ";
+
 export default function Terminal({
 	header,
 	terminalOutputs,
@@ -32,7 +34,6 @@ export default function Terminal({
 	const beforeCaret = inputValue.slice(0, caretPosition);
 	const afterCaret = inputValue.slice(caretPosition);
 	const caretChar = afterCaret.charAt(0) || " ";
-	const inputPrefix = "guest@dsaviz.com~$ ";
 
 	useEffect(() => {
 		focusTerminal();
