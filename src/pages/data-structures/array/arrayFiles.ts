@@ -166,7 +166,7 @@ sort(array.begin(), array.end());
 reverse(array.begin(), array.end());
 
 // Iterate through array
-for(size_t i = 0; i < array.size(); ++i) {
+for (size_t i = 0; i < array.size(); ++i) {
     cout << array[i] << endl;
 }`;
 

@@ -4,10 +4,10 @@ import { useTheme } from "@mui/material/styles";
 
 interface Props {
 	data: number[];
-	highlightValue?: number;
+	highlightIndex?: number;
 }
 
-export default function Array({ data, highlightValue }: Props) {
+export default function Array({ data, highlightIndex }: Props) {
 	const theme = useTheme();
 	const svgRef = useRef<SVGSVGElement | null>(null);
 
@@ -36,8 +36,8 @@ export default function Array({ data, highlightValue }: Props) {
 				.attr("y", 30)
 				.attr("width", cellSize)
 				.attr("height", cellSize)
-				.attr("fill", (d) =>
-					d === highlightValue
+				.attr("fill", (_, i) =>
+					i === highlightIndex
 						? theme.palette.secondary.main
 						: theme.palette.background.default
 				)
@@ -54,8 +54,8 @@ export default function Array({ data, highlightValue }: Props) {
 				.attr("y", cellSize / 2 + 30)
 				.attr("text-anchor", "middle")
 				.attr("dominant-baseline", "middle")
-				.attr("fill", (d) =>
-					d === highlightValue
+				.attr("fill", (_, i) =>
+					i === highlightIndex
 						? theme.palette.text.secondary
 						: theme.palette.text.primary
 				)
@@ -84,7 +84,7 @@ export default function Array({ data, highlightValue }: Props) {
 		theme.palette.primary.main,
 		theme.palette.text.primary,
 		theme.palette.text.secondary,
-		highlightValue,
+		highlightIndex,
 		theme.palette.secondary.main,
 	]);
 

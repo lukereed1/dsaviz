@@ -18,7 +18,7 @@ export default function DataStructurePageTemplate({
 }: Props) {
 	return (
 		<>
-			<Typography sx={{ fontSize: 76, textAlign: "center" }}>
+			<Typography sx={{ fontSize: 64, textAlign: "center" }}>
 				{header}
 			</Typography>
 			<Box sx={styles.mainBox}>

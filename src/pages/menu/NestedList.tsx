@@ -64,10 +64,10 @@ export default function NestedList(props: Props) {
 
 const styles = {
 	list: {
-		minWidth: 750,
+		minWidth: 800,
 	},
 	listItemButton: {
-		paddingX: 5,
+		paddingX: 8,
 	},
 	listItemText: {
 		fontSize: "72px",

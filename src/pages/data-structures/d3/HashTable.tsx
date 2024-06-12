@@ -30,6 +30,7 @@ export default function HashTable({ data }: Props) {
 			data.forEach((chain, index) => {
 				const rectX = index * 70;
 				const rectY = 20;
+
 				// Rectangles
 				g.append("rect")
 					.attr("x", rectX)
@@ -39,6 +40,7 @@ export default function HashTable({ data }: Props) {
 					.attr("fill", theme.palette.background.default)
 					.attr("stroke-width", 1.5)
 					.attr("stroke", theme.palette.text.primary);
+
 				// Rect text
 				g.append("text")
 					.attr("x", rectX + cellSize / 2)
@@ -47,9 +49,9 @@ export default function HashTable({ data }: Props) {
 					.attr("dominant-baseline", "middle")
 					.attr("fill", theme.palette.text.primary)
 					.attr("font-size", "16px")
-
 					.attr("font-family", "menlo")
 					.text("H");
+
 				// Indexes
 				g.append("text")
 					.attr("x", rectX + cellSize / 2)
