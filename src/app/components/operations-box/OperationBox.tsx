@@ -5,7 +5,7 @@ import TabPanel from "./TabPanel";
 interface Props {
 	operations: Operation[];
 	setValue: (value: number | undefined) => void;
-	setIndex: (value: number | undefined) => void;
+	setIndex?: (value: number | undefined) => void;
 }
 
 interface Operation {
@@ -29,7 +29,7 @@ export default function OperationBox({
 	const handleChange = (event: SyntheticEvent, newValue: number) => {
 		setTabIndex(newValue);
 		setValue(undefined);
-		setIndex(undefined);
+		setIndex!(undefined);
 	};
 
 	return (
@@ -39,7 +39,7 @@ export default function OperationBox({
 				<Divider sx={{ borderBottomWidth: 3 }} />
 			</Box>
 
-			<Box display={"flex"} overflow={"auto"}>
+			<Box display={"flex"} overflow={"auto"} height={"100%"}>
 				<Tabs
 					orientation="vertical"
 					variant="scrollable"

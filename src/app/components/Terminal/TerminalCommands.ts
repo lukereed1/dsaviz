@@ -11,6 +11,11 @@ export function getTerminalCommand(
 			return arrayCommands(input, navigate);
 			break;
 		}
+		case "data-structure/hash-table":
+			{
+				return hashTableCommands(input, navigate);
+			}
+			break;
 		default:
 			return;
 	}
@@ -44,6 +49,46 @@ function arrayCommands(
 			{
 				const url =
 					"https://github.com/lukereed1/dsaviz/blob/main/src/pages/data-structures/array/ArrayPage.tsx";
+				openNewTab(url);
+			}
+			break;
+		case "cd ..":
+			navigate("/menu");
+			break;
+		default:
+			return `  "${input}" command not found`;
+			break;
+	}
+}
+
+function hashTableCommands(
+	input: string,
+	navigate: ReturnType<typeof useNavigate>
+) {
+	switch (input) {
+		case "help":
+			return "  Available Commands:\n  - help: display available commands\n  - info: more information on hash tables\n  - time: display time complexities for hash table operations\n  - clear: clear terminal\n  - pwd: print working directory\n  - ls: list all files \n  - code: show source code\n  - cd .. : return to main menu";
+			break;
+		case "info": {
+			const url =
+				"https://www.geeksforgeeks.org/hash-table-data-structure/";
+			openNewTab(url);
+			break;
+		}
+		case "time": {
+			return "  Insertion: Constant - O(1)\n  Deletion: Constant - O(1)\n  Search: Constant - O(1)\n  * In worst case scenarios they operations may require O(n) time";
+			break;
+		}
+		case "pwd":
+			return `  /dsaviz/data-structures/hash-table`;
+			break;
+		case "ls":
+			return "  HashTablePage.tsx\n  DataStructurePageTemplate.tsx\n  OperationsBox.tsx\n  Terminal.tsx\n  HashTable.tsx\n  CodeEditor.tsx";
+			break;
+		case "code":
+			{
+				const url =
+					"https://github.com/lukereed1/dsaviz/blob/main/src/pages/data-structures/hash-table/HashTablePage.tsx";
 				openNewTab(url);
 			}
 			break;

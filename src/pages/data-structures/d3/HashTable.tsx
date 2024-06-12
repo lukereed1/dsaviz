@@ -13,10 +13,11 @@ export default function HashTable({ data }: Props) {
 	useEffect(() => {
 		if (svgRef.current) {
 			const svg = d3.select(svgRef.current);
-			const width = 750;
+			const width = 650;
 			const cellSize = 35;
 			const height =
-				d3.max(data.map((chain) => chain.length))! * cellSize + 150;
+				d3.max(data.map((chain) => chain.length))! * (cellSize + 17.5) + // Height of longest chain
+				70;
 
 			svg.attr("width", width)
 				.attr("height", height)
@@ -25,10 +26,10 @@ export default function HashTable({ data }: Props) {
 			svg.selectAll("*").remove();
 
 			const g = svg.append("g");
-			g.attr("transform", `translate(${35}, 12)`);
+			g.attr("transform", `translate(7, 12)`);
 
 			data.forEach((chain, index) => {
-				const rectX = index * 70;
+				const rectX = index * 65;
 				const rectY = 20;
 
 				// Rectangles
