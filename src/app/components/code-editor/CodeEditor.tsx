@@ -1,5 +1,6 @@
 import Editor, { OnMount, useMonaco } from "@monaco-editor/react";
 import { Divider, Tab, Tabs, useTheme } from "@mui/material";
+
 import {
 	SyntheticEvent,
 	useCallback,
@@ -17,6 +18,7 @@ interface ArrayFile {
 	file: string;
 	code: string;
 	language: string;
+	icon: string;
 }
 
 export default function CodeEditor({ arrayFiles }: Props) {
@@ -92,9 +94,13 @@ export default function CodeEditor({ arrayFiles }: Props) {
 			"&.Mui-selected": {
 				color: "text.primary",
 			},
+			minHeight: 48,
 		}),
 		divider: {
 			borderBottomWidth: 3,
+		},
+		img: {
+			width: 16,
 		},
 	};
 
@@ -107,6 +113,8 @@ export default function CodeEditor({ arrayFiles }: Props) {
 				onChange={handleTabChange}>
 				{arrayFiles.map((file, index) => (
 					<Tab
+						iconPosition="start"
+						icon={<img src={file.icon} style={styles.img} />}
 						sx={styles.tab(currentTab, index)}
 						label={file.file}
 						key={index}

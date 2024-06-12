@@ -1,3 +1,8 @@
+import PythonLogo from "../../../assets/python.svg";
+import JavaLogo from "../../../assets/java.svg";
+import JavascriptLogo from "../../../assets/js.svg";
+import CppLogo from "../../../assets/cpp.svg";
+
 const javascriptCode = `// Initialising array
 let array = [1, 2, 3, 4, 5];
 
@@ -173,8 +178,28 @@ for(size_t i = 0; i < array.size(); ++i) {
 }`;
 
 export const arrayFiles = [
-	{ file: "code.js", language: "javascript", code: javascriptCode },
-	{ file: "code.py", language: "python", code: pythonCode },
-	{ file: "code.java", language: "java", code: javaCode },
-	{ file: "code.cpp", language: "cpp", code: cppCode },
+	{
+		file: "code.js",
+		language: "javascript",
+		code: javascriptCode,
+		icon: JavascriptLogo,
+	},
+	{
+		file: "code.py",
+		language: "python",
+		code: pythonCode,
+		icon: PythonLogo,
+	},
+	{
+		file: "code.java",
+		language: "java",
+		code: javaCode,
+		icon: JavaLogo,
+	},
+	{
+		file: "code.cpp",
+		language: "cpp",
+		code: cppCode,
+		icon: CppLogo,
+	},
 ];
