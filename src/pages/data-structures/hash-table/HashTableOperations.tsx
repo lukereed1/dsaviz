@@ -48,10 +48,17 @@ export default function HashTableOperations(props: Props) {
 
 	function handleDelete() {
 		if (checkInvalidValue()) return;
+
 		const bucketIndex = hashFunction(value!);
 		const updatedHashTable = [...hashTable];
 		const indexToRemove = updatedHashTable[bucketIndex].indexOf(value!);
-		updatedHashTable[bucketIndex].slice(indexToRemove, 1);
+		if (indexToRemove === -1) {
+			printToTerminal(`  Value: '${value}' not found`);
+			return;
+		}
+		updatedHashTable[bucketIndex].splice(indexToRemove, 1);
+		const output = `${inputPrefix}delete ${value} from doubly linked list ${bucketIndex}\n  Operation: Delete\n  Value Deleted: ${value}\n  Bucket: ${bucketIndex}\n  Time Complexity: Constant - O(1)`;
+		printToTerminal(output);
 		setHashTable(updatedHashTable);
 	}
 
@@ -59,6 +66,18 @@ export default function HashTableOperations(props: Props) {
 		if (checkInvalidValue()) return;
 		const bucketIndex = hashFunction(value!);
 		const valueIndex = hashTable[bucketIndex].indexOf(value!);
+		if (valueIndex === -1) {
+			printToTerminal(
+				`${inputPrefix}search ${value}\n  Value: '${value}' not found\n  Time Complexity: Linear O(n)`
+			);
+			return;
+		}
+		const output = `${inputPrefix}search ${value}\n  Operation: Search\n  Value: ${value}\n  Bucket: ${bucketIndex}\n  Time Complexity: Constant O(1)`;
+		printToTerminal(output);
+
+		setRectHighlight(bucketIndex);
+		setTimeout(() => setRectHighlight(undefined), 1000);
+		setCircleHighlight(valueIndex);
 	}
 
 	function printToTerminal(output: string) {
