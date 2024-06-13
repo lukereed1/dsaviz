@@ -85,9 +85,11 @@ export default function HashTableOperations(props: Props) {
 	}
 
 	function checkInvalidValue() {
-		return (
-			value === undefined || isNaN(value) || value < -99 || value > 999
-		);
+		if (value === undefined || isNaN(value)) return true;
+		if (value < -99 || value > 999) {
+			printToTerminal("  Enter a value between -99 and 999");
+			return true;
+		}
 	}
 
 	const hashTableOperations = [

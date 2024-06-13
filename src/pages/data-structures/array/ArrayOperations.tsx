@@ -30,14 +30,19 @@ export default function ArrayOperations(props: Props) {
 	const inputPrefix = "guest@dsaviz.com~$ ";
 
 	function checkInvalidValue() {
-		return (
-			value === undefined || isNaN(value) || value < -99 || value > 999
-		);
+		if (value === undefined || isNaN(value)) return true;
+		if (value < -99 || value > 999) {
+			printToTerminal("  Enter a value between -99 and 999");
+			return true;
+		}
 	}
 
 	function checkInvalidIndex() {
 		// Ensures index input within available index range, allows neg index
-		return index === undefined || Math.abs(index) >= array.length;
+		if (index === undefined || Math.abs(index) >= array.length) {
+			printToTerminal("  Enter a valid index");
+			return true;
+		}
 	}
 
 	function handleAppend() {
