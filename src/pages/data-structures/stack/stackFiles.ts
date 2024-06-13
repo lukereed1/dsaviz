@@ -3,7 +3,8 @@ import JavaLogo from "../../../assets/java.svg";
 import JavascriptLogo from "../../../assets/js.svg";
 import CppLogo from "../../../assets/cpp.svg";
 
-const javascriptCode = `// Stack operations using array
+const javascriptCode = `// Last in First out
+// Stack operations using array
 let stack = [];
 
 // Push to stack
@@ -15,11 +16,7 @@ stack.push(3);
 let lastElement = stack.pop();
 
 // Peek top element
-let topElement = stack[stack.length - 1];
-
-// Check if stack is empty
-let isEmpty = stack.length === 0;
-`;
+let topElement = stack[stack.length - 1];`;
 
 const pythonCode = `# Stack operations using list
 stack = []
@@ -33,11 +30,7 @@ stack.append(3)
 last_element = stack.pop()
 
 # Peek top element
-top_element = stack[-1]
-
-# Check if stack is empty
-is_empty = len(stack) == 0
-`;
+top_element = stack[-1]`;
 
 const javaCode = `// Stack operations using Stack class
 Stack<Integer> stack = new Stack<>();
@@ -51,11 +44,7 @@ stack.push(3);
 int lastElement = stack.pop();
 
 // Peek top element
-int topElement = stack.peek();
-
-// Check if stack is empty
-boolean isEmpty = stack.empty();
-`;
+int topElement = stack.peek();`;
 
 const cppCode = `// Stack operations using vector
 std::vector<int> stack;
@@ -70,11 +59,7 @@ int lastElement = stack.back();
 stack.pop_back();
 
 // Peek top element
-int topElement = stack.back();
-
-// Check if stack is empty
-bool isEmpty = stack.empty();
-`;
+int topElement = stack.back();`;
 
 export const stackFiles = [
 	{

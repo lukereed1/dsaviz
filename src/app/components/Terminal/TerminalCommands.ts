@@ -79,7 +79,7 @@ function queueCommands(
 			break;
 		}
 		case "time": {
-			return "  Enqueue: Constant - O(1)\n  Dequeue: Constant - O(1)\n  Peek: Constant - O(1)";
+			return "  Enqueue: Constant - O(1)\n  Dequeue: Linear - O(n) - (Constant if LinkedList implementation)\n  Peek: Constant - O(1)";
 			break;
 		}
 		case "pwd":

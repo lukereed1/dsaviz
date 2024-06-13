@@ -10,6 +10,7 @@ separate chaining to handle collisions. Scroll
 down for language hash map syntax. */
 
 /************ CUSTOM HASH TABLE ************/
+
 // Create hash table
 const hashTable = 
     [[], [], [], [], [], [], [], [], [], []];
@@ -35,6 +36,7 @@ else
     console.log("Key not found");
     
 /************ BUILT IN HASH MAP ************/
+
 // Create hash map
 const map = new Map();
 
@@ -141,6 +143,7 @@ if (hashTable.get(index).contains(key)) {
 }
 
 /************ BUILT-IN HASH MAP ************/
+
 // Create hash map
 Map<Integer, Integer> map = new HashMap<>();
 
@@ -198,6 +201,7 @@ if (find(b.begin(), b.end(), key) != b.end()) {
 }
 
 /************ BUILT-IN HASH MAP ************/
+
 // Create hash map
 unordered_map<int, int> map;
 

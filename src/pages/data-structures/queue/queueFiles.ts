@@ -3,7 +3,8 @@ import JavaLogo from "../../../assets/java.svg";
 import JavascriptLogo from "../../../assets/js.svg";
 import CppLogo from "../../../assets/cpp.svg";
 
-const javascriptCode = `// Queue operations using array
+const javascriptCode = `// First in First out
+// Queue operations using array
 let queue = [];
 
 // Enqueue to queue
@@ -15,30 +16,21 @@ queue.push(3);
 let firstElement = queue.shift();
 
 // Peek front element
-let frontElement = queue[0];
+let frontElement = queue[0];`;
 
-// Check if queue is empty
-let isEmpty = queue.length === 0;
-`;
+const pythonCode = `# Queue operations using list
+queue = []
 
-const pythonCode = `# Queue operations using deque
-from collections import deque
-queue = deque()
-
-# Enqueue to queue
+# Enqueue
 queue.append(1)
 queue.append(2)
 queue.append(3)
 
-# Dequeue from queue
-first_element = queue.popleft()
+# Dequeue
+first_element = queue.pop(0)
 
 # Peek front element
-front_element = queue[0]
-
-# Check if queue is empty
-is_empty = len(queue) == 0
-`;
+front_element = queue[0]`;
 
 const javaCode = `// Queue operations using LinkedList
 Queue<Integer> queue = new LinkedList<>();
@@ -52,11 +44,7 @@ queue.add(3);
 int firstElement = queue.remove();
 
 // Peek front element
-int frontElement = queue.peek();
-
-// Check if queue is empty
-boolean isEmpty = queue.isEmpty();
-`;
+int frontElement = queue.peek();`;
 
 const cppCode = `// Queue operations using deque
 std::deque<int> queue;
@@ -71,11 +59,7 @@ int firstElement = queue.front();
 queue.pop_front();
 
 // Peek front element
-int frontElement = queue.front();
-
-// Check if queue is empty
-bool isEmpty = queue.empty();
-`;
+int frontElement = queue.front();`;
 
 export const queueFiles = [
 	{

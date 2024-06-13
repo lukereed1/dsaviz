@@ -3,6 +3,8 @@ import DataStructurePageTemplate from "../DataStructurePageTemplate";
 import Array from "../d3/Array";
 import QueueOperations from "./QueueOperations";
 import Terminal from "../../../app/components/terminal/Terminal";
+import CodeEditor from "../../../app/components/code-editor/CodeEditor";
+import { queueFiles } from "./queueFiles";
 
 export default function QueuePage() {
 	const [value, setValue] = useState<number | undefined>();
@@ -39,7 +41,7 @@ export default function QueuePage() {
 					header="data-structure/queue"
 				/>
 			}
-			codeEditor={undefined}
+			codeEditor={<CodeEditor files={queueFiles} />}
 		/>
 	);
 }

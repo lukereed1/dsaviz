@@ -27,9 +27,7 @@ export default function QueueOperations(props: Props) {
 	function handleEnqueue() {
 		if (checkInvalidValue()) return;
 		setQueue([...queue, value!]);
-		const output = `${inputPrefix}${"enqueue"} ${value}\n  Operation: Enqueue\n  Value: ${value}\n  Index: ${
-			queue.length
-		}\n  Time Complexity: Constant - O(1)`;
+		const output = `${inputPrefix}enqueue ${value}\n  Operation: Enqueue\n  Value: ${value}\n  Index: ${queue.length}\n  Time Complexity: Constant - O(1)`;
 		printToTerminal(output);
 		setHighlightIndex(queue.length);
 	}
@@ -38,8 +36,18 @@ export default function QueueOperations(props: Props) {
 		if (queue.length === 0) return;
 		const updatedQueue = [...queue];
 		const valueRemoved = updatedQueue.shift();
+		const output = `${inputPrefix}dequeue\n  Operation: Dequeue\n  Value Removed: ${valueRemoved}\n  Index: 0\n  Time Complexity: ${
+			queue.length === 1 ? "Constant - O(1)" : "Linear - O(n)"
+		}`;
 		setQueue(updatedQueue);
-		const output = `${inputPrefix} dequeue\n  Operation: Dequeue\n  Value Removed: ${valueRemoved}\n  Index: 0\n  Time Complexity: Constant - O(1)`;
+		printToTerminal(output);
+	}
+
+	function handlePeek() {
+		if (queue.length === 0) return;
+		const peekValue = queue[0];
+		const output = `${inputPrefix}peek\n  Operation: Peek\n  Value: ${peekValue}\n  Index: 0\n  Time Complexity: Constant - O(1)`;
+		setHighlightIndex(0);
 		printToTerminal(output);
 	}
 
@@ -74,6 +82,18 @@ export default function QueueOperations(props: Props) {
 					<OperationButton
 						label="Dequeue"
 						operation={handleDequeue}
+						marginTop={0.1}
+					/>
+				</Box>
+			),
+		},
+		{
+			label: "Peek",
+			inputs: (
+				<Box sx={styles.box}>
+					<OperationButton
+						label="Peek"
+						operation={handlePeek}
 						marginTop={0.1}
 					/>
 				</Box>

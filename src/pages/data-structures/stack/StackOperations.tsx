@@ -27,9 +27,7 @@ export default function StackOperations(props: Props) {
 	function handlePush() {
 		if (checkInvalidValue()) return;
 		setStack([...stack, value!]);
-		const output = `${inputPrefix}${"push"} ${value}\n  Operation: Enqueue\n  Value: ${value}\n  Index: ${
-			stack.length
-		}\n  Time Complexity: Constant - O(1)`;
+		const output = `${inputPrefix}push ${value}\n  Operation: Enqueue\n  Value: ${value}\n  Index: ${stack.length}\n  Time Complexity: Constant - O(1)`;
 		printToTerminal(output);
 		setHighlightIndex(stack.length);
 	}
@@ -39,8 +37,20 @@ export default function StackOperations(props: Props) {
 		const updatedStack = [...stack];
 		const valueRemoved = stack[stack.length - 1];
 		updatedStack.pop();
+		const output = `${inputPrefix}pop\n  Operation: Pop\n  Value Removed: ${valueRemoved}\n  Index: ${
+			stack.length - 1
+		}\n  Time Complexity: Constant - O(1)`;
 		setStack(updatedStack);
-		const output = `${inputPrefix}${"pop"} -1\n  Operation: Pop\n  Value Removed: ${valueRemoved}\n  Index: -1\n  Time Complexity: Constant - O(1)`;
+
+		printToTerminal(output);
+	}
+
+	function handlePeek() {
+		if (stack.length === 0) return;
+		const lastIndex = stack.length - 1;
+		const peekValue = stack[lastIndex];
+		const output = `${inputPrefix}peek\n  Operation: Peek\n  Value: ${peekValue}\n  Index: ${lastIndex}\n  Time Complexity: Constant - O(1)`;
+		setHighlightIndex(lastIndex);
 		printToTerminal(output);
 	}
 
@@ -73,6 +83,18 @@ export default function StackOperations(props: Props) {
 					<OperationButton
 						label="Pop"
 						operation={handlePop}
+						marginTop={0.1}
+					/>
+				</Box>
+			),
+		},
+		{
+			label: "Peek",
+			inputs: (
+				<Box sx={styles.box}>
+					<OperationButton
+						label="Peek"
+						operation={handlePeek}
 						marginTop={0.1}
 					/>
 				</Box>

@@ -3,6 +3,8 @@ import DataStructurePageTemplate from "../DataStructurePageTemplate";
 import Array from "../d3/Array";
 import StackOperations from "./StackOperations";
 import Terminal from "../../../app/components/terminal/Terminal";
+import { stackFiles } from "./stackFiles";
+import CodeEditor from "../../../app/components/code-editor/CodeEditor";
 
 export default function StackPage() {
 	const [value, setValue] = useState<number | undefined>();
@@ -39,7 +41,7 @@ export default function StackPage() {
 					header="data-structure/stack"
 				/>
 			}
-			codeEditor={undefined}
+			codeEditor={<CodeEditor files={stackFiles} />}
 		/>
 	);
 }
