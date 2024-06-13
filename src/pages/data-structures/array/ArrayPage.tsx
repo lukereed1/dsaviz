@@ -14,9 +14,7 @@ export default function ArrayPage() {
 		"Type 'help' for a list of commands",
 	]);
 	const [array, setArray] = useState<number[]>([1, 2, 3, 4, 5]);
-	const [highlightedIndex, setHighlightedIndex] = useState<
-		number | undefined
-	>();
+	const [highlightIndex, setHighlightIndex] = useState<number | undefined>();
 	return (
 		<>
 			<DataStructurePageTemplate
@@ -29,15 +27,15 @@ export default function ArrayPage() {
 						setValue={setValueInput}
 						setIndex={setIndexInput}
 						setArray={setArray}
-						setHighlightedIndex={setHighlightedIndex}
+						setHighlightedIndex={setHighlightIndex}
 						setTerminalOutputs={setTerminalOutputs}
 					/>
 				}
 				dataStructure={
 					<Array
 						data={array}
-						highlightIndex={highlightedIndex}
-						setHighlightedIndex={setHighlightedIndex}
+						highlightIndex={highlightIndex}
+						setHighlightedIndex={setHighlightIndex}
 					/>
 				}
 				terminal={

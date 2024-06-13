@@ -3,13 +3,13 @@ import JavaLogo from "../../../assets/java.svg";
 import JavascriptLogo from "../../../assets/js.svg";
 import CppLogo from "../../../assets/cpp.svg";
 
-const javascriptCode = `/************ CUSTOM HASH TABLE ************/
-/* This implementation only demonstrates how
+const javascriptCode = `/* This implementation only demonstrates how
 keys are distributed into their respective
 buckets using a hash function. It uses
 separate chaining to handle collisions. Scroll
 down for language hash map syntax. */
 
+/************ CUSTOM HASH TABLE ************/
 // Create hash table
 const hashTable = 
     [[], [], [], [], [], [], [], [], [], []];

@@ -29,7 +29,9 @@ export default function OperationBox({
 	const handleChange = (event: SyntheticEvent, newValue: number) => {
 		setTabIndex(newValue);
 		setValue(undefined);
-		setIndex!(undefined);
+		if (setIndex) {
+			setIndex!(undefined);
+		}
 	};
 
 	return (

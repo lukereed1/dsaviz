@@ -57,7 +57,7 @@ export default function HashTableOperations(props: Props) {
 			return;
 		}
 		updatedHashTable[bucketIndex].splice(indexToRemove, 1);
-		const output = `${inputPrefix}delete ${value} from doubly linked list ${bucketIndex}\n  Operation: Delete\n  Value Deleted: ${value}\n  Bucket: ${bucketIndex}\n  Time Complexity: Constant - O(1)`;
+		const output = `${inputPrefix}delete key: ${value} from bucket ${bucketIndex}\n  Operation: Delete\n  Value Deleted: ${value}\n  Bucket: ${bucketIndex}\n  Time Complexity: Constant - O(1)`;
 		printToTerminal(output);
 		setHashTable(updatedHashTable);
 	}
@@ -123,11 +123,7 @@ export default function HashTableOperations(props: Props) {
 	];
 
 	return (
-		<OperationBox
-			operations={hashTableOperations}
-			setValue={setValue}
-			setIndex={setRectHighlight}
-		/>
+		<OperationBox operations={hashTableOperations} setValue={setValue} />
 	);
 }
 
