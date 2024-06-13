@@ -181,7 +181,6 @@ const styles = {
 		position: "absolute",
 		left: "-9999px",
 	},
-	output: {},
 	caret: {
 		width: 7,
 		height: 15,

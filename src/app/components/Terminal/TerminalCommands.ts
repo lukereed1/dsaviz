@@ -2,11 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { openNewTab } from "../../util/util";
 
 export function getTerminalCommand(
-	dataStructure: string,
+	location: string,
 	input: string,
 	navigate: ReturnType<typeof useNavigate>
 ) {
-	switch (dataStructure) {
+	switch (location) {
 		case "menu": {
 			return menuCommands(input, navigate);
 			break;
@@ -62,7 +62,6 @@ function menuCommands(input: string, navigate: ReturnType<typeof useNavigate>) {
 			return fileList;
 			break;
 		}
-
 		case "code":
 			{
 				const url =
