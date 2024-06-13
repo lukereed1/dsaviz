@@ -3,16 +3,21 @@ import { Button } from "@mui/material";
 interface Props {
 	label: string;
 	operation: () => void;
+	marginTop?: number;
 }
 
-export default function OperationButton({ label, operation }: Props) {
+export default function OperationButton({
+	label,
+	operation,
+	marginTop,
+}: Props) {
 	return (
 		<Button
 			variant="contained"
 			onClick={operation}
 			sx={{
 				minWidth: 130,
-				marginTop: 2,
+				marginTop: marginTop ? marginTop : 2,
 				color: "text.secondary",
 				bgcolor: "secondary.main",
 				borderRadius: "5px",

@@ -19,6 +19,8 @@ export default function MenuPage() {
 			label: "Data Structures",
 			items: [
 				{ label: "Arrays", path: "/array" },
+				{ label: "Queue", path: "/queue" },
+				{ label: "Stack", path: "/stack" },
 				{ label: "Hash Table", path: "/hash-table" },
 			],
 			open: dsMenuOpen,

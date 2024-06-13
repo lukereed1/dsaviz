@@ -1,9 +1,14 @@
+import { Box } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
+import ValueTextInput from "../../../app/components/ValueTextInput";
+import OperationButton from "../../../app/components/operations-box/OperationButton";
+import OperationBox from "../../../app/components/operations-box/OperationBox";
+import { inputPrefix } from "../../../app/components/terminal/Terminal";
 
 interface Props {
 	value: number | undefined;
-	highlightedIndex: number | undefined;
 	stack: number[];
+	setHighlightIndex: (value: number | undefined) => void;
 	setValue: (value: number | undefined) => void;
 	setStack: (nums: number[]) => void;
 	setTerminalOutputs: Dispatch<SetStateAction<string[]>>;
@@ -12,20 +17,77 @@ interface Props {
 export default function StackOperations(props: Props) {
 	const {
 		value,
-		highlightedIndex,
 		stack,
 		setValue,
 		setStack,
+		setHighlightIndex,
 		setTerminalOutputs,
 	} = props;
 
 	function handlePush() {
+		if (checkInvalidValue()) return;
 		setStack([...stack, value!]);
+		const output = `${inputPrefix}${"push"} ${value}\n  Operation: Enqueue\n  Value: ${value}\n  Index: ${
+			stack.length
+		}\n  Time Complexity: Constant - O(1)`;
+		printToTerminal(output);
+		setHighlightIndex(stack.length);
 	}
 
 	function handlePop() {
+		if (stack.length === 0) return;
 		const updatedStack = [...stack];
+		const valueRemoved = stack[stack.length - 1];
 		updatedStack.pop();
 		setStack(updatedStack);
+		const output = `${inputPrefix}${"pop"} -1\n  Operation: Pop\n  Value Removed: ${valueRemoved}\n  Index: -1\n  Time Complexity: Constant - O(1)`;
+		printToTerminal(output);
 	}
+
+	function printToTerminal(output: string) {
+		setTerminalOutputs((prevArray) => [...prevArray, output]);
+	}
+
+	function checkInvalidValue() {
+		if (value === undefined || isNaN(value)) return true;
+		if (value < -99 || value > 999) {
+			printToTerminal("  Enter a value between -99 and 999");
+			return true;
+		}
+	}
+
+	const stackOperations = [
+		{
+			label: "Push",
+			inputs: (
+				<Box sx={styles.box}>
+					<ValueTextInput setValue={setValue} />
+					<OperationButton label="Push" operation={handlePush} />
+				</Box>
+			),
+		},
+		{
+			label: "Pop",
+			inputs: (
+				<Box sx={styles.box}>
+					<OperationButton
+						label="Pop"
+						operation={handlePop}
+						marginTop={0.1}
+					/>
+				</Box>
+			),
+		},
+	];
+
+	return <OperationBox setValue={setValue} operations={stackOperations} />;
 }
+
+const styles = {
+	box: {
+		display: "flex",
+		flexDirection: "column",
+		padding: 2,
+		marginTop: 0,
+	},
+};

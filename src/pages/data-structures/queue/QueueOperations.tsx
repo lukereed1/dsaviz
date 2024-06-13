@@ -1,9 +1,14 @@
+import { Box } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
+import ValueTextInput from "../../../app/components/ValueTextInput";
+import OperationButton from "../../../app/components/operations-box/OperationButton";
+import OperationBox from "../../../app/components/operations-box/OperationBox";
+import { inputPrefix } from "../../../app/components/terminal/Terminal";
 
 interface Props {
 	value: number | undefined;
-	highlightedIndex: number | undefined;
 	queue: number[];
+	setHighlightIndex: (value: number | undefined) => void;
 	setValue: (value: number | undefined) => void;
 	setQueue: (nums: number[]) => void;
 	setTerminalOutputs: Dispatch<SetStateAction<string[]>>;
@@ -12,20 +17,78 @@ interface Props {
 export default function QueueOperations(props: Props) {
 	const {
 		value,
-		highlightedIndex,
 		queue,
 		setValue,
 		setQueue,
+		setHighlightIndex,
 		setTerminalOutputs,
 	} = props;
 
 	function handleEnqueue() {
+		if (checkInvalidValue()) return;
 		setQueue([...queue, value!]);
+		const output = `${inputPrefix}${"enqueue"} ${value}\n  Operation: Enqueue\n  Value: ${value}\n  Index: ${
+			queue.length
+		}\n  Time Complexity: Constant - O(1)`;
+		printToTerminal(output);
+		setHighlightIndex(queue.length);
 	}
 
 	function handleDequeue() {
+		if (queue.length === 0) return;
 		const updatedQueue = [...queue];
-		updatedQueue.shift();
+		const valueRemoved = updatedQueue.shift();
 		setQueue(updatedQueue);
+		const output = `${inputPrefix} dequeue\n  Operation: Dequeue\n  Value Removed: ${valueRemoved}\n  Index: 0\n  Time Complexity: Constant - O(1)`;
+		printToTerminal(output);
 	}
+
+	function printToTerminal(output: string) {
+		setTerminalOutputs((prevArray) => [...prevArray, output]);
+	}
+
+	function checkInvalidValue() {
+		if (value === undefined || isNaN(value)) return true;
+		if (value < -99 || value > 999) {
+			printToTerminal("  Enter a value between -99 and 999");
+			return true;
+		}
+	}
+	const queueOperations = [
+		{
+			label: "Enqueue",
+			inputs: (
+				<Box sx={styles.box}>
+					<ValueTextInput setValue={setValue} />
+					<OperationButton
+						label="Enqueue"
+						operation={handleEnqueue}
+					/>
+				</Box>
+			),
+		},
+		{
+			label: "Dequeue",
+			inputs: (
+				<Box sx={styles.box}>
+					<OperationButton
+						label="Dequeue"
+						operation={handleDequeue}
+						marginTop={0.1}
+					/>
+				</Box>
+			),
+		},
+	];
+
+	return <OperationBox setValue={setValue} operations={queueOperations} />;
 }
+
+const styles = {
+	box: {
+		display: "flex",
+		flexDirection: "column",
+		padding: 2,
+		marginTop: 0,
+	},
+};

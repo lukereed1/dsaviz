@@ -37,6 +37,8 @@ export default function SideMenu() {
 			nested: true,
 			items: [
 				{ label: "Array", path: "/array" },
+				{ label: "Queue", path: "/queue" },
+				{ label: "Stack", path: "/stack" },
 				{ label: "Hash Table", path: "/hash-table" },
 			],
 			menuToggle: () => handleDsMenu(),

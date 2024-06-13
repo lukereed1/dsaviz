@@ -29,22 +29,6 @@ export default function ArrayOperations(props: Props) {
 	} = props;
 	const inputPrefix = "guest@dsaviz.com~$ ";
 
-	function checkInvalidValue() {
-		if (value === undefined || isNaN(value)) return true;
-		if (value < -99 || value > 999) {
-			printToTerminal("  Enter a value between -99 and 999");
-			return true;
-		}
-	}
-
-	function checkInvalidIndex() {
-		// Ensures index input within available index range, allows neg index
-		if (index === undefined || Math.abs(index) >= array.length) {
-			printToTerminal("  Enter a valid index");
-			return true;
-		}
-	}
-
 	function handleAppend() {
 		if (checkInvalidValue()) return;
 		setArray([...array, value!]);
@@ -128,6 +112,22 @@ export default function ArrayOperations(props: Props) {
 
 	function printToTerminal(output: string) {
 		setTerminalOutputs((prevArray) => [...prevArray, output]);
+	}
+
+	function checkInvalidValue() {
+		if (value === undefined || isNaN(value)) return true;
+		if (value < -99 || value > 999) {
+			printToTerminal("  Enter a value between -99 and 999");
+			return true;
+		}
+	}
+
+	function checkInvalidIndex() {
+		// Ensures index input within available index range, allows neg index
+		if (index === undefined || Math.abs(index) >= array.length) {
+			printToTerminal("  Enter a valid index");
+			return true;
+		}
 	}
 
 	const arrayOperations = [
