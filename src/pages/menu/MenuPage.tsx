@@ -7,7 +7,7 @@ export default function MenuPage() {
 	const [dsMenuOpen, setDsMenuOpen] = useState(false);
 	const [algoMenuOpen, setAlgoMenuOpen] = useState(false);
 	const [terminalOutputs, setTerminalOutputs] = useState<string[]>([
-		"Type 'help' for a list of commands",
+		"Welcome to dsaViz! Type 'help' for a list of commands, or click something from the list to get started. You can also use the terminal for navigation.",
 	]);
 	function handleDsMenu() {
 		setDsMenuOpen(!dsMenuOpen);

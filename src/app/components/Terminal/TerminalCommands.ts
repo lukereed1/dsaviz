@@ -30,11 +30,13 @@ export function getTerminalCommand(
 }
 
 function menuCommands(input: string, navigate: ReturnType<typeof useNavigate>) {
+	const DS = ["array", "queue", "stack", "hash-table"];
+	const ALGO = ["quick-sort", "insertion-sort", "merge-sort"];
 	if (input.startsWith("cd ")) {
-		const ds = ["array", "queue", "stack", "hash-table"];
 		const path = input.slice(3).trim();
 		if (path) {
-			if (ds.includes(path)) {
+			if (DS.includes(path)) {
+				// Check for algos once they're implemented
 				navigate(`/${path}`);
 			} else {
 				return `  Directory: '${path}' does not exist`;
@@ -47,19 +49,24 @@ function menuCommands(input: string, navigate: ReturnType<typeof useNavigate>) {
 			return "  Available Commands:\n  - help: display available commands\n  - info: general information\n  - clear: clear terminal\n  - pwd: print working directory\n  - ls: list all files \n  - code: show source code\n  - cd: change directory";
 			break;
 		case "info": {
-			return "Welcome to dsaViz! Click on an item from one of the lists to get started. You can also use the terminal to navigate.";
+			return "  Click on an item from one of the lists to get started. You can also use the terminal to navigate.";
 			break;
 		}
 		case "pwd":
 			return `  /dsaviz/menu`;
 			break;
-		case "ls":
-			return "  array\n  queue\n  stack\n  hash-table";
+		case "ls": {
+			let fileList = "";
+			DS.forEach((ds) => (fileList += `  ${ds}\n`));
+			ALGO.forEach((algo) => (fileList += `  ${algo}\n`));
+			return fileList;
 			break;
+		}
+
 		case "code":
 			{
 				const url =
-					"https://github.com/lukereed1/dsaviz/blob/main/src/pages/data-structures/array/ArrayPage.tsx";
+					"https://github.com/lukereed1/dsaviz/blob/main/src/pages/menu/MenuPage.tsx";
 				openNewTab(url);
 			}
 			break;

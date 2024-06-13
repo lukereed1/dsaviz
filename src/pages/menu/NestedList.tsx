@@ -2,7 +2,6 @@ import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import {
 	Box,
 	Collapse,
-	Divider,
 	List,
 	ListItemButton,
 	ListItemText,
@@ -57,7 +56,6 @@ export default function NestedList(props: Props) {
 							))}
 						</List>
 					</Collapse>
-					<Divider />
 				</Fragment>
 			))}
 			<Box
