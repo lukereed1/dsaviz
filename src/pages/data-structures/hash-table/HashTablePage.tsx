@@ -44,7 +44,7 @@ export default function HashTablePage() {
 				<Terminal
 					terminalOutputs={terminalOutputs}
 					setTerminalOutputs={setTerminalOutputs}
-					header="data-structure/hash-table"
+					header="menu/hash-table"
 				/>
 			}
 			codeEditor={<CodeEditor files={hashTableFiles} />}

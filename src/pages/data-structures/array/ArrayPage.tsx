@@ -42,7 +42,7 @@ export default function ArrayPage() {
 					<Terminal
 						terminalOutputs={terminalOutputs}
 						setTerminalOutputs={setTerminalOutputs}
-						header="data-structure/array"
+						header="menu/array"
 					/>
 				}
 				codeEditor={<CodeEditor files={arrayFiles} />}

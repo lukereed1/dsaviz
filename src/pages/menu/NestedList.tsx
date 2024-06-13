@@ -1,12 +1,13 @@
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import {
+	Box,
 	Collapse,
 	Divider,
 	List,
 	ListItemButton,
 	ListItemText,
 } from "@mui/material";
-import { Fragment } from "react";
+import { Fragment, ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface MenuItem {
@@ -23,6 +24,7 @@ interface SubMenuItem {
 
 interface Props {
 	menuItems: MenuItem[];
+	terminal: ReactNode;
 }
 
 export default function NestedList(props: Props) {
@@ -58,19 +60,31 @@ export default function NestedList(props: Props) {
 					<Divider />
 				</Fragment>
 			))}
+			<Box
+				display={"flex"}
+				justifyContent={"center"}
+				textAlign={"center"}
+				height={300}
+				marginTop={4}
+				width={"100%"}
+				maxWidth={500}
+				paddingX={0}>
+				{props.terminal}
+			</Box>
 		</List>
 	);
 }
 
 const styles = {
 	list: {
-		minWidth: 800,
+		minWidth: 500,
 	},
 	listItemButton: {
-		paddingX: 8,
+		paddingX: 5,
+		borderRadius: "7px",
 	},
 	listItemText: {
-		fontSize: "72px",
+		fontSize: 52,
 	},
 	collapseList: {
 		display: "flex",

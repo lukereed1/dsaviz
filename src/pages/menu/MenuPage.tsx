@@ -1,11 +1,14 @@
 import { Box } from "@mui/material";
 import NestedList from "./NestedList";
 import { useState } from "react";
+import Terminal from "../../app/components/terminal/Terminal";
 
 export default function MenuPage() {
 	const [dsMenuOpen, setDsMenuOpen] = useState(false);
 	const [algoMenuOpen, setAlgoMenuOpen] = useState(false);
-
+	const [terminalOutputs, setTerminalOutputs] = useState<string[]>([
+		"Type 'help' for a list of commands",
+	]);
 	function handleDsMenu() {
 		setDsMenuOpen(!dsMenuOpen);
 	}
@@ -40,7 +43,16 @@ export default function MenuPage() {
 
 	return (
 		<Box display={"flex"} flexDirection={"column"} alignItems={"center"}>
-			<NestedList menuItems={menuItems} />
+			<NestedList
+				terminal={
+					<Terminal
+						terminalOutputs={terminalOutputs}
+						setTerminalOutputs={setTerminalOutputs}
+						header="menu"
+					/>
+				}
+				menuItems={menuItems}
+			/>
 		</Box>
 	);
 }

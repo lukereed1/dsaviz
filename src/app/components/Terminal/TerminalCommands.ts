@@ -7,21 +7,68 @@ export function getTerminalCommand(
 	navigate: ReturnType<typeof useNavigate>
 ) {
 	switch (dataStructure) {
-		case "data-structure/array": {
+		case "menu": {
+			return menuCommands(input, navigate);
+			break;
+		}
+		case "menu/array": {
 			return arrayCommands(input, navigate);
 			break;
 		}
-		case "data-structure/queue":
+		case "menu/queue":
 			return queueCommands(input, navigate);
 			break;
-		case "data-structure/stack":
+		case "menu/stack":
 			return stackCommands(input, navigate);
 			break;
-		case "data-structure/hash-table":
+		case "menu/hash-table":
 			return hashTableCommands(input, navigate);
 			break;
 		default:
 			return;
+	}
+}
+
+function menuCommands(input: string, navigate: ReturnType<typeof useNavigate>) {
+	if (input.startsWith("cd ")) {
+		const ds = ["array", "queue", "stack", "hash-table"];
+		const path = input.slice(3).trim();
+		if (path) {
+			if (ds.includes(path)) {
+				navigate(`/${path}`);
+			} else {
+				return `  Directory: '${path}' does not exist`;
+			}
+		}
+	}
+
+	switch (input) {
+		case "help":
+			return "  Available Commands:\n  - help: display available commands\n  - info: general information\n  - clear: clear terminal\n  - pwd: print working directory\n  - ls: list all files \n  - code: show source code\n  - cd: change directory";
+			break;
+		case "info": {
+			return "Welcome to dsaViz! Click on an item from one of the lists to get started. You can also use the terminal to navigate.";
+			break;
+		}
+		case "pwd":
+			return `  /dsaviz/menu`;
+			break;
+		case "ls":
+			return "  array\n  queue\n  stack\n  hash-table";
+			break;
+		case "code":
+			{
+				const url =
+					"https://github.com/lukereed1/dsaviz/blob/main/src/pages/data-structures/array/ArrayPage.tsx";
+				openNewTab(url);
+			}
+			break;
+		case "cd ..":
+			navigate("/menu");
+			break;
+		default:
+			return `  "${input}" command not found`;
+			break;
 	}
 }
 
@@ -44,7 +91,7 @@ function arrayCommands(
 			break;
 		}
 		case "pwd":
-			return `  /dsaviz/data-structures/array`;
+			return `  /dsaviz/menu/array`;
 			break;
 		case "ls":
 			return "  ArrayPage.tsx\n  DataStructurePageTemplate.tsx\n  OperationsBox.tsx\n  Terminal.tsx\n  Array.tsx\n  CodeEditor.tsx";
@@ -83,7 +130,7 @@ function queueCommands(
 			break;
 		}
 		case "pwd":
-			return `  /dsaviz/data-structures/queue`;
+			return `  /dsaviz/menu/queue`;
 			break;
 		case "ls":
 			return "  QueuePage.tsx\n  DataStructurePageTemplate.tsx\n  OperationsBox.tsx\n  Terminal.tsx\n  Array.tsx\n  CodeEditor.tsx";
@@ -122,7 +169,7 @@ function stackCommands(
 			break;
 		}
 		case "pwd":
-			return `  /dsaviz/data-structures/stack`;
+			return `  /dsaviz/menu/stack`;
 			break;
 		case "ls":
 			return "  StackPage.tsx\n  DataStructurePageTemplate.tsx\n  OperationsBox.tsx\n  Terminal.tsx\n  Array.tsx\n  CodeEditor.tsx";
@@ -163,7 +210,7 @@ function hashTableCommands(
 			break;
 		}
 		case "pwd":
-			return `  /dsaviz/data-structures/hash-table`;
+			return `  /dsaviz/menu/hash-table`;
 			break;
 		case "ls":
 			return "  HashTablePage.tsx\n  DataStructurePageTemplate.tsx\n  OperationsBox.tsx\n  Terminal.tsx\n  HashTable.tsx\n  CodeEditor.tsx";
