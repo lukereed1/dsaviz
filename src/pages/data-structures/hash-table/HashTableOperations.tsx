@@ -42,7 +42,7 @@ export default function HashTableOperations(props: Props) {
 
 		// Node highlighting
 		setRectHighlight(bucketIndex);
-		setTimeout(() => setRectHighlight(undefined), 1000);
+		// setTimeout(() => setRectHighlight(undefined), 1000);
 		setCircleHighlight(updatedHashTable[bucketIndex].length - 1);
 	}
 

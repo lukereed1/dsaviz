@@ -154,8 +154,11 @@ const styles = {
 		flex: 2,
 		borderRadius: "7px",
 		height: "100%",
+		// minWidth: 300,
 		maxHeight: 317,
-		minWidth: 450,
+		overflow: "auto",
+		wordWrap: "break-word",
+		whiteSpace: "pre-wrap",
 	},
 	headerText: {
 		fontFamily: "menlo",

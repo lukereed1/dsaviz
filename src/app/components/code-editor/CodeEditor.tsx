@@ -11,17 +11,17 @@ import {
 import * as monacoEditor from "monaco-editor";
 
 interface Props {
-	arrayFiles: ArrayFile[];
+	files: File[];
 }
 
-interface ArrayFile {
+interface File {
 	file: string;
 	code: string;
 	language: string;
 	icon: string;
 }
 
-export default function CodeEditor({ arrayFiles }: Props) {
+export default function CodeEditor({ files }: Props) {
 	const theme = useTheme();
 	const monaco = useMonaco();
 	const editorRef = useRef<monacoEditor.editor.IStandaloneCodeEditor | null>(
@@ -69,10 +69,10 @@ export default function CodeEditor({ arrayFiles }: Props) {
 	const handleTabChange = (event: SyntheticEvent, newValue: number) => {
 		setCurrentTab(newValue);
 		if (editorRef.current) {
-			editorRef.current.setValue(arrayFiles[newValue].code);
+			editorRef.current.setValue(files[newValue].code);
 			monaco!.editor.setModelLanguage(
 				editorRef.current.getModel()!,
-				arrayFiles[newValue].language
+				files[newValue].language
 			);
 		}
 	};
@@ -84,7 +84,7 @@ export default function CodeEditor({ arrayFiles }: Props) {
 			borderTop: tabIndex === index ? 3 : 0,
 			borderTopColor: "secondary.main",
 			boxShadow: 1,
-			marginRight: index !== arrayFiles.length - 1 ? 0.5 : 0,
+			marginRight: index !== files.length - 1 ? 0.5 : 0,
 			backgroundColor: "primary.main",
 			fontFamily: "menlo",
 			fontSize: 12,
@@ -112,7 +112,7 @@ export default function CodeEditor({ arrayFiles }: Props) {
 				sx={{ backgroundColor: "background.default" }}
 				value={currentTab}
 				onChange={handleTabChange}>
-				{arrayFiles.map((file, index) => (
+				{files.map((file, index) => (
 					<Tab
 						icon={<img src={file.icon} style={styles.img} />}
 						sx={styles.tab(currentTab, index)}
@@ -125,8 +125,8 @@ export default function CodeEditor({ arrayFiles }: Props) {
 
 			<Editor
 				height="100%"
-				defaultLanguage={arrayFiles[currentTab].language}
-				defaultValue={arrayFiles[currentTab].code}
+				defaultLanguage={files[currentTab].language}
+				defaultValue={files[currentTab].code}
 				options={{
 					padding: {
 						top: 12,

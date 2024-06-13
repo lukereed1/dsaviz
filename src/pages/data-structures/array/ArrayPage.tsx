@@ -34,7 +34,11 @@ export default function ArrayPage() {
 					/>
 				}
 				dataStructure={
-					<Array data={array} highlightIndex={highlightedIndex} />
+					<Array
+						data={array}
+						highlightIndex={highlightedIndex}
+						setHighlightedIndex={setHighlightedIndex}
+					/>
 				}
 				terminal={
 					<Terminal
@@ -43,7 +47,7 @@ export default function ArrayPage() {
 						header="data-structure/array"
 					/>
 				}
-				codeEditor={<CodeEditor arrayFiles={arrayFiles} />}
+				codeEditor={<CodeEditor files={arrayFiles} />}
 			/>
 		</>
 	);

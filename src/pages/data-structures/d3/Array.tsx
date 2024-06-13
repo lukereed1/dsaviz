@@ -5,11 +5,17 @@ import { useTheme } from "@mui/material/styles";
 interface Props {
 	data: number[];
 	highlightIndex?: number;
+	setHighlightedIndex: (value: number | undefined) => void;
 }
 
-export default function Array({ data, highlightIndex }: Props) {
+export default function Array({
+	data,
+	highlightIndex,
+	setHighlightedIndex,
+}: Props) {
 	const theme = useTheme();
 	const svgRef = useRef<SVGSVGElement | null>(null);
+	const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
 	useEffect(() => {
 		if (svgRef.current) {
@@ -78,6 +84,12 @@ export default function Array({ data, highlightIndex }: Props) {
 				.attr("fill", theme.palette.text.primary)
 				.text((_, i) => i);
 		}
+		if (timeoutRef.current) clearInterval(timeoutRef.current);
+
+		timeoutRef.current = setTimeout(
+			() => setHighlightedIndex(undefined),
+			1000
+		);
 	}, [
 		data,
 		theme.palette.background.default,
@@ -86,6 +98,7 @@ export default function Array({ data, highlightIndex }: Props) {
 		theme.palette.text.secondary,
 		highlightIndex,
 		theme.palette.secondary.main,
+		setHighlightedIndex,
 	]);
 
 	return <svg ref={svgRef}></svg>;

@@ -6,15 +6,18 @@ interface Props {
 	data: number[][];
 	rectHighlight: number | undefined;
 	circleHighlight: number | undefined;
+	setRectHighlight: (value: number | undefined) => void;
 }
 
 export default function HashTable({
 	data,
 	rectHighlight,
 	circleHighlight,
+	setRectHighlight,
 }: Props) {
 	const theme = useTheme();
 	const svgRef = useRef<SVGSVGElement | null>(null);
+	const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
 	useEffect(() => {
 		if (svgRef.current) {
@@ -137,16 +140,25 @@ export default function HashTable({
 					}
 					circleY += 50;
 				});
+
+				if (timeoutRef.current) clearTimeout(timeoutRef.current);
+
+				timeoutRef.current = setTimeout(
+					() => setRectHighlight(undefined),
+					1000
+				);
 			});
 		}
 	}, [
 		circleHighlight,
 		data,
 		rectHighlight,
+		setRectHighlight,
 		theme.palette.background.default,
 		theme.palette.primary.main,
 		theme.palette.secondary.main,
 		theme.palette.text.primary,
+		theme.palette.text.secondary,
 	]);
 
 	return <svg ref={svgRef}></svg>;
