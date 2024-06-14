@@ -24,6 +24,9 @@ export function getTerminalCommand(
 		case "menu/hash-table":
 			return hashTableCommands(input, navigate);
 			break;
+		case "menu/linked-list":
+			return linkedListCommands(input, navigate);
+			break;
 		default:
 			return;
 	}
@@ -211,7 +214,7 @@ function hashTableCommands(
 			break;
 		}
 		case "time": {
-			return "  Insertion: Constant - O(1)\n  Deletion: Constant - O(1)\n  Search: Constant - O(1)\n  * In worst case scenarios they operations may require O(n) time";
+			return "  Insertion: Constant - O(1)\n  Deletion: Constant - O(1)\n  Search: Constant - O(1)\n  * Linear - O(n) if collisions occur";
 			break;
 		}
 		case "pwd":
@@ -224,6 +227,46 @@ function hashTableCommands(
 			{
 				const url =
 					"https://github.com/lukereed1/dsaviz/blob/main/src/pages/data-structures/hash-table/HashTablePage.tsx";
+				openNewTab(url);
+			}
+			break;
+		case "cd ..":
+			navigate("/menu");
+			break;
+		default:
+			return `  "${input}" command not found`;
+			break;
+	}
+}
+
+function linkedListCommands(
+	input: string,
+	navigate: ReturnType<typeof useNavigate>
+) {
+	switch (input) {
+		case "help":
+			return "  Available Commands:\n  - help: display available commands\n  - info: more information on linked lists\n  - time: display time complexities for linked list operations\n  - clear: clear terminal\n  - pwd: print working directory\n  - ls: list all files \n  - code: show source code\n  - cd .. : return to main menu";
+			break;
+		case "info": {
+			const url =
+				"https://www.geeksforgeeks.org/linked-list-data-structure/";
+			openNewTab(url);
+			break;
+		}
+		case "time": {
+			return "  Append: Constant - O(1) * If tail implemented\n  Prepend: Constant - O(1)\n  Insert: Linear - O(n)\n  Delete: Linear - O(n)";
+			break;
+		}
+		case "pwd":
+			return `  /dsaviz/menu/hash-table`;
+			break;
+		case "ls":
+			return "  LinkedListPage.tsx\n  DataStructurePageTemplate.tsx\n  OperationsBox.tsx\n  Terminal.tsx\n  LinkedList.tsx\n  CodeEditor.tsx";
+			break;
+		case "code":
+			{
+				const url =
+					"https://github.com/lukereed1/dsaviz/blob/main/src/pages/data-structures/linked-list/LinkedListPage.tsx";
 				openNewTab(url);
 			}
 			break;

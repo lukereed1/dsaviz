@@ -4,6 +4,7 @@ import ValueTextInput from "../../../app/components/ValueTextInput";
 import IndexTextInput from "../../../app/components/IndexTextInput";
 import OperationBox from "../../../app/components/operations-box/OperationBox";
 import { Dispatch, SetStateAction } from "react";
+import { inputPrefix } from "../../../app/components/terminal/Terminal";
 
 interface Props {
 	value: number | undefined;
@@ -27,7 +28,6 @@ export default function ArrayOperations(props: Props) {
 		setTerminalOutputs,
 		setHighlightedIndex,
 	} = props;
-	const inputPrefix = "guest@dsaviz.com~$ ";
 
 	function handleAppend() {
 		if (checkInvalidValue()) return;

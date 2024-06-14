@@ -31,7 +31,7 @@ export default function Array({
 			svg.selectAll("*").remove();
 
 			const g = svg.append("g");
-			g.attr("transform", `translate(3, 70)`); // Slight width increase ensures left and right borders are shown
+			g.attr("transform", `translate(3, 70)`);
 
 			// Draws rectangles/cells
 			g.selectAll("rect")
