@@ -5,6 +5,7 @@ import ArrayPage from "../../pages/data-structures/array/ArrayPage";
 import HashTablePage from "../../pages/data-structures/hash-table/HashTablePage";
 import StackPage from "../../pages/data-structures/stack/StackPage";
 import QueuePage from "../../pages/data-structures/queue/QueuePage";
+import LinkedListPage from "../../pages/data-structures/linked-list/LinkedListPage";
 
 export const router = createBrowserRouter([
 	{
@@ -16,6 +17,7 @@ export const router = createBrowserRouter([
 			{ path: "queue", element: <QueuePage /> },
 			{ path: "stack", element: <StackPage /> },
 			{ path: "hash-table", element: <HashTablePage /> },
+			{ path: "linked-list", element: <LinkedListPage /> },
 		],
 	},
 ]);

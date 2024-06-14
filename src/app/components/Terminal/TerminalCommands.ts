@@ -30,7 +30,7 @@ export function getTerminalCommand(
 }
 
 function menuCommands(input: string, navigate: ReturnType<typeof useNavigate>) {
-	const DS = ["array", "queue", "stack", "hash-table"];
+	const DS = ["array", "queue", "stack", "hash-table", "linked-list"];
 	const ALGO = ["quick-sort", "insertion-sort", "merge-sort"];
 	if (input.startsWith("cd ")) {
 		const path = input.slice(3).trim();

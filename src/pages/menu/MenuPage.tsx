@@ -25,6 +25,7 @@ export default function MenuPage() {
 				{ label: "Queue", path: "/queue" },
 				{ label: "Stack", path: "/stack" },
 				{ label: "Hash Table", path: "/hash-table" },
+				{ label: "Linked List", path: "/linked-list" },
 			],
 			open: dsMenuOpen,
 			toggleMenu: () => handleDsMenu(),
