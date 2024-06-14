@@ -11,7 +11,7 @@ export default function QueuePage() {
 	const [queue, setQueue] = useState<number[]>([1, 2, 3, 4, 5]);
 	const [highlightIndex, setHighlightIndex] = useState<number | undefined>();
 	const [terminalOutputs, setTerminalOutputs] = useState<string[]>([
-		"Type 'help' for a list of commands",
+		"A Queue Data Structure is a fundamental concept in computer science used for storing and managing data in a specific order. It follows the principle of “First in, First out” (FIFO), where the first element added to the queue is the first one to be removed. Queues are commonly used in various algorithms and applications for their simplicity and efficiency in managing data flow. [www.geeksforgeeks.org/queue-data-structure/]\n\nType 'help' for a list of commands",
 	]);
 
 	return (

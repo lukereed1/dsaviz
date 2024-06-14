@@ -11,7 +11,7 @@ export default function StackPage() {
 	const [stack, setStack] = useState<number[]>([1, 2, 3, 4, 5]);
 	const [highlightIndex, setHighlightIndex] = useState<number | undefined>();
 	const [terminalOutputs, setTerminalOutputs] = useState<string[]>([
-		"Type 'help' for a list of commands",
+		"A Stack is a linear data structure that follows a particular order in which the operations are performed. The order may be LIFO (Last In First Out) or FILO (First In Last Out). LIFO implies that the element that is inserted last, comes out first and FILO implies that the element that is inserted first, comes out last. [www.geeksforgeeks.org/stack-data-structure/]\n\nType 'help' for a list of commands",
 	]);
 
 	return (

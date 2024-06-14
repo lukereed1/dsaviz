@@ -7,7 +7,7 @@ const javascriptCode = `/* This implementation only demonstrates how
 keys are distributed into their respective
 buckets using a hash function. It uses
 separate chaining to handle collisions. Scroll
-down for language hash map syntax. */
+down for language specific hash map syntax. */
 
 /************ CUSTOM HASH TABLE ************/
 
