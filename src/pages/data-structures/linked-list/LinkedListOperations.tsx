@@ -91,7 +91,7 @@ export default function LinkedListOperations(props: Props) {
 			inputs: (
 				<Box sx={styles.box}>
 					<ValueTextInput setValue={setValue} />
-					<IndexTextInput setIndex={setIndex} />
+					<IndexTextInput setIndex={setIndex} marginTop={2} />
 					<OperationButton label="Insert" operation={handleInsert} />
 				</Box>
 			),
@@ -101,7 +101,7 @@ export default function LinkedListOperations(props: Props) {
 			inputs: (
 				<Box sx={styles.box}>
 					<ValueTextInput setValue={setValue} />
-					<IndexTextInput setIndex={setIndex} marginTop={0} />
+					<IndexTextInput setIndex={setIndex} marginTop={2} />
 					<OperationButton label="Delete" operation={handleDelete} />
 				</Box>
 			),

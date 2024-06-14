@@ -3,7 +3,7 @@ import { ChangeEvent } from "react";
 
 interface Props {
 	setIndex: (index: number) => void;
-	marginTop?: number;
+	marginTop: number;
 	defaultValue?: number;
 }
 

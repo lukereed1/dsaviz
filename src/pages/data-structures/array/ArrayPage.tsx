@@ -11,7 +11,7 @@ export default function ArrayPage() {
 	const [valueInput, setValueInput] = useState<number | undefined>();
 	const [indexInput, setIndexInput] = useState<number | undefined>();
 	const [terminalOutputs, setTerminalOutputs] = useState<string[]>([
-		"An array is a collection of items of the same variable type that are stored at contiguous memory locations. It’s one of the most popular and simple data structures and is often used to implement other data structures. Each item in an array is indexed starting with 0. Each element in an array is accessed through its index [www.geeksforgeeks.org/array-data-structure-guide/].\n\nType 'help' for a list of commands",
+		"An array is a collection of items of the same variable type that are stored at contiguous memory locations. It’s one of the most popular and simple data structures and is often used to implement other data structures. Each item in an array is indexed starting with 0. Each element in an array is accessed through its index. [www.geeksforgeeks.org/array-data-structure-guide/]\n\nType 'help' for a list of commands",
 	]);
 	const [array, setArray] = useState<number[]>([1, 2, 3, 4, 5]);
 	const [highlightIndex, setHighlightIndex] = useState<number | undefined>();
