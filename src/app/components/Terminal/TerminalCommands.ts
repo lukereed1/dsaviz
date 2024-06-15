@@ -258,7 +258,7 @@ function linkedListCommands(
 			break;
 		}
 		case "pwd":
-			return `  /dsaviz/menu/hash-table`;
+			return `  /dsaviz/menu/linked-list`;
 			break;
 		case "ls":
 			return "  LinkedListPage.tsx\n  DataStructurePageTemplate.tsx\n  OperationsBox.tsx\n  Terminal.tsx\n  LinkedList.tsx\n  CodeEditor.tsx";

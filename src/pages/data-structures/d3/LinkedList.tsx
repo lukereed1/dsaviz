@@ -12,7 +12,7 @@ interface Props {
 export default function LinkedListVisual({
 	data,
 	highlightIndex,
-	setHighlightedIndex,
+	setHighlightIndex,
 }: Props) {
 	const theme = useTheme();
 	const svgRef = useRef<SVGSVGElement | null>(null);
@@ -52,7 +52,12 @@ export default function LinkedListVisual({
 					.attr("cx", circleX)
 					.attr("cy", circleY)
 					.attr("r", cellSize / 2)
-					.attr("fill", theme.palette.background.default)
+					.attr(
+						"fill",
+						index === highlightIndex
+							? theme.palette.secondary.main
+							: theme.palette.background.default
+					)
 					.attr("stroke-width", 1.5)
 					.attr("stroke", theme.palette.text.primary);
 
@@ -75,7 +80,12 @@ export default function LinkedListVisual({
 					.attr("dominant-baseline", "middle")
 					.attr("font-size", "20px")
 					.attr("font-family", "menlo")
-					.attr("fill", theme.palette.text.primary)
+					.attr(
+						"fill",
+						index === highlightIndex
+							? theme.palette.text.secondary
+							: theme.palette.text.primary
+					)
 					.text(value);
 
 				if (index === 0) {
@@ -84,7 +94,7 @@ export default function LinkedListVisual({
 						.attr("y", circleY - 40)
 						.attr("text-anchor", "middle")
 						.attr("dominant-baseline", "middle")
-						.attr("font-size", "10px")
+						.attr("font-size", "12")
 						.attr("font-family", "menlo")
 						.attr("fill", theme.palette.text.primary)
 						.text("head");
@@ -94,16 +104,31 @@ export default function LinkedListVisual({
 						.attr("y", circleY - 40)
 						.attr("text-anchor", "middle")
 						.attr("dominant-baseline", "middle")
-						.attr("font-size", "10px")
+						.attr("font-size", "12px")
 						.attr("font-family", "menlo")
 						.attr("fill", theme.palette.text.primary)
 						.text("tail");
 				}
+
+				// Arrowhead
+				svg.append("defs")
+					.append("marker")
+					.attr("id", "arrowhead")
+					.attr("viewBox", "0 0 10 10")
+					.attr("refX", 12)
+					.attr("refY", 5)
+					.attr("markerWidth", 4)
+					.attr("markerHeight", 4)
+					.attr("orient", "auto")
+					.append("path")
+					.attr("d", "M 0 0 L 10 5 L 0 10 z")
+					.attr("fill", theme.palette.text.primary);
+
 				const angle = Math.atan2(
 					circleY - previousY,
 					circleX - previousX
 				);
-
+				// Linking lines
 				if (index !== 0) {
 					g.append("line")
 						.attr("x1", previousX + radius * Math.cos(angle))
@@ -111,7 +136,8 @@ export default function LinkedListVisual({
 						.attr("x2", circleX - radius * Math.cos(angle))
 						.attr("y2", circleY - radius * Math.sin(angle))
 						.attr("stroke", theme.palette.text.primary)
-						.attr("stroke-width", 3);
+						.attr("stroke-width", 2)
+						.attr("marker-end", "url(#arrowhead)");
 				}
 				previousX = circleX;
 				previousY = circleY;
@@ -129,6 +155,12 @@ export default function LinkedListVisual({
 					row = 3;
 					down = false;
 				}
+				if (timeoutRef.current) clearTimeout(timeoutRef.current);
+
+				timeoutRef.current = setTimeout(
+					() => setHighlightIndex(undefined),
+					1000
+				);
 			});
 		}
 	}, [
@@ -138,6 +170,10 @@ export default function LinkedListVisual({
 		linkedListArray,
 		theme.palette.background.default,
 		theme.palette.text.primary,
+		setHighlightIndex,
+		theme.palette.secondary.main,
+		theme.palette.text.secondary,
+		highlightIndex,
 	]);
 
 	return <svg ref={svgRef}></svg>;

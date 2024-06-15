@@ -9,7 +9,7 @@ export default function LinkedListPage() {
 	const [value, setValue] = useState<number | undefined>();
 	const [index, setIndex] = useState<number | undefined>();
 	const defaultList = new LinkedList();
-	for (let i = 1; i < 3; i++) {
+	for (let i = 1; i < 4; i++) {
 		defaultList.append(i);
 	}
 	const [linkedList, setLinkedList] = useState<LinkedList>(defaultList);

@@ -44,7 +44,6 @@ export class LinkedList {
 			this.prepend(value);
 			return;
 		}
-
 		const newNode = new ListNode(value);
 		let current = this.head;
 		let currentIndex = 0;
