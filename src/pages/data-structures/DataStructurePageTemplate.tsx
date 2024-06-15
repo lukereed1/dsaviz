@@ -58,7 +58,7 @@ const styles = {
 		display: "flex",
 		textAlign: "center",
 		gap: 4,
-		height: 700,
+		height: 770,
 		width: 1280,
 		marginTop: 1,
 	},
@@ -83,11 +83,14 @@ const styles = {
 		paddingBottom: 0.5,
 		boxShadow: 1,
 	},
-	innerDsBox: { flex: 1 },
+	innerDsBox: {
+		alignContent: "center",
+		flex: 1,
+	},
 	lowerBox: {
 		display: "flex",
 		gap: 4,
-		height: "45%",
+		height: "40.5%",
 		paddingBottom: 0.5,
 	},
 	operationBox: {
@@ -100,8 +103,9 @@ const styles = {
 		fontWeight: "bold",
 		paddingTop: 2.4,
 		paddingBottom: 2.15,
+		textAlign: "center",
 	},
-	divider: { borderBottomWidth: 3 },
+	divider: { borderBottomWidth: 3, width: "100%" },
 	codeEditorBox: {
 		flex: 1,
 		bgcolor: "primary.main",
@@ -109,5 +113,6 @@ const styles = {
 		overflow: "hidden",
 		maxWidth: "35%",
 		boxShadow: 1,
+		marginBottom: 0.5,
 	},
 };

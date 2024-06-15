@@ -2,7 +2,7 @@ import { useState } from "react";
 import DataStructurePageTemplate from "../DataStructurePageTemplate";
 import Array from "../d3/Array";
 import StackOperations from "./StackOperations";
-import Terminal from "../../../app/components/terminal/Terminal";
+import Terminal from "../../../app/components/terminal/TerminalWindow";
 import { stackFiles } from "./stackFiles";
 import CodeEditor from "../../../app/components/code-editor/CodeEditor";
 

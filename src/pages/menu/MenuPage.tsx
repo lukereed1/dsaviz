@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import NestedList from "./NestedList";
 import { useState } from "react";
-import Terminal from "../../app/components/terminal/Terminal";
+import Terminal from "../../app/components/terminal/TerminalWindow";
 
 export default function MenuPage() {
 	const [dsMenuOpen, setDsMenuOpen] = useState(false);

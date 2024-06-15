@@ -2,7 +2,7 @@ import { useState } from "react";
 import DataStructurePageTemplate from "../DataStructurePageTemplate";
 import HashTable from "../d3/HashTable";
 import HashTableOperations from "./HashTableOperations";
-import Terminal from "../../../app/components/terminal/Terminal";
+import Terminal from "../../../app/components/terminal/TerminalWindow";
 import CodeEditor from "../../../app/components/code-editor/CodeEditor";
 import { hashTableFiles } from "./hashTableFiles";
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 import DataStructurePageTemplate from "../DataStructurePageTemplate";
 import Array from "../d3/Array";
 import QueueOperations from "./QueueOperations";
-import Terminal from "../../../app/components/terminal/Terminal";
+import Terminal from "../../../app/components/terminal/TerminalWindow";
 import CodeEditor from "../../../app/components/code-editor/CodeEditor";
 import { queueFiles } from "./queueFiles";
 

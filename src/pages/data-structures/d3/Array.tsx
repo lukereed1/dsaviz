@@ -20,8 +20,8 @@ export default function Array({
 	useEffect(() => {
 		if (svgRef.current) {
 			const svg = d3.select(svgRef.current);
-			const height = 180;
-			const cellSize = 45;
+			const height = 200;
+			const cellSize = 60;
 			const width = data.length * cellSize + 5;
 
 			svg.attr("width", width)
@@ -31,7 +31,7 @@ export default function Array({
 			svg.selectAll("*").remove();
 
 			const g = svg.append("g");
-			g.attr("transform", `translate(3, 70)`);
+			g.attr("transform", `translate(3, 25)`);
 
 			// Draws rectangles/cells
 			g.selectAll("rect")
@@ -65,7 +65,7 @@ export default function Array({
 						? theme.palette.text.secondary
 						: theme.palette.text.primary
 				)
-				.attr("font-size", "20px")
+				.attr("font-size", "28")
 				.attr("font-family", "menlo")
 				.text((d) => d);
 
@@ -76,10 +76,10 @@ export default function Array({
 				.append("text")
 				.attr("class", "index")
 				.attr("x", (_, i) => i * cellSize + cellSize / 2)
-				.attr("y", 10)
+				.attr("y", 12.5)
 				.attr("text-anchor", "middle")
 				.attr("dominant-baseline", "middle")
-				.attr("font-size", "14px")
+				.attr("font-size", "18px")
 				.attr("font-family", "menlo")
 				.attr("fill", theme.palette.text.primary)
 				.text((_, i) => i);

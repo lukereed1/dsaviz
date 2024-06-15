@@ -22,10 +22,10 @@ export default function LinkedListVisual({
 	useEffect(() => {
 		if (svgRef.current) {
 			const svg = d3.select(svgRef.current);
-			const cellSize = 40;
+			const cellSize = 50;
 			const dataLength = linkedListArray.length;
 			const width = dataLength * cellSize + 10 * dataLength;
-			const height = 263;
+			const height = 300;
 
 			svg.attr("width", width)
 				.attr("height", height)
@@ -35,7 +35,7 @@ export default function LinkedListVisual({
 			svg.selectAll("*").remove();
 
 			const g = svg.append("g");
-			g.attr("transform", `translate(25, 75)`);
+			g.attr("transform", `translate(30, 50)`);
 
 			let row = 1;
 			let down = true;
@@ -43,8 +43,9 @@ export default function LinkedListVisual({
 			let previousY = 10;
 			const radius = cellSize / 2;
 			linkedListArray.forEach((value, index) => {
-				const circleX = index * 50;
-				const circleY = row === 1 ? 10 : row == 2 ? 70 : 130;
+				const circleX = index * 60;
+				const circleY =
+					row === 1 ? 10 : row == 2 ? 70 : row === 3 ? 130 : 180;
 
 				// Circles
 				g.append("circle")
@@ -58,7 +59,7 @@ export default function LinkedListVisual({
 				// Index
 				g.append("text")
 					.attr("x", circleX)
-					.attr("y", circleY + 32.5)
+					.attr("y", circleY + 40)
 					.attr("text-anchor", "middle")
 					.attr("dominant-baseline", "middle")
 					.attr("font-size", "12px")
@@ -80,7 +81,7 @@ export default function LinkedListVisual({
 				if (index === 0) {
 					g.append("text")
 						.attr("x", circleX)
-						.attr("y", circleY - 32.5)
+						.attr("y", circleY - 40)
 						.attr("text-anchor", "middle")
 						.attr("dominant-baseline", "middle")
 						.attr("font-size", "10px")
@@ -90,7 +91,7 @@ export default function LinkedListVisual({
 				} else if (index === dataLength - 1) {
 					g.append("text")
 						.attr("x", circleX)
-						.attr("y", circleY - 32.5)
+						.attr("y", circleY - 40)
 						.attr("text-anchor", "middle")
 						.attr("dominant-baseline", "middle")
 						.attr("font-size", "10px")
@@ -121,8 +122,11 @@ export default function LinkedListVisual({
 				} else if (row === 2) {
 					if (down) row = 3;
 					else row = 1;
+				} else if (row === 3) {
+					if (down) row = 4;
+					else row = 2;
 				} else {
-					row = 2;
+					row = 3;
 					down = false;
 				}
 			});

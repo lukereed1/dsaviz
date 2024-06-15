@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import ValueTextInput from "../../../app/components/ValueTextInput";
 import OperationButton from "../../../app/components/operations-box/OperationButton";
 import OperationBox from "../../../app/components/operations-box/OperationBox";
-import { inputPrefix } from "../../../app/components/terminal/Terminal";
+import { inputPrefix } from "../../../app/components/terminal/TerminalWindow";
 import { Dispatch, SetStateAction } from "react";
 
 interface Props {

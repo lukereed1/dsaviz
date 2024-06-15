@@ -1,15 +1,15 @@
 import { useState } from "react";
 import DataStructurePageTemplate from "../DataStructurePageTemplate";
-import Terminal from "../../../app/components/terminal/Terminal";
+import Terminal from "../../../app/components/terminal/TerminalWindow";
 import { LinkedList } from "./linkedList";
 import LinkedListOperations from "./LinkedListOperations";
-import LinkedListVisual from "../d3/LinkedListVisual";
+import LinkedListVisual from "../d3/LinkedList";
 
 export default function LinkedListPage() {
 	const [value, setValue] = useState<number | undefined>();
 	const [index, setIndex] = useState<number | undefined>();
 	const defaultList = new LinkedList();
-	for (let i = 1; i < 6; i++) {
+	for (let i = 1; i < 3; i++) {
 		defaultList.append(i);
 	}
 	const [linkedList, setLinkedList] = useState<LinkedList>(defaultList);

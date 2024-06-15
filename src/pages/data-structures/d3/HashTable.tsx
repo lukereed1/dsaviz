@@ -1,4 +1,4 @@
-import { useTheme } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import * as d3 from "d3";
 import { useEffect, useRef } from "react";
 
@@ -26,7 +26,7 @@ export default function HashTable({
 			const cellSize = 35;
 			const height =
 				d3.max(data.map((chain) => chain.length))! * (cellSize + 17.5) + // Height of longest chain
-				70;
+				150;
 
 			svg.attr("width", width)
 				.attr("height", height)
@@ -161,5 +161,9 @@ export default function HashTable({
 		theme.palette.text.secondary,
 	]);
 
-	return <svg ref={svgRef}></svg>;
+	return (
+		<Box>
+			<svg ref={svgRef}></svg>
+		</Box>
+	);
 }

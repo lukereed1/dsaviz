@@ -3,7 +3,7 @@ import { useState } from "react";
 import Array from "../d3/Array";
 
 import ArrayOperations from "./ArrayOperations";
-import Terminal from "../../../app/components/terminal/Terminal";
+import Terminal from "../../../app/components/terminal/TerminalWindow";
 import CodeEditor from "../../../app/components/code-editor/CodeEditor";
 import { arrayFiles } from "./arrayFiles";
 
