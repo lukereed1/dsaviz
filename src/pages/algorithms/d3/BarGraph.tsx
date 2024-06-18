@@ -14,7 +14,7 @@ export default function BarGraph({ data }: Props) {
 		const updateWidth = () => {
 			if (svgRef.current) {
 				const parentWidth = svgRef.current.parentElement?.clientWidth;
-				setWidth(parentWidth! - 50 || 750);
+				setWidth(parentWidth! - 100 || 750);
 			}
 		};
 

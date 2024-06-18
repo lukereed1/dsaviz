@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction } from "react";
 import { LinkedList } from "./linkedList";
 import { Box } from "@mui/material";
-import ValueTextInput from "../../../app/components/ValueTextInput";
+import ValueTextInput from "../../../app/components/operations-box/ValueTextInput";
 import OperationButton from "../../../app/components/operations-box/OperationButton";
 import OperationBox from "../../../app/components/operations-box/OperationBox";
-import IndexTextInput from "../../../app/components/IndexTextInput";
+import IndexTextInput from "../../../app/components/operations-box/IndexTextInput";
 import { inputPrefix } from "../../../app/components/terminal/TerminalWindow";
 
 interface Props {

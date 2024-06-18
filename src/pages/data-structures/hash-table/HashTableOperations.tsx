@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import ValueTextInput from "../../../app/components/ValueTextInput";
+import ValueTextInput from "../../../app/components/operations-box/ValueTextInput";
 import OperationButton from "../../../app/components/operations-box/OperationButton";
 import OperationBox from "../../../app/components/operations-box/OperationBox";
 import { inputPrefix } from "../../../app/components/terminal/TerminalWindow";

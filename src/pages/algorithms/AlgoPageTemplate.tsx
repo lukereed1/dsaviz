@@ -86,7 +86,7 @@ const styles = {
 	innerVisBox: {
 		alignContent: "center",
 		flex: 1,
-		paddingX: 2,
+		paddingX: 5,
 	},
 	lowerBox: {
 		display: "flex",

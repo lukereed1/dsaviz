@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import OperationButton from "../../../app/components/operations-box/OperationButton";
-import ValueTextInput from "../../../app/components/ValueTextInput";
-import IndexTextInput from "../../../app/components/IndexTextInput";
+import ValueTextInput from "../../../app/components/operations-box/ValueTextInput";
+import IndexTextInput from "../../../app/components/operations-box/IndexTextInput";
 import OperationBox from "../../../app/components/operations-box/OperationBox";
 import { Dispatch, SetStateAction } from "react";
 import { inputPrefix } from "../../../app/components/terminal/TerminalWindow";
