@@ -6,6 +6,7 @@ import HashTablePage from "../../pages/data-structures/hash-table/HashTablePage"
 import StackPage from "../../pages/data-structures/stack/StackPage";
 import QueuePage from "../../pages/data-structures/queue/QueuePage";
 import LinkedListPage from "../../pages/data-structures/linked-list/LinkedListPage";
+import QuickSortPage from "../../pages/algorithms/quick-sort/QuickSortPage";
 
 export const router = createBrowserRouter([
 	{
@@ -18,6 +19,7 @@ export const router = createBrowserRouter([
 			{ path: "stack", element: <StackPage /> },
 			{ path: "hash-table", element: <HashTablePage /> },
 			{ path: "linked-list", element: <LinkedListPage /> },
+			{ path: "quick-sort", element: <QuickSortPage /> },
 		],
 	},
 ]);

@@ -51,7 +51,7 @@ export default function SideMenu() {
 			icon: <AccountTreeIcon sx={{ fontSize: 20 }} />,
 			nested: true,
 			items: [
-				{ label: "Quick Sort", path: "#" },
+				{ label: "Quick Sort", path: "/quick-sort" },
 				{ label: "Merge Sort", path: "#" },
 			],
 			menuToggle: () => handleAlgoMenu(),

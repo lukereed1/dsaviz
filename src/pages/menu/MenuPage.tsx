@@ -33,7 +33,7 @@ export default function MenuPage() {
 		{
 			label: "Algorithms",
 			items: [
-				{ label: "Quick Sort", path: "#" },
+				{ label: "Quick Sort", path: "/quick-sort" },
 				{ label: "Merge Sort", path: "#" },
 				{ label: "Insertion Sort", path: "#" },
 			],
