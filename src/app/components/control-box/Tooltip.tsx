@@ -4,12 +4,14 @@ import { ReactNode } from "react";
 interface Props {
 	title: string;
 	children: ReactNode;
+	top?: boolean;
 }
 
-export default function ToolTip({ title, children }: Props) {
+export default function ToolTip({ title, children, top }: Props) {
 	return (
 		<>
 			<Tooltip
+				placement={top ? "top" : "bottom"}
 				title={title}
 				componentsProps={{
 					tooltip: {

@@ -7,7 +7,7 @@ import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import Slider from "@mui/material/Slider";
 import { Box, Divider, Typography, Tooltip } from "@mui/material";
 import { SyntheticEvent } from "react";
-import ToolTip from "./Tooltip";
+import ToolTip from "./ToolTip";
 
 interface Props {
 	generateRandomArray: (value: number) => void;
@@ -34,33 +34,44 @@ export default function ControlBox({
 			<Box
 				display={"flex"}
 				justifyContent={"center"}
-				sx={{ marginTop: 1 }}>
-				<IconButton aria-label="rewind" sx={styles.iconButton}>
-					<FastRewindIcon sx={styles.icon} />
-				</IconButton>
+				sx={{ marginTop: 1 }}
+				gap={1}>
+				<ToolTip title="Step Back">
+					<IconButton aria-label="rewind" sx={styles.iconButton}>
+						<FastRewindIcon sx={styles.icon} />
+					</IconButton>
+				</ToolTip>
 				<ToolTip title="Play">
 					<IconButton aria-label="play/pause" sx={styles.iconButton}>
 						<PlayArrowIcon sx={styles.icon} />
 					</IconButton>
 				</ToolTip>
-
-				<IconButton aria-label="fast foward" sx={styles.iconButton}>
-					<FastForwardIcon sx={styles.icon} />
-				</IconButton>
+				<ToolTip title="Step Forward">
+					<IconButton aria-label="fast foward" sx={styles.iconButton}>
+						<FastForwardIcon sx={styles.icon} />
+					</IconButton>
+				</ToolTip>
 			</Box>
 
-			<Box sx={{ marginTop: -1 }}>
-				<IconButton aria-label="new array" sx={styles.iconButton}>
-					<RefreshIcon sx={styles.icon} />
-				</IconButton>
-
-				<IconButton aria-label="restart" sx={styles.iconButton}>
-					<RestartAltIcon sx={styles.icon} />
-				</IconButton>
+			<Box
+				sx={{ marginTop: -1 }}
+				display={"flex"}
+				justifyContent={"center"}
+				gap={1}>
+				<ToolTip title="New Array" top={true}>
+					<IconButton aria-label="new array" sx={styles.iconButton}>
+						<RefreshIcon sx={styles.icon} />
+					</IconButton>
+				</ToolTip>
+				<ToolTip title="Restart" top={true}>
+					<IconButton aria-label="restart" sx={styles.iconButton}>
+						<RestartAltIcon sx={styles.icon} />
+					</IconButton>
+				</ToolTip>
 			</Box>
-			<Box>
+			<Box sx={{ marginTop: 0.75 }}>
 				<Box>
-					<Typography variant="h6">Array Size</Typography>
+					<Typography sx={styles.sliderText}>Array Size</Typography>
 					<Slider
 						onChangeCommitted={handleArraySizeSlider}
 						sx={styles.slider}
@@ -70,8 +81,8 @@ export default function ControlBox({
 						defaultValue={20}
 					/>
 				</Box>
-				<Box sx={{ marginTop: -1 }}>
-					<Typography variant="h6">Delay</Typography>
+				<Box>
+					<Typography sx={styles.sliderText}>Delay</Typography>
 					<Slider
 						sx={styles.slider}
 						color="secondary"
@@ -131,4 +142,5 @@ const styles = {
 			color: "blue",
 		},
 	},
+	sliderText: { fontFamily: "menlo", fontSize: 16 },
 };
