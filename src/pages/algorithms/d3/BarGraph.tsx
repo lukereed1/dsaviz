@@ -47,9 +47,9 @@ export default function BarGraph({ data }: Props) {
 			.attr("y", (d) => height - yScale(d))
 			.attr("width", barWidth - 2)
 			.attr("height", (d) => yScale(d))
-			.attr("fill", theme.palette.background.default)
-			.attr("stroke-width", 0.1)
-			.attr("stroke", theme.palette.text.primary);
+			.attr("fill", theme.palette.text.primary);
+		// .attr("stroke-width", 0.1)
+		// .attr("stroke", theme.palette.text.primary);
 	}, [
 		data,
 		theme.palette.background.default,
