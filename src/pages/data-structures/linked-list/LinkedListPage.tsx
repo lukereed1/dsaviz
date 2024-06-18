@@ -4,12 +4,14 @@ import Terminal from "../../../app/components/terminal/TerminalWindow";
 import { LinkedList } from "./linkedList";
 import LinkedListOperations from "./LinkedListOperations";
 import LinkedListVisual from "../d3/LinkedList";
+import CodeEditor from "../../../app/components/code-editor/CodeEditor";
+import { linkedListFiles } from "./linkedListFiles";
 
 export default function LinkedListPage() {
 	const [value, setValue] = useState<number | undefined>();
 	const [index, setIndex] = useState<number | undefined>();
 	const defaultList = new LinkedList();
-	for (let i = 1; i < 4; i++) {
+	for (let i = 1; i < 7; i++) {
 		defaultList.append(i);
 	}
 	const [linkedList, setLinkedList] = useState<LinkedList>(defaultList);
@@ -47,7 +49,7 @@ export default function LinkedListPage() {
 					header="menu/linked-list"
 				/>
 			}
-			codeEditor={undefined}
+			codeEditor={<CodeEditor files={linkedListFiles} />}
 		/>
 	);
 }

@@ -66,6 +66,13 @@ export default function LinkedListOperations(props: Props) {
 	function handleDelete() {
 		if (checkInvalidIndex()) return;
 		const updatedLinkedList = createLinkedListCopy();
+		const valueDeleted = updatedLinkedList.toArray()[index!];
+		const output = `${inputPrefix}delete ${index}\n  Operation: Delete\n  Value Removed: ${valueDeleted}\n  Node: ${index}\n  Time Complexity: ${
+			index === 0 || index === updatedLinkedList.getLength() - 1
+				? "Constant - O(1)"
+				: "Linear - O(n)"
+		}`;
+		printToTerminal(output);
 		updatedLinkedList.deleteAt(index!);
 		setLinkedList(updatedLinkedList);
 	}

@@ -19,7 +19,7 @@ export default function MenuPage() {
 
 	const menuItems = [
 		{
-			label: "Data Structures",
+			label: "Data Structures", // Graph, trie, heap,
 			items: [
 				{ label: "Arrays", path: "/array" },
 				{ label: "Queue", path: "/queue" },
