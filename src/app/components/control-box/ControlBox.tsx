@@ -16,6 +16,7 @@ interface Props {
 	setDelayTime: (value: number) => void;
 	setSortedIndices: (nums: number[]) => void;
 	stopSorting: () => void;
+	nextStep: () => void;
 	data: number[] | undefined;
 	arrayLength: number;
 }
@@ -27,6 +28,7 @@ export default function ControlBox(props: Props) {
 		generateRandomArray,
 		setData,
 		setDelayTime,
+		nextStep,
 		stopSorting,
 		setSortedIndices,
 	} = props;
@@ -50,6 +52,10 @@ export default function ControlBox(props: Props) {
 
 	function handlePlayButton() {
 		algo();
+	}
+
+	function handleNextStep() {
+		nextStep();
 	}
 
 	function handleNewDataButton() {
@@ -84,7 +90,10 @@ export default function ControlBox(props: Props) {
 					</IconButton>
 				</ToolTipMessage>
 				<ToolTipMessage title="Step Forward">
-					<IconButton aria-label="fast foward" sx={styles.iconButton}>
+					<IconButton
+						aria-label="fast foward"
+						sx={styles.iconButton}
+						onClick={handleNextStep}>
 						<FastForwardIcon sx={styles.icon} />
 					</IconButton>
 				</ToolTipMessage>

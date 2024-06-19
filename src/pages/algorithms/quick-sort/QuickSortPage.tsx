@@ -18,7 +18,8 @@ export default function QuickSortPage() {
 		[number, number] | undefined
 	>(undefined);
 	const sortingRef = useRef<boolean>(false);
-
+	const [isStepping, setIsStepping] = useState<boolean>(false);
+	const stepResolveRef = useRef<() => void>();
 	function generateRandomArray(length: number) {
 		const arr = [];
 		for (let i = 0; i < length; i++) {
@@ -31,6 +32,7 @@ export default function QuickSortPage() {
 	async function handleQuickSort() {
 		if (!data || dataSorted || sortingRef.current) return;
 		sortingRef.current = true;
+		setIsStepping(false);
 		await quickSort([...data], 0, data.length - 1);
 		setDataSorted(true);
 		sortingRef.current = false;
@@ -38,7 +40,7 @@ export default function QuickSortPage() {
 
 	function stopSorting() {
 		sortingRef.current = false;
-
+		setIsStepping(false);
 		setDataSorted(false);
 		setIndexComparison(undefined);
 	}
@@ -59,6 +61,8 @@ export default function QuickSortPage() {
 			await delay(delayMs);
 			printToTerminal(`Comparing ${arr[j]} and pivot ${pivot}`);
 
+			await stepThrough();
+
 			if (arr[j] < pivot) {
 				i++;
 				// Swap elements
@@ -67,6 +71,7 @@ export default function QuickSortPage() {
 					setData([...arr]);
 					printToTerminal(`Swapping ${arr[i]} and ${arr[j]}`);
 					await delay(delayMs);
+					await stepThrough();
 				}
 			}
 		}
@@ -76,7 +81,7 @@ export default function QuickSortPage() {
 		printToTerminal(`Moving pivot ${pivot} to correct position`);
 		setIndexComparison([i + 1, high]); // Setting the swap indices for pivot
 		await delay(delayMs);
-
+		await stepThrough();
 		setIndexComparison(undefined);
 		return i + 1; // Return the partition index
 	}
@@ -95,6 +100,20 @@ export default function QuickSortPage() {
 			await quickSort(arr, partitionIndex + 1, high);
 		} else if (low === high) {
 			setSortedIndices((prev) => [...prev, low]);
+		}
+	}
+
+	function stepThrough() {
+		return new Promise<void>((resolve) => {
+			stepResolveRef.current = resolve;
+			setIsStepping(false);
+		});
+	}
+
+	function nextStep() {
+		if (stepResolveRef.current) {
+			stepResolveRef.current();
+			setIsStepping(false);
 		}
 	}
 
@@ -118,6 +137,7 @@ export default function QuickSortPage() {
 						data={data}
 						arrayLength={data ? data.length : 4}
 						setData={setData}
+						nextStep={nextStep}
 						setDelayTime={setDelayMs}
 						stopSorting={stopSorting}
 						algo={handleQuickSort}
