@@ -5,25 +5,61 @@ import FastRewindIcon from "@mui/icons-material/FastRewind";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import Slider from "@mui/material/Slider";
-import { Box, Divider, Typography, Tooltip } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import { SyntheticEvent } from "react";
-import ToolTip from "./ToolTip";
+import ToolTipMessage from "./ToolTip";
 
 interface Props {
-	generateRandomArray: (value: number) => void;
+	generateRandomArray: (value: number) => number[];
+	algo: () => Promise<void>;
+	setData: (nums: number[]) => void;
+	setDataSorted: (sorted: boolean) => void;
+	setDataSorting: (sorting: boolean) => void;
 	setDelayTime: (value: number) => void;
+	setSortedIndices: (nums: number[]) => void;
+	data: number[] | undefined;
+	arrayLength: number;
 }
 
-export default function ControlBox({
-	generateRandomArray,
-	setDelayTime,
-}: Props) {
-	const handleArraySizeSlider = (
+export default function ControlBox(props: Props) {
+	const {
+		arrayLength,
+		algo,
+		generateRandomArray,
+		setData,
+		setDataSorted,
+		setDataSorting,
+		setDelayTime,
+		setSortedIndices,
+	} = props;
+
+	function handleArraySizeSlider(
 		event: SyntheticEvent | Event,
 		newValue: number | number[]
-	) => {
-		generateRandomArray(newValue as number);
-	};
+	) {
+		const updatedData = generateRandomArray(newValue as number);
+		setData(updatedData);
+	}
+
+	function handleTimeDelaySlider(
+		event: SyntheticEvent | Event,
+		newValue: number | number[]
+	) {
+		setDelayTime(newValue as number);
+	}
+
+	function handlePlayButton() {
+		setDataSorting(true);
+		algo();
+	}
+
+	function handleNewDataButton() {
+		const newData = generateRandomArray(arrayLength);
+		setSortedIndices([]);
+		setDataSorting(false);
+		setDataSorted(false);
+		setData(newData);
+	}
 
 	return (
 		<Box sx={styles.box}>
@@ -36,38 +72,40 @@ export default function ControlBox({
 				justifyContent={"center"}
 				sx={{ marginTop: 1 }}
 				gap={1}>
-				<ToolTip title="Step Back">
+				<ToolTipMessage title="Step Back">
 					<IconButton aria-label="rewind" sx={styles.iconButton}>
 						<FastRewindIcon sx={styles.icon} />
 					</IconButton>
-				</ToolTip>
-				<ToolTip title="Play">
-					<IconButton aria-label="play/pause" sx={styles.iconButton}>
+				</ToolTipMessage>
+				<ToolTipMessage title="Play">
+					<IconButton
+						aria-label="play/pause"
+						sx={styles.iconButton}
+						onClick={handlePlayButton}>
 						<PlayArrowIcon sx={styles.icon} />
 					</IconButton>
-				</ToolTip>
-				<ToolTip title="Step Forward">
+				</ToolTipMessage>
+				<ToolTipMessage title="Step Forward">
 					<IconButton aria-label="fast foward" sx={styles.iconButton}>
 						<FastForwardIcon sx={styles.icon} />
 					</IconButton>
-				</ToolTip>
+				</ToolTipMessage>
 			</Box>
 
-			<Box
-				sx={{ marginTop: -1 }}
-				display={"flex"}
-				justifyContent={"center"}
-				gap={1}>
-				<ToolTip title="New Array" top={true}>
-					<IconButton aria-label="new array" sx={styles.iconButton}>
+			<Box sx={styles.lowerButtons}>
+				<ToolTipMessage title="New Array" top={true}>
+					<IconButton
+						aria-label="new array"
+						sx={styles.iconButton}
+						onClick={handleNewDataButton}>
 						<RefreshIcon sx={styles.icon} />
 					</IconButton>
-				</ToolTip>
-				<ToolTip title="Restart" top={true}>
+				</ToolTipMessage>
+				<ToolTipMessage title="Restart Settings" top={true}>
 					<IconButton aria-label="restart" sx={styles.iconButton}>
 						<RestartAltIcon sx={styles.icon} />
 					</IconButton>
-				</ToolTip>
+				</ToolTipMessage>
 			</Box>
 			<Box sx={{ marginTop: 0.75 }}>
 				<Box>
@@ -84,10 +122,12 @@ export default function ControlBox({
 				<Box>
 					<Typography sx={styles.sliderText}>Delay</Typography>
 					<Slider
+						onChangeCommitted={handleTimeDelaySlider}
 						sx={styles.slider}
 						color="secondary"
-						min={4}
-						max={80}
+						min={0}
+						max={1000}
+						defaultValue={0}
 					/>
 				</Box>
 			</Box>
@@ -129,6 +169,12 @@ const styles = {
 		"&:hover": {
 			color: "primary.main",
 		},
+	},
+	lowerButtons: {
+		marginTop: -1,
+		display: "flex",
+		justifyContent: "center",
+		gap: 1,
 	},
 	tooltip: {
 		[`& .MuiTooltip-tooltip`]: {

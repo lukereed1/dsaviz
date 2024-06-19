@@ -4,9 +4,12 @@ import { useEffect, useRef, useState } from "react";
 
 interface Props {
 	data: number[] | undefined;
+	indexComparison?: [number, number];
+	sortedIndices?: number[];
 }
 
-export default function BarGraph({ data }: Props) {
+export default function BarGraph(props: Props) {
+	const { data, indexComparison, sortedIndices } = props;
 	const theme = useTheme();
 	const svgRef = useRef<SVGSVGElement | null>(null);
 	const [width, setWidth] = useState(750);
@@ -47,12 +50,25 @@ export default function BarGraph({ data }: Props) {
 			.attr("y", (d) => height - yScale(d))
 			.attr("width", barWidth - 2)
 			.attr("height", (d) => yScale(d))
-			.attr("fill", theme.palette.text.primary);
-		// .attr("stroke-width", 0.1)
-		// .attr("stroke", theme.palette.text.primary);
+			.attr("fill", (d, i) => {
+				if (
+					indexComparison &&
+					(i === indexComparison[0] || i === indexComparison[1])
+				) {
+					return "green";
+				} else if (sortedIndices && sortedIndices.includes(i)) {
+					return theme.palette.secondary.main;
+				} else {
+					return theme.palette.text.primary;
+				}
+			});
 	}, [
 		data,
+		indexComparison,
+		sortedIndices,
 		theme.palette.background.default,
+		theme.palette.secondary.main,
+		theme.palette.success.main,
 		theme.palette.text.primary,
 		width,
 	]);

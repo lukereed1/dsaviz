@@ -7,7 +7,7 @@ interface Props {
 	top?: boolean;
 }
 
-export default function ToolTip({ title, children, top }: Props) {
+export default function ToolTipMessage({ title, children, top }: Props) {
 	return (
 		<>
 			<Tooltip
@@ -25,7 +25,7 @@ export default function ToolTip({ title, children, top }: Props) {
 					},
 					arrow: {
 						sx: {
-							color: "blue",
+							color: "secondary.main",
 						},
 					},
 				}}

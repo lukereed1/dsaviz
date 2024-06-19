@@ -9,13 +9,9 @@ interface Props {
 	codeEditor: ReactNode;
 }
 
-export default function AlgoPageTemplate({
-	header,
-	visualisation,
-	controls,
-	terminal,
-	codeEditor,
-}: Props) {
+export default function AlgoPageTemplate(props: Props) {
+	const { header, visualisation, controls, terminal, codeEditor } = props;
+
 	return (
 		<>
 			<Typography sx={{ fontSize: 64, textAlign: "center" }}>
