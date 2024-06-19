@@ -18,6 +18,7 @@ export default function QuickSortPage() {
 		[number, number] | undefined
 	>(undefined);
 	const sortingRef = useRef<boolean>(false);
+	const delayTimeRef = useRef<number>(0);
 	const stepResolveRef = useRef<() => void>();
 	const isPlayingRef = useRef<boolean>(false);
 
@@ -61,7 +62,7 @@ export default function QuickSortPage() {
 			// If current element is smaller than the pivot
 			printToTerminal(`Comparing ${arr[j]} and pivot ${pivot}`);
 			setIndexComparison([j, high]);
-			await delay(delayMs);
+			await delay(delayTimeRef.current);
 
 			await stepThrough();
 
@@ -72,7 +73,7 @@ export default function QuickSortPage() {
 					[arr[i], arr[j]] = [arr[j], arr[i]];
 					setData([...arr]);
 					printToTerminal(`Swapping ${arr[i]} and ${arr[j]}`);
-					await delay(delayMs);
+					await delay(delayTimeRef.current);
 					await stepThrough();
 				}
 			}
@@ -82,7 +83,7 @@ export default function QuickSortPage() {
 		setData([...arr]);
 		printToTerminal(`Moving pivot ${pivot} to correct position`);
 		setIndexComparison([i + 1, high]); // Setting the swap indices for pivot
-		await delay(delayMs);
+		await delay(delayTimeRef.current);
 		await stepThrough();
 		setIndexComparison(undefined);
 		return i + 1; // Return the partition index
@@ -141,7 +142,7 @@ export default function QuickSortPage() {
 						sortingRef={sortingRef}
 						setData={setData}
 						nextStep={nextStep}
-						setDelayTime={setDelayMs}
+						delayTimeRef={delayTimeRef}
 						stopSorting={stopSorting}
 						algo={handleQuickSort}
 						setSortedIndices={setSortedIndices}

@@ -14,12 +14,12 @@ interface Props {
 	generateRandomArray: (value: number) => number[];
 	algo: () => Promise<void>;
 	setData: (nums: number[]) => void;
-	setDelayTime: (value: number) => void;
 	setSortedIndices: (nums: number[]) => void;
 	stopSorting: () => void;
 	nextStep: () => void;
 	isPlayingRef: MutableRefObject<boolean>;
 	sortingRef: MutableRefObject<boolean>;
+	delayTimeRef: MutableRefObject<number>;
 	data: number[] | undefined;
 	arrayLength: number;
 }
@@ -29,10 +29,10 @@ export default function ControlBox(props: Props) {
 		arrayLength,
 		isPlayingRef,
 		sortingRef,
+		delayTimeRef,
 		algo,
 		generateRandomArray,
 		setData,
-		setDelayTime,
 		nextStep,
 		stopSorting,
 		setSortedIndices,
@@ -55,7 +55,8 @@ export default function ControlBox(props: Props) {
 		event: SyntheticEvent | Event,
 		newValue: number | number[]
 	) {
-		setDelayTime(newValue as number);
+		delayTimeRef.current = newValue as number;
+		// setDelayTime(newValue as number);
 	}
 
 	function handlePlayButton() {
@@ -68,7 +69,6 @@ export default function ControlBox(props: Props) {
 			if (!sortingRef.current) {
 				algo();
 			} else {
-				console.log("test");
 				nextStep();
 			}
 		}
@@ -80,6 +80,15 @@ export default function ControlBox(props: Props) {
 		const newData = generateRandomArray(arrayLength);
 		setSortedIndices([]);
 		setData(newData);
+	}
+
+	function handleNextButton() {
+		if (!sortingRef.current) {
+			// Allows stepping before clicking play
+			algo();
+			isPlayingRef.current = false;
+		}
+		nextStep();
 	}
 
 	return (
@@ -114,7 +123,7 @@ export default function ControlBox(props: Props) {
 					<IconButton
 						aria-label="fast foward"
 						sx={styles.iconButton}
-						onClick={nextStep}>
+						onClick={handleNextButton}>
 						<FastForwardIcon sx={styles.icon} />
 					</IconButton>
 				</ToolTipMessage>
@@ -145,6 +154,7 @@ export default function ControlBox(props: Props) {
 						min={4}
 						max={100}
 						defaultValue={20}
+						disabled={playing}
 					/>
 				</Box>
 				<Box>
@@ -156,6 +166,7 @@ export default function ControlBox(props: Props) {
 						min={0}
 						max={1000}
 						defaultValue={0}
+						disabled={playing}
 					/>
 				</Box>
 			</Box>
