@@ -1,12 +1,13 @@
 import IconButton from "@mui/material/IconButton";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import PauseIcon from "@mui/icons-material/Pause";
 import FastForwardIcon from "@mui/icons-material/FastForward";
 import FastRewindIcon from "@mui/icons-material/FastRewind";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import Slider from "@mui/material/Slider";
 import { Box, Divider, Typography } from "@mui/material";
-import { SyntheticEvent } from "react";
+import { MutableRefObject, SyntheticEvent, useState } from "react";
 import ToolTipMessage from "./ToolTip";
 
 interface Props {
@@ -17,6 +18,8 @@ interface Props {
 	setSortedIndices: (nums: number[]) => void;
 	stopSorting: () => void;
 	nextStep: () => void;
+	isPlayingRef: MutableRefObject<boolean>;
+	sortingRef: MutableRefObject<boolean>;
 	data: number[] | undefined;
 	arrayLength: number;
 }
@@ -24,6 +27,8 @@ interface Props {
 export default function ControlBox(props: Props) {
 	const {
 		arrayLength,
+		isPlayingRef,
+		sortingRef,
 		algo,
 		generateRandomArray,
 		setData,
@@ -33,10 +38,13 @@ export default function ControlBox(props: Props) {
 		setSortedIndices,
 	} = props;
 
+	const [playing, setPlaying] = useState<boolean>(false);
+
 	function handleArraySizeSlider(
 		event: SyntheticEvent | Event,
 		newValue: number | number[]
 	) {
+		setPlaying(false);
 		stopSorting();
 		setSortedIndices([]);
 		const updatedData = generateRandomArray(newValue as number);
@@ -51,14 +59,23 @@ export default function ControlBox(props: Props) {
 	}
 
 	function handlePlayButton() {
-		algo();
-	}
-
-	function handleNextStep() {
-		nextStep();
+		if (isPlayingRef.current) {
+			isPlayingRef.current = false;
+			setPlaying(false);
+		} else {
+			isPlayingRef.current = true;
+			setPlaying(true);
+			if (!sortingRef.current) {
+				algo();
+			} else {
+				console.log("test");
+				nextStep();
+			}
+		}
 	}
 
 	function handleNewDataButton() {
+		setPlaying(false);
 		stopSorting();
 		const newData = generateRandomArray(arrayLength);
 		setSortedIndices([]);
@@ -76,31 +93,35 @@ export default function ControlBox(props: Props) {
 				justifyContent={"center"}
 				sx={{ marginTop: 1 }}
 				gap={1}>
-				<ToolTipMessage title="Step Back">
+				<ToolTipMessage title="Step Back" top={true}>
 					<IconButton aria-label="rewind" sx={styles.iconButton}>
 						<FastRewindIcon sx={styles.icon} />
 					</IconButton>
 				</ToolTipMessage>
-				<ToolTipMessage title="Play">
+				<ToolTipMessage title="Play" top={true}>
 					<IconButton
 						aria-label="play/pause"
 						sx={styles.iconButton}
 						onClick={handlePlayButton}>
-						<PlayArrowIcon sx={styles.icon} />
+						{playing ? (
+							<PauseIcon sx={styles.icon} />
+						) : (
+							<PlayArrowIcon sx={styles.icon} />
+						)}
 					</IconButton>
 				</ToolTipMessage>
-				<ToolTipMessage title="Step Forward">
+				<ToolTipMessage title="Step Forward" top={true}>
 					<IconButton
 						aria-label="fast foward"
 						sx={styles.iconButton}
-						onClick={handleNextStep}>
+						onClick={nextStep}>
 						<FastForwardIcon sx={styles.icon} />
 					</IconButton>
 				</ToolTipMessage>
 			</Box>
 
 			<Box sx={styles.lowerButtons}>
-				<ToolTipMessage title="New Array" top={true}>
+				<ToolTipMessage title="New Array">
 					<IconButton
 						aria-label="new array"
 						sx={styles.iconButton}
@@ -108,7 +129,7 @@ export default function ControlBox(props: Props) {
 						<RefreshIcon sx={styles.icon} />
 					</IconButton>
 				</ToolTipMessage>
-				<ToolTipMessage title="Restart Settings" top={true}>
+				<ToolTipMessage title="Restart Settings">
 					<IconButton aria-label="restart" sx={styles.iconButton}>
 						<RestartAltIcon sx={styles.icon} />
 					</IconButton>

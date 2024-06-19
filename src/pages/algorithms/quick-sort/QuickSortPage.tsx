@@ -12,14 +12,15 @@ export default function QuickSortPage() {
 
 	const [data, setData] = useState<number[]>(generateRandomArray(20));
 	const [delayMs, setDelayMs] = useState<number>(0);
-	const [dataSorted, setDataSorted] = useState(false);
+	const [dataSorted, setDataSorted] = useState<boolean>(false);
 	const [sortedIndices, setSortedIndices] = useState<number[]>([]);
 	const [indexComparison, setIndexComparison] = useState<
 		[number, number] | undefined
 	>(undefined);
 	const sortingRef = useRef<boolean>(false);
-	const [isStepping, setIsStepping] = useState<boolean>(false);
 	const stepResolveRef = useRef<() => void>();
+	const isPlayingRef = useRef<boolean>(false);
+
 	function generateRandomArray(length: number) {
 		const arr = [];
 		for (let i = 0; i < length; i++) {
@@ -32,15 +33,16 @@ export default function QuickSortPage() {
 	async function handleQuickSort() {
 		if (!data || dataSorted || sortingRef.current) return;
 		sortingRef.current = true;
-		setIsStepping(false);
+		isPlayingRef.current = true;
 		await quickSort([...data], 0, data.length - 1);
 		setDataSorted(true);
 		sortingRef.current = false;
+		isPlayingRef.current = false;
 	}
 
 	function stopSorting() {
 		sortingRef.current = false;
-		setIsStepping(false);
+		isPlayingRef.current = false;
 		setDataSorted(false);
 		setIndexComparison(undefined);
 	}
@@ -57,9 +59,9 @@ export default function QuickSortPage() {
 			if (!sortingRef.current) return Promise.reject(); // Stops if sort interupted
 
 			// If current element is smaller than the pivot
+			printToTerminal(`Comparing ${arr[j]} and pivot ${pivot}`);
 			setIndexComparison([j, high]);
 			await delay(delayMs);
-			printToTerminal(`Comparing ${arr[j]} and pivot ${pivot}`);
 
 			await stepThrough();
 
@@ -104,16 +106,15 @@ export default function QuickSortPage() {
 	}
 
 	function stepThrough() {
+		if (isPlayingRef.current) return; // If not being stepped through algorithm doesn't pause
 		return new Promise<void>((resolve) => {
 			stepResolveRef.current = resolve;
-			setIsStepping(false);
 		});
 	}
 
 	function nextStep() {
 		if (stepResolveRef.current) {
 			stepResolveRef.current();
-			setIsStepping(false);
 		}
 	}
 
@@ -136,6 +137,8 @@ export default function QuickSortPage() {
 					<ControlBox
 						data={data}
 						arrayLength={data ? data.length : 4}
+						isPlayingRef={isPlayingRef}
+						sortingRef={sortingRef}
 						setData={setData}
 						nextStep={nextStep}
 						setDelayTime={setDelayMs}
