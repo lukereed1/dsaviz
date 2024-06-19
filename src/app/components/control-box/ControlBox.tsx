@@ -13,10 +13,9 @@ interface Props {
 	generateRandomArray: (value: number) => number[];
 	algo: () => Promise<void>;
 	setData: (nums: number[]) => void;
-	setDataSorted: (sorted: boolean) => void;
-	setDataSorting: (sorting: boolean) => void;
 	setDelayTime: (value: number) => void;
 	setSortedIndices: (nums: number[]) => void;
+	stopSorting: () => void;
 	data: number[] | undefined;
 	arrayLength: number;
 }
@@ -27,9 +26,8 @@ export default function ControlBox(props: Props) {
 		algo,
 		generateRandomArray,
 		setData,
-		setDataSorted,
-		setDataSorting,
 		setDelayTime,
+		stopSorting,
 		setSortedIndices,
 	} = props;
 
@@ -37,6 +35,8 @@ export default function ControlBox(props: Props) {
 		event: SyntheticEvent | Event,
 		newValue: number | number[]
 	) {
+		stopSorting();
+		setSortedIndices([]);
 		const updatedData = generateRandomArray(newValue as number);
 		setData(updatedData);
 	}
@@ -49,15 +49,13 @@ export default function ControlBox(props: Props) {
 	}
 
 	function handlePlayButton() {
-		setDataSorting(true);
 		algo();
 	}
 
 	function handleNewDataButton() {
+		stopSorting();
 		const newData = generateRandomArray(arrayLength);
 		setSortedIndices([]);
-		setDataSorting(false);
-		setDataSorted(false);
 		setData(newData);
 	}
 

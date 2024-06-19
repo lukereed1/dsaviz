@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import AlgoPageTemplate from "../AlgoPageTemplate";
 import BarGraph from "../d3/BarGraph";
 import Terminal from "../../../app/components/terminal/TerminalWindow";
@@ -12,12 +12,12 @@ export default function QuickSortPage() {
 
 	const [data, setData] = useState<number[]>(generateRandomArray(20));
 	const [delayMs, setDelayMs] = useState<number>(0);
-	const [dataSorting, setDataSorting] = useState(false);
 	const [dataSorted, setDataSorted] = useState(false);
 	const [sortedIndices, setSortedIndices] = useState<number[]>([]);
 	const [indexComparison, setIndexComparison] = useState<
 		[number, number] | undefined
 	>(undefined);
+	const sortingRef = useRef<boolean>(false);
 
 	function generateRandomArray(length: number) {
 		const arr = [];
@@ -29,10 +29,18 @@ export default function QuickSortPage() {
 	}
 
 	async function handleQuickSort() {
-		if (!data || dataSorted || dataSorting) return;
-
+		if (!data || dataSorted || sortingRef.current) return;
+		sortingRef.current = true;
 		await quickSort([...data], 0, data.length - 1);
 		setDataSorted(true);
+		sortingRef.current = false;
+	}
+
+	function stopSorting() {
+		sortingRef.current = false;
+
+		setDataSorted(false);
+		setIndexComparison(undefined);
 	}
 
 	async function partition(
@@ -43,35 +51,30 @@ export default function QuickSortPage() {
 		const pivot = arr[high];
 		let i = low - 1;
 
-		printToTerminal(`Partitioning with pivot ${pivot} at index ${high}`);
-
 		for (let j = low; j <= high - 1; j++) {
-			setIndexComparison([i, j]);
-			printToTerminal(
-				`Comparing index ${j} (value ${arr[j]}) with pivot (value ${pivot})`
-			);
-			await delay(delayMs);
+			if (!sortingRef.current) return Promise.reject(); // Stops if sort interupted
+
 			// If current element is smaller than the pivot
+			setIndexComparison([j, high]);
+			await delay(delayMs);
+			printToTerminal(`Comparing ${arr[j]} and pivot ${pivot}`);
+
 			if (arr[j] < pivot) {
-				// Increment index of smaller element
 				i++;
 				// Swap elements
-				[arr[i], arr[j]] = [arr[j], arr[i]];
-				setData([...arr]);
-				printToTerminal(
-					`Swapping index ${i} (value ${arr[i]}) with index ${j} (value ${arr[j]})`
-				);
-				await delay(delayMs);
+				if (i !== j) {
+					[arr[i], arr[j]] = [arr[j], arr[i]];
+					setData([...arr]);
+					printToTerminal(`Swapping ${arr[i]} and ${arr[j]}`);
+					await delay(delayMs);
+				}
 			}
 		}
 		// Swap pivot to its correct position
 		[arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
 		setData([...arr]);
-		printToTerminal(
-			`Swapping pivot (value ${pivot}) with index ${i + 1} (value ${
-				arr[i + 1]
-			})`
-		);
+		printToTerminal(`Moving pivot ${pivot} to correct position`);
+		setIndexComparison([i + 1, high]); // Setting the swap indices for pivot
 		await delay(delayMs);
 
 		setIndexComparison(undefined);
@@ -86,15 +89,9 @@ export default function QuickSortPage() {
 		if (low < high) {
 			const partitionIndex = await partition(arr, low, high);
 
-			printToTerminal(
-				`Sorting left partition [${low}, ${partitionIndex - 1}]`
-			);
 			await quickSort(arr, low, partitionIndex - 1);
 			setSortedIndices((prev) => [...prev, partitionIndex]);
 
-			printToTerminal(
-				`Sorting right partition [${partitionIndex + 1}, ${high}]`
-			);
 			await quickSort(arr, partitionIndex + 1, high);
 		} else if (low === high) {
 			setSortedIndices((prev) => [...prev, low]);
@@ -121,9 +118,8 @@ export default function QuickSortPage() {
 						data={data}
 						arrayLength={data ? data.length : 4}
 						setData={setData}
-						setDataSorted={setDataSorted}
-						setDataSorting={setDataSorting}
 						setDelayTime={setDelayMs}
+						stopSorting={stopSorting}
 						algo={handleQuickSort}
 						setSortedIndices={setSortedIndices}
 						generateRandomArray={generateRandomArray}
