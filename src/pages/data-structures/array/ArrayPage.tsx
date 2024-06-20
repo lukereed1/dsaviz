@@ -13,7 +13,7 @@ export default function ArrayPage() {
 	const [terminalOutputs, setTerminalOutputs] = useState<string[]>([
 		"An array is a collection of items of the same variable type that are stored at contiguous memory locations. It’s one of the most popular and simple data structures and is often used to implement other data structures. Each item in an array is indexed starting with 0. Each element in an array is accessed through its index. [www.geeksforgeeks.org/array-data-structure-guide/]\n\nType 'help' for a list of commands",
 	]);
-	const [array, setArray] = useState<number[]>([1, 2, 3, 4, 5]);
+	const [array, setArray] = useState<number[]>([1, 2, 3]);
 	const [highlightIndex, setHighlightIndex] = useState<number | undefined>();
 	return (
 		<>
@@ -42,7 +42,7 @@ export default function ArrayPage() {
 					<Terminal
 						terminalOutputs={terminalOutputs}
 						setTerminalOutputs={setTerminalOutputs}
-						header="menu/array"
+						header="array"
 					/>
 				}
 				codeEditor={<CodeEditor files={arrayFiles} />}

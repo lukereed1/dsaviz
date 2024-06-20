@@ -8,7 +8,7 @@ import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import Slider from "@mui/material/Slider";
 import { Box, Divider, Typography } from "@mui/material";
 import { MutableRefObject, SyntheticEvent, useState } from "react";
-import ToolTipMessage from "./ToolTip";
+import ToolTipMessage from "./ToolTipMessage";
 
 interface Props {
 	generateRandomArray: (value: number) => number[];

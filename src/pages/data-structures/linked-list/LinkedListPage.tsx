@@ -46,7 +46,7 @@ export default function LinkedListPage() {
 				<Terminal
 					terminalOutputs={terminalOutputs}
 					setTerminalOutputs={setTerminalOutputs}
-					header="menu/linked-list"
+					header="linked-list"
 				/>
 			}
 			codeEditor={<CodeEditor files={linkedListFiles} />}

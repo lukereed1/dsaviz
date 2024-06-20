@@ -1,9 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import AlgoPageTemplate from "../AlgoPageTemplate";
 import BarGraph from "../d3/BarGraph";
 import Terminal from "../../../app/components/terminal/TerminalWindow";
 import ControlBox from "../../../app/components/control-box/ControlBox";
 import { delay } from "../../../app/util/util";
+import CodeEditor from "../../../app/components/code-editor/CodeEditor";
+import { quickSortFiles } from "./quickSortFiles";
 
 export default function QuickSortPage() {
 	const [terminalOutputs, setTerminalOutputs] = useState<string[]>([
@@ -162,10 +164,12 @@ export default function QuickSortPage() {
 					<Terminal
 						terminalOutputs={terminalOutputs}
 						setTerminalOutputs={setTerminalOutputs}
-						header="menu/quick-sort"
+						header="quick-sort"
 					/>
 				}
-				codeEditor={undefined}></AlgoPageTemplate>
+				codeEditor={
+					<CodeEditor files={quickSortFiles} />
+				}></AlgoPageTemplate>
 		</>
 	);
 }

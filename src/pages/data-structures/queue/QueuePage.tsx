@@ -38,7 +38,7 @@ export default function QueuePage() {
 				<Terminal
 					terminalOutputs={terminalOutputs}
 					setTerminalOutputs={setTerminalOutputs}
-					header="menu/queue"
+					header="queue"
 				/>
 			}
 			codeEditor={<CodeEditor files={queueFiles} />}

@@ -11,21 +11,24 @@ export function getTerminalCommand(
 			return menuCommands(input, navigate);
 			break;
 		}
-		case "menu/array": {
+		case "array": {
 			return arrayCommands(input, navigate);
 			break;
 		}
-		case "menu/queue":
+		case "queue":
 			return queueCommands(input, navigate);
 			break;
-		case "menu/stack":
+		case "stack":
 			return stackCommands(input, navigate);
 			break;
-		case "menu/hash-table":
+		case "hash-table":
 			return hashTableCommands(input, navigate);
 			break;
-		case "menu/linked-list":
+		case "linked-list":
 			return linkedListCommands(input, navigate);
+			break;
+		case "quick-sort":
+			return quickSortCommands(input, navigate);
 			break;
 		default:
 			return;
@@ -37,9 +40,9 @@ function menuCommands(input: string, navigate: ReturnType<typeof useNavigate>) {
 	const ALGO = ["quick-sort", "insertion-sort", "merge-sort"];
 	if (input.startsWith("cd ")) {
 		const path = input.slice(3).trim();
+
 		if (path) {
-			if (DS.includes(path)) {
-				// Check for algos once they're implemented
+			if (DS.includes(path) || ALGO.includes(path)) {
 				navigate(`/${path}`);
 			} else {
 				return `  Directory: '${path}' does not exist`;
@@ -267,6 +270,45 @@ function linkedListCommands(
 			{
 				const url =
 					"https://github.com/lukereed1/dsaviz/blob/main/src/pages/data-structures/linked-list/LinkedListPage.tsx";
+				openNewTab(url);
+			}
+			break;
+		case "cd ..":
+			navigate("/menu");
+			break;
+		default:
+			return `  "${input}" command not found`;
+			break;
+	}
+}
+
+function quickSortCommands(
+	input: string,
+	navigate: ReturnType<typeof useNavigate>
+) {
+	switch (input) {
+		case "help":
+			return "  Available Commands:\n  - help: display available commands\n  - info: more information on the quick sort algorithm\n  - time: display time complexity for the quick sort algorithm\n  - clear: clear terminal\n  - pwd: print working directory\n  - ls: list all files \n  - code: show source code\n  - cd .. : return to main menu";
+			break;
+		case "info": {
+			const url = "https://www.geeksforgeeks.org/quick-sort/";
+			openNewTab(url);
+			break;
+		}
+		case "time": {
+			return "  Average: Linearithmic - O(nlogn)\n  Worst Case: Quadratic - O(n^2)";
+			break;
+		}
+		case "pwd":
+			return `  /dsaviz/menu/quick-sort`;
+			break;
+		case "ls":
+			return "  QuickSortPage.tsx\n  AlgoPageTemplate.tsx\n  ControlBox.tsx\n  Terminal.tsx\n  BarGraph.tsx\n  CodeEditor.tsx";
+			break;
+		case "code":
+			{
+				const url =
+					"https://github.com/lukereed1/dsaviz/blob/main/src/pages/algorithms/quick-sort/QuickSortPage.tsx";
 				openNewTab(url);
 			}
 			break;

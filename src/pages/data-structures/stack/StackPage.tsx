@@ -38,7 +38,7 @@ export default function StackPage() {
 				<Terminal
 					terminalOutputs={terminalOutputs}
 					setTerminalOutputs={setTerminalOutputs}
-					header="menu/stack"
+					header="stack"
 				/>
 			}
 			codeEditor={<CodeEditor files={stackFiles} />}
