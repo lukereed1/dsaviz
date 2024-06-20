@@ -3,7 +3,7 @@ import AlgoPageTemplate from "../AlgoPageTemplate";
 import BarGraph from "../d3/BarGraph";
 import Terminal from "../../../app/components/terminal/TerminalWindow";
 import ControlBox from "../../../app/components/control-box/ControlBox";
-import { delay } from "../../../app/util/util";
+import { delay, generateRandomArray } from "../../../app/util/util";
 import CodeEditor from "../../../app/components/code-editor/CodeEditor";
 import { quickSortFiles } from "./quickSortFiles";
 
@@ -23,15 +23,6 @@ export default function QuickSortPage() {
 	const delayTimeRef = useRef<number>(0);
 	const stepResolveRef = useRef<() => void>();
 	const isPlayingRef = useRef<boolean>(false);
-
-	function generateRandomArray(length: number) {
-		const arr = [];
-		for (let i = 0; i < length; i++) {
-			const randomNum = Math.floor(Math.random() * 100 + 1);
-			arr.push(randomNum);
-		}
-		return arr;
-	}
 
 	async function handleQuickSort() {
 		if (!data || dataSorted || sortingRef.current) return;
@@ -133,43 +124,40 @@ export default function QuickSortPage() {
 	}
 
 	return (
-		<>
-			<AlgoPageTemplate
-				header={"Quick Sort"}
-				visualisation={
-					<BarGraph
-						data={data}
-						indexComparison={indexComparison}
-						sortedIndices={sortedIndices}
-						showValues={showValues}
-					/>
-				}
-				controls={
-					<ControlBox
-						data={data}
-						arrayLength={data ? data.length : 4}
-						isPlayingRef={isPlayingRef}
-						sortingRef={sortingRef}
-						delayTimeRef={delayTimeRef}
-						setData={setData}
-						nextStep={nextStep}
-						stopSorting={stopSorting}
-						showValues={displayValues}
-						algo={handleQuickSort}
-						setSortedIndices={setSortedIndices}
-						generateRandomArray={generateRandomArray}
-					/>
-				}
-				terminal={
-					<Terminal
-						terminalOutputs={terminalOutputs}
-						setTerminalOutputs={setTerminalOutputs}
-						header="quick-sort"
-					/>
-				}
-				codeEditor={
-					<CodeEditor files={quickSortFiles} />
-				}></AlgoPageTemplate>
-		</>
+		<AlgoPageTemplate
+			header={"Quick Sort"}
+			visualisation={
+				<BarGraph
+					data={data}
+					indexComparison={indexComparison}
+					sortedIndices={sortedIndices}
+					showValues={showValues}
+				/>
+			}
+			controls={
+				<ControlBox
+					data={data}
+					arrayLength={data ? data.length : 4}
+					isPlayingRef={isPlayingRef}
+					sortingRef={sortingRef}
+					delayTimeRef={delayTimeRef}
+					setData={setData}
+					nextStep={nextStep}
+					stopSorting={stopSorting}
+					showValues={displayValues}
+					algo={handleQuickSort}
+					setSortedIndices={setSortedIndices}
+				/>
+			}
+			terminal={
+				<Terminal
+					terminalOutputs={terminalOutputs}
+					setTerminalOutputs={setTerminalOutputs}
+					header="quick-sort"
+				/>
+			}
+			codeEditor={
+				<CodeEditor files={quickSortFiles} />
+			}></AlgoPageTemplate>
 	);
 }

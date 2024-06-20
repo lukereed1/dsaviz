@@ -3,7 +3,8 @@ import JavaLogo from "../../../assets/java.svg";
 import JavascriptLogo from "../../../assets/js.svg";
 import CppLogo from "../../../assets/cpp.svg";
 
-const javascriptCode = `function partition(arr, low, high) {
+const javascriptCode = `// Quick sort JavaScript implementation
+function partition(arr, low, high) {
   let pivot = arr[high];
   let i = low - 1;
   for (let j = low; j <= high - 1; j++) {
@@ -30,7 +31,8 @@ quickSort(arr, 0, N - 1);
 console.log("Sorted array:");
 console.log(arr.join(" "));`;
 
-const pythonCode = `def partition(array, low, high):
+const pythonCode = `# Quick sort Python implementation
+def partition(array, low, high):
     pivot = array[high]
     i = low - 1
     for j in range(low, high):
@@ -54,7 +56,8 @@ if __name__ == '__main__':
     for x in array:
         print(x, end=" ")`;
 
-const javaCode = `import java.io.*;
+const javaCode = `// Quick sort Java implementation
+import java.io.*;
 
 class QuickSort {
     static void swap(int[] arr, int i, int j) {
@@ -98,7 +101,8 @@ class QuickSort {
         printArr(arr);
     }
 }`;
-const cppCode = `using namespace std;
+const cppCode = `// Quick sort C++ implementation
+using namespace std;
 
 int partition(int arr[], int low, int high) {
     int pivot = arr[high];
@@ -134,25 +138,25 @@ int main() {
 
 export const quickSortFiles = [
 	{
-		file: "quicksort.js",
+		file: "qsort.js",
 		language: "javascript",
 		code: javascriptCode,
 		icon: JavascriptLogo,
 	},
 	{
-		file: "quicksort.py",
+		file: "qsort.py",
 		language: "python",
 		code: pythonCode,
 		icon: PythonLogo,
 	},
 	{
-		file: "quicksort.java",
+		file: "qsort.java",
 		language: "java",
 		code: javaCode,
 		icon: JavaLogo,
 	},
 	{
-		file: "quicksort.cpp",
+		file: "qsort.cpp",
 		language: "cpp",
 		code: cppCode,
 		icon: CppLogo,

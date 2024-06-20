@@ -17,6 +17,7 @@ interface MenuItem {
 	nested: boolean;
 	items?: SubMenuItem[];
 	menuToggle?: () => void;
+
 	open?: boolean;
 }
 
@@ -27,10 +28,17 @@ interface SubMenuItem {
 
 interface Props {
 	menuItems: MenuItem[];
+	handleMenu: () => void;
 }
 
 export default function NestedList(props: Props) {
 	const navigate = useNavigate();
+
+	function handleListItemButtonClick(path: string) {
+		props.handleMenu();
+		navigate(path);
+	}
+
 	return (
 		<List sx={styles.list}>
 			{props.menuItems.map((item) =>
@@ -50,7 +58,9 @@ export default function NestedList(props: Props) {
 							<List sx={styles.collapseList} disablePadding>
 								{item.items?.map((item) => (
 									<ListItemButton
-										onClick={() => navigate(item.path)}
+										onClick={() =>
+											handleListItemButtonClick(item.path)
+										}
 										sx={styles.collapseListItemButton}
 										key={item.label}>
 										{item.label}
@@ -63,7 +73,7 @@ export default function NestedList(props: Props) {
 				) : (
 					<Fragment key={item.label}>
 						<ListItemButton
-							onClick={() => navigate(item.path)}
+							onClick={() => handleListItemButtonClick(item.path)}
 							sx={styles.listItemButton}
 							key={item.label}>
 							<ListItemIcon>{item.icon}</ListItemIcon>

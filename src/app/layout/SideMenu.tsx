@@ -52,7 +52,10 @@ export default function SideMenu() {
 			nested: true,
 			items: [
 				{ label: "Quick Sort", path: "/quick-sort" },
-				{ label: "Merge Sort", path: "#" },
+				{ label: "Bubble Sort", path: "/bubble-sort" },
+				{ label: "Selection Sort", path: "/selection-sort" },
+				{ label: "Insertion Sort", path: "/insertion-sort" },
+				{ label: "Merge Sort", path: "/merge-sort" },
 			],
 			menuToggle: () => handleAlgoMenu(),
 			open: algoMenuOpen,
@@ -62,7 +65,7 @@ export default function SideMenu() {
 	return (
 		<>
 			{/* onMouseEnter={handleMenu} */}
-			<Box sx={styles.sideMenuBox}>
+			<Box onMouseEnter={handleMenu} sx={styles.sideMenuBox}>
 				<List sx={styles.sideMenuList}>
 					{sideMenuItems.map(({ label, icon }) => (
 						<React.Fragment key={label}>
@@ -76,7 +79,10 @@ export default function SideMenu() {
 			</Box>
 			<Drawer anchor="left" open={menuOpen}>
 				<Box onMouseLeave={handleMenu} sx={styles.drawerBox}>
-					<NestedList menuItems={sideMenuItems} />
+					<NestedList
+						handleMenu={handleMenu}
+						menuItems={sideMenuItems}
+					/>
 				</Box>
 			</Drawer>
 		</>

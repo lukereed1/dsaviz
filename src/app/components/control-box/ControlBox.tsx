@@ -9,9 +9,9 @@ import Slider from "@mui/material/Slider";
 import { Box, Divider, Typography } from "@mui/material";
 import { MutableRefObject, SyntheticEvent, useState } from "react";
 import ToolTipMessage from "./ToolTipMessage";
+import { generateRandomArray } from "../../util/util";
 
 interface Props {
-	generateRandomArray: (value: number) => number[];
 	algo: () => Promise<void>;
 	setData: (nums: number[]) => void;
 	setSortedIndices: (nums: number[]) => void;
@@ -32,7 +32,6 @@ export default function ControlBox(props: Props) {
 		sortingRef,
 		delayTimeRef,
 		algo,
-		generateRandomArray,
 		setData,
 		showValues,
 		nextStep,
@@ -108,7 +107,7 @@ export default function ControlBox(props: Props) {
 						<QuestionMarkIcon sx={styles.icon} />
 					</IconButton>
 				</ToolTipMessage>
-				<ToolTipMessage title="Play" top={true}>
+				<ToolTipMessage title={playing ? "Pause" : "Play"} top={true}>
 					<IconButton
 						aria-label="play/pause"
 						sx={styles.iconButton}
