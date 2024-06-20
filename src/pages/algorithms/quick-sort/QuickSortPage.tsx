@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AlgoPageTemplate from "../AlgoPageTemplate";
 import BarGraph from "../d3/BarGraph";
 import Terminal from "../../../app/components/terminal/TerminalWindow";
@@ -11,11 +11,11 @@ export default function QuickSortPage() {
 	]);
 
 	const [data, setData] = useState<number[]>(generateRandomArray(20));
-	const [delayMs, setDelayMs] = useState<number>(0);
 	const [dataSorted, setDataSorted] = useState<boolean>(false);
+	const [showValues, setShowValues] = useState<boolean>(false);
 	const [sortedIndices, setSortedIndices] = useState<number[]>([]);
 	const [indexComparison, setIndexComparison] = useState<
-		[number, number] | undefined
+		[number, number, number?] | undefined
 	>(undefined);
 	const sortingRef = useRef<boolean>(false);
 	const delayTimeRef = useRef<number>(0);
@@ -46,6 +46,8 @@ export default function QuickSortPage() {
 		isPlayingRef.current = false;
 		setDataSorted(false);
 		setIndexComparison(undefined);
+		setSortedIndices([]);
+		stepResolveRef.current = undefined;
 	}
 
 	async function partition(
@@ -73,6 +75,7 @@ export default function QuickSortPage() {
 					[arr[i], arr[j]] = [arr[j], arr[i]];
 					setData([...arr]);
 					printToTerminal(`Swapping ${arr[i]} and ${arr[j]}`);
+					setIndexComparison([j, high, i]);
 					await delay(delayTimeRef.current);
 					await stepThrough();
 				}
@@ -119,6 +122,10 @@ export default function QuickSortPage() {
 		}
 	}
 
+	function displayValues() {
+		setShowValues(!showValues);
+	}
+
 	function printToTerminal(output: string) {
 		setTerminalOutputs((prevArray) => [...prevArray, output]);
 	}
@@ -132,6 +139,7 @@ export default function QuickSortPage() {
 						data={data}
 						indexComparison={indexComparison}
 						sortedIndices={sortedIndices}
+						showValues={showValues}
 					/>
 				}
 				controls={
@@ -140,10 +148,11 @@ export default function QuickSortPage() {
 						arrayLength={data ? data.length : 4}
 						isPlayingRef={isPlayingRef}
 						sortingRef={sortingRef}
+						delayTimeRef={delayTimeRef}
 						setData={setData}
 						nextStep={nextStep}
-						delayTimeRef={delayTimeRef}
 						stopSorting={stopSorting}
+						showValues={displayValues}
 						algo={handleQuickSort}
 						setSortedIndices={setSortedIndices}
 						generateRandomArray={generateRandomArray}

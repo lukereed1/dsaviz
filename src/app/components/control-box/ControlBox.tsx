@@ -2,7 +2,7 @@ import IconButton from "@mui/material/IconButton";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import FastForwardIcon from "@mui/icons-material/FastForward";
-import FastRewindIcon from "@mui/icons-material/FastRewind";
+import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import Slider from "@mui/material/Slider";
@@ -17,6 +17,7 @@ interface Props {
 	setSortedIndices: (nums: number[]) => void;
 	stopSorting: () => void;
 	nextStep: () => void;
+	showValues: () => void;
 	isPlayingRef: MutableRefObject<boolean>;
 	sortingRef: MutableRefObject<boolean>;
 	delayTimeRef: MutableRefObject<number>;
@@ -33,6 +34,7 @@ export default function ControlBox(props: Props) {
 		algo,
 		generateRandomArray,
 		setData,
+		showValues,
 		nextStep,
 		stopSorting,
 		setSortedIndices,
@@ -97,14 +99,13 @@ export default function ControlBox(props: Props) {
 				<Typography sx={styles.headerText}>Controls</Typography>
 				<Divider sx={{ borderBottomWidth: 3 }} />
 			</Box>
-			<Box
-				display={"flex"}
-				justifyContent={"center"}
-				sx={{ marginTop: 1 }}
-				gap={1}>
-				<ToolTipMessage title="Step Back" top={true}>
-					<IconButton aria-label="rewind" sx={styles.iconButton}>
-						<FastRewindIcon sx={styles.icon} />
+			<Box sx={styles.upperButtons}>
+				<ToolTipMessage title="Show Values" top={true}>
+					<IconButton
+						aria-label="show values"
+						sx={styles.iconButton}
+						onClick={showValues}>
+						<QuestionMarkIcon sx={styles.icon} />
 					</IconButton>
 				</ToolTipMessage>
 				<ToolTipMessage title="Play" top={true}>
@@ -119,9 +120,9 @@ export default function ControlBox(props: Props) {
 						)}
 					</IconButton>
 				</ToolTipMessage>
-				<ToolTipMessage title="Step Forward" top={true}>
+				<ToolTipMessage title="step" top={true}>
 					<IconButton
-						aria-label="fast foward"
+						aria-label="step"
 						sx={styles.iconButton}
 						onClick={handleNextButton}>
 						<FastForwardIcon sx={styles.icon} />
@@ -144,8 +145,8 @@ export default function ControlBox(props: Props) {
 					</IconButton>
 				</ToolTipMessage>
 			</Box>
-			<Box sx={{ marginTop: 0.75 }}>
-				<Box>
+			<Box>
+				<Box sx={{ marginTop: 0.5 }}>
 					<Typography sx={styles.sliderText}>Array Size</Typography>
 					<Slider
 						onChangeCommitted={handleArraySizeSlider}
@@ -154,7 +155,6 @@ export default function ControlBox(props: Props) {
 						min={4}
 						max={100}
 						defaultValue={20}
-						disabled={playing}
 					/>
 				</Box>
 				<Box>
@@ -166,7 +166,6 @@ export default function ControlBox(props: Props) {
 						min={0}
 						max={1000}
 						defaultValue={0}
-						disabled={playing}
 					/>
 				</Box>
 			</Box>
@@ -209,11 +208,17 @@ const styles = {
 			color: "primary.main",
 		},
 	},
+	upperButtons: {
+		display: "flex",
+		justifyContent: "center",
+		gap: 2,
+		marginTop: 1,
+	},
 	lowerButtons: {
 		marginTop: -1,
 		display: "flex",
 		justifyContent: "center",
-		gap: 1,
+		gap: 2,
 	},
 	tooltip: {
 		[`& .MuiTooltip-tooltip`]: {
