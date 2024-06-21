@@ -30,6 +30,9 @@ export function getTerminalCommand(
 		case "quick-sort":
 			return quickSortCommands(input, navigate);
 			break;
+		case "bubble-sort":
+			return bubbleSortCommands(input, navigate);
+			break;
 		default:
 			return;
 	}
@@ -37,7 +40,7 @@ export function getTerminalCommand(
 
 function menuCommands(input: string, navigate: ReturnType<typeof useNavigate>) {
 	const DS = ["array", "queue", "stack", "hash-table", "linked-list"];
-	const ALGO = ["quick-sort", "insertion-sort", "merge-sort"];
+	const ALGO = ["quick-sort", "bubble-sort", "merge-sort"];
 	if (input.startsWith("cd ")) {
 		const path = input.slice(3).trim();
 
@@ -327,27 +330,27 @@ function bubbleSortCommands(
 ) {
 	switch (input) {
 		case "help":
-			return "  Available Commands:\n  - help: display available commands\n  - info: more information on the quick sort algorithm\n  - time: display time complexity for the quick sort algorithm\n  - clear: clear terminal\n  - pwd: print working directory\n  - ls: list all files \n  - code: show source code\n  - cd .. : return to main menu";
+			return "  Available Commands:\n  - help: display available commands\n  - info: more information on the bubble sort algorithm\n  - time: display time complexity for the bubble sort algorithm\n  - clear: clear terminal\n  - pwd: print working directory\n  - ls: list all files \n  - code: show source code\n  - cd .. : return to main menu";
 			break;
 		case "info": {
-			const url = "https://www.geeksforgeeks.org/quick-sort/";
+			const url = "https://www.geeksforgeeks.org/bubble-sort/";
 			openNewTab(url);
 			break;
 		}
 		case "time": {
-			return "  Average: Linearithmic - O(nlogn)\n  Worst Case: Quadratic - O(n^2)";
+			return "  Quadratic - O(n^2)";
 			break;
 		}
 		case "pwd":
-			return `  /dsaviz/menu/quick-sort`;
+			return `  /dsaviz/menu/bubble-sort`;
 			break;
 		case "ls":
-			return "  QuickSortPage.tsx\n  AlgoPageTemplate.tsx\n  ControlBox.tsx\n  Terminal.tsx\n  BarGraph.tsx\n  CodeEditor.tsx";
+			return "  BubbleSortPage.tsx\n  AlgoPageTemplate.tsx\n  ControlBox.tsx\n  Terminal.tsx\n  BarGraph.tsx\n  CodeEditor.tsx";
 			break;
 		case "code":
 			{
 				const url =
-					"https://github.com/lukereed1/dsaviz/blob/main/src/pages/algorithms/quick-sort/QuickSortPage.tsx";
+					"https://github.com/lukereed1/dsaviz/blob/main/src/pages/algorithms/bubble-sort/BubbleSortPage.tsx";
 				openNewTab(url);
 			}
 			break;

@@ -78,9 +78,9 @@ export default function ControlBox(props: Props) {
 	function handleNewDataButton() {
 		setPlaying(false);
 		stopSorting();
-		const newData = generateRandomArray(arrayLength);
 		setSortedIndices([]);
-		setData(newData);
+		initDataRef.current = generateRandomArray(arrayLength);
+		setData(initDataRef.current);
 	}
 
 	function handleNextButton() {

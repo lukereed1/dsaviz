@@ -63,7 +63,7 @@ export default function BubbleSortPage() {
 				}
 			}
 			setIndexComparison(undefined);
-			sorted.push(n - i); // Adds last sorted index
+			sorted.push(n - i);
 			setSortedIndices([...sorted]);
 		}
 		setSortedIndices([...sorted, 0]);
