@@ -5,6 +5,7 @@ import Terminal from "../../../app/components/terminal/TerminalWindow";
 import ControlBox from "../../../app/components/control-box/ControlBox";
 import { delay, generateRandomArray } from "../../../app/util/util";
 import CodeEditor from "../../../app/components/code-editor/CodeEditor";
+import { selectionSortFiles } from "./selectionSortFiles";
 
 export default function SelectionSortPage() {
 	const [terminalOutputs, setTerminalOutputs] = useState<string[]>([
@@ -130,7 +131,7 @@ export default function SelectionSortPage() {
 					header="selection-sort"
 				/>
 			}
-			codeEditor={undefined}
+			codeEditor={<CodeEditor files={selectionSortFiles} />}
 		/>
 	);
 }
