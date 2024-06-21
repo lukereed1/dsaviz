@@ -11,8 +11,8 @@ export default function QuickSortPage() {
 	const [terminalOutputs, setTerminalOutputs] = useState<string[]>([
 		"QuickSort is a sorting algorithm based on the Divide and Conquer algorithm that picks an element as a pivot and partitions the given array around the picked pivot by placing the pivot in its correct position in the sorted array. [www.geeksforgeeks.org/quick-sort/]\n\nType 'help' for a list of commands",
 	]);
-
-	const [data, setData] = useState<number[]>(generateRandomArray(20));
+	const initDataRef = useRef<number[]>(generateRandomArray(20));
+	const [data, setData] = useState<number[]>(initDataRef.current);
 	const [dataSorted, setDataSorted] = useState<boolean>(false);
 	const [showValues, setShowValues] = useState<boolean>(false);
 	const [sortedIndices, setSortedIndices] = useState<number[]>([]);
@@ -136,7 +136,7 @@ export default function QuickSortPage() {
 			}
 			controls={
 				<ControlBox
-					data={data}
+					initDataRef={initDataRef}
 					arrayLength={data ? data.length : 4}
 					isPlayingRef={isPlayingRef}
 					sortingRef={sortingRef}

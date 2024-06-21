@@ -21,7 +21,7 @@ interface Props {
 	isPlayingRef: MutableRefObject<boolean>;
 	sortingRef: MutableRefObject<boolean>;
 	delayTimeRef: MutableRefObject<number>;
-	data: number[] | undefined;
+	initDataRef: MutableRefObject<number[]>;
 	arrayLength: number;
 }
 
@@ -31,6 +31,7 @@ export default function ControlBox(props: Props) {
 		isPlayingRef,
 		sortingRef,
 		delayTimeRef,
+		initDataRef,
 		algo,
 		setData,
 		showValues,
@@ -48,8 +49,8 @@ export default function ControlBox(props: Props) {
 		setPlaying(false);
 		stopSorting();
 		setSortedIndices([]);
-		const updatedData = generateRandomArray(newValue as number);
-		setData(updatedData);
+		initDataRef.current = generateRandomArray(newValue as number);
+		setData(initDataRef.current);
 	}
 
 	function handleTimeDelaySlider(
@@ -57,7 +58,6 @@ export default function ControlBox(props: Props) {
 		newValue: number | number[]
 	) {
 		delayTimeRef.current = newValue as number;
-		// setDelayTime(newValue as number);
 	}
 
 	function handlePlayButton() {
@@ -92,6 +92,13 @@ export default function ControlBox(props: Props) {
 		nextStep();
 	}
 
+	function handleRestartButton() {
+		setPlaying(false);
+		stopSorting();
+		setSortedIndices([]);
+		setData(initDataRef.current); // Use spread operator to ensure a new array instance is set
+	}
+
 	return (
 		<Box sx={styles.box}>
 			<Box>
@@ -119,7 +126,7 @@ export default function ControlBox(props: Props) {
 						)}
 					</IconButton>
 				</ToolTipMessage>
-				<ToolTipMessage title="step" top={true}>
+				<ToolTipMessage title="Step Through" top={true}>
 					<IconButton
 						aria-label="step"
 						sx={styles.iconButton}
@@ -130,16 +137,19 @@ export default function ControlBox(props: Props) {
 			</Box>
 
 			<Box sx={styles.lowerButtons}>
-				<ToolTipMessage title="New Array">
+				<ToolTipMessage title="New Data">
 					<IconButton
-						aria-label="new array"
+						aria-label="new data"
 						sx={styles.iconButton}
 						onClick={handleNewDataButton}>
 						<RefreshIcon sx={styles.icon} />
 					</IconButton>
 				</ToolTipMessage>
-				<ToolTipMessage title="Restart Settings">
-					<IconButton aria-label="restart" sx={styles.iconButton}>
+				<ToolTipMessage title="Restart">
+					<IconButton
+						aria-label="restart"
+						sx={styles.iconButton}
+						onClick={handleRestartButton}>
 						<RestartAltIcon sx={styles.icon} />
 					</IconButton>
 				</ToolTipMessage>
