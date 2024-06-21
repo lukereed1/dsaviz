@@ -320,3 +320,42 @@ function quickSortCommands(
 			break;
 	}
 }
+
+function bubbleSortCommands(
+	input: string,
+	navigate: ReturnType<typeof useNavigate>
+) {
+	switch (input) {
+		case "help":
+			return "  Available Commands:\n  - help: display available commands\n  - info: more information on the quick sort algorithm\n  - time: display time complexity for the quick sort algorithm\n  - clear: clear terminal\n  - pwd: print working directory\n  - ls: list all files \n  - code: show source code\n  - cd .. : return to main menu";
+			break;
+		case "info": {
+			const url = "https://www.geeksforgeeks.org/quick-sort/";
+			openNewTab(url);
+			break;
+		}
+		case "time": {
+			return "  Average: Linearithmic - O(nlogn)\n  Worst Case: Quadratic - O(n^2)";
+			break;
+		}
+		case "pwd":
+			return `  /dsaviz/menu/quick-sort`;
+			break;
+		case "ls":
+			return "  QuickSortPage.tsx\n  AlgoPageTemplate.tsx\n  ControlBox.tsx\n  Terminal.tsx\n  BarGraph.tsx\n  CodeEditor.tsx";
+			break;
+		case "code":
+			{
+				const url =
+					"https://github.com/lukereed1/dsaviz/blob/main/src/pages/algorithms/quick-sort/QuickSortPage.tsx";
+				openNewTab(url);
+			}
+			break;
+		case "cd ..":
+			navigate("/menu");
+			break;
+		default:
+			return `  "${input}" command not found`;
+			break;
+	}
+}
