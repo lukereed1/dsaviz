@@ -8,7 +8,7 @@ import QueuePage from "../../pages/data-structures/queue/QueuePage";
 import LinkedListPage from "../../pages/data-structures/linked-list/LinkedListPage";
 import QuickSortPage from "../../pages/algorithms/quick-sort/QuickSortPage";
 import BubbleSortPage from "../../pages/algorithms/bubble-sort/BubbleSortPage";
-import SelectionSortPage from "../../pages/algorithms/selection-sort/SelectionSort";
+import SelectionSortPage from "../../pages/algorithms/selection-sort/SelectionSortPage";
 import InsertionSortPage from "../../pages/algorithms/insertion-sort/InsertionSort";
 import MergeSortPage from "../../pages/algorithms/merge-sort/MergeSortPage";
 

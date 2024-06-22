@@ -56,7 +56,9 @@ export default function SelectionSortPage() {
 				await stepThrough();
 				if (arr[j] < arr[minIndex]) {
 					minIndex = j;
-					printToTerminal(`New minimum found at index ${minIndex}`);
+					printToTerminal(
+						`New minimum found at index ${minIndex} (value: ${arr[minIndex]})`
+					);
 				}
 			}
 

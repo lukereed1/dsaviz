@@ -9,9 +9,7 @@ export default function Footer() {
 				marginBottom={1}
 				marginTop={20}
 				justifyContent={"center"}>
-				<Typography sx={{ fontSize: 16 }}>
-					Built by Luke Reed
-				</Typography>
+				<Typography sx={{ fontSize: 16 }}>Built by Luke</Typography>
 			</Box>
 		</>
 	);

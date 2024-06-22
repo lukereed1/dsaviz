@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 interface Props {
 	data: number[] | undefined;
-	indexComparison?: [number, number, number?];
+	indexComparison?: [number, number?, number?];
 	sortedIndices?: number[];
 	showValues: boolean;
 }
