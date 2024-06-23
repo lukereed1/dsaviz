@@ -5,6 +5,7 @@ import Terminal from "../../../app/components/terminal/TerminalWindow";
 import ControlBox from "../../../app/components/control-box/ControlBox";
 import { delay, generateRandomArray } from "../../../app/util/util";
 import CodeEditor from "../../../app/components/code-editor/CodeEditor";
+import { insertionSortFiles } from "./insertionSortFiles";
 
 export default function InsertionSortPage() {
 	const [terminalOutputs, setTerminalOutputs] = useState<string[]>([
@@ -138,7 +139,7 @@ export default function InsertionSortPage() {
 					header="insertion-sort"
 				/>
 			}
-			codeEditor={undefined}
+			codeEditor={<CodeEditor files={insertionSortFiles} />}
 		/>
 	);
 }

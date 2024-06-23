@@ -37,7 +37,7 @@ export function getTerminalCommand(
 			return selectionSortCommands(input, navigate);
 			break;
 		case "insertion-sort":
-			return selectionSortCommands(input, navigate);
+			return insertionSortCommands(input, navigate);
 			break;
 		default:
 			return;
@@ -420,7 +420,7 @@ function insertionSortCommands(
 ) {
 	switch (input) {
 		case "help":
-			return "  Available Commands:\n  - help: display available commands\n  - info: more information on the selection sort algorithm\n  - time: display time complexity for the selection sort algorithm\n  - clear: clear terminal\n  - pwd: print working directory\n  - ls: list all files \n  - code: show source code\n  - cd .. : return to main menu";
+			return "  Available Commands:\n  - help: display available commands\n  - info: more information on the insertion sort algorithm\n  - time: display time complexity for the insertion sort algorithm\n  - clear: clear terminal\n  - pwd: print working directory\n  - ls: list all files \n  - code: show source code\n  - cd .. : return to main menu";
 			break;
 		case "info": {
 			const url = "https://www.geeksforgeeks.org/insertion-sort/";
@@ -435,12 +435,12 @@ function insertionSortCommands(
 			return `  /dsaviz/menu/insertion-sort`;
 			break;
 		case "ls":
-			return "  SelectionSortPage.tsx\n  AlgoPageTemplate.tsx\n  ControlBox.tsx\n  Terminal.tsx\n  BarGraph.tsx\n  CodeEditor.tsx";
+			return "  InsertionSortPage.tsx\n  AlgoPageTemplate.tsx\n  ControlBox.tsx\n  Terminal.tsx\n  BarGraph.tsx\n  CodeEditor.tsx";
 			break;
 		case "code":
 			{
 				const url =
-					"https://github.com/lukereed1/dsaviz/blob/main/src/pages/algorithms/selection-sort/SelectionSort.tsx";
+					"https://github.com/lukereed1/dsaviz/blob/main/src/pages/algorithms/insertion-sort/InsertionSortPage.tsx";
 				openNewTab(url);
 			}
 			break;
