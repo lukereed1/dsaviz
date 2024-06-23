@@ -5,7 +5,6 @@ import Terminal from "../../../app/components/terminal/TerminalWindow";
 import ControlBox from "../../../app/components/control-box/ControlBox";
 import { delay, generateRandomArray } from "../../../app/util/util";
 import CodeEditor from "../../../app/components/code-editor/CodeEditor";
-import { selectionSortFiles } from "./selectionSortFiles";
 
 export default function InsertionSortPage() {
 	const [terminalOutputs, setTerminalOutputs] = useState<string[]>([
@@ -17,7 +16,7 @@ export default function InsertionSortPage() {
 	const [showValues, setShowValues] = useState<boolean>(false);
 	const [sortedIndices, setSortedIndices] = useState<number[]>([]);
 	const [indexComparison, setIndexComparison] = useState<
-		[number, number, number?] | undefined
+		[number, number?, number?] | undefined
 	>(undefined);
 	const sortingRef = useRef<boolean>(false);
 	const delayTimeRef = useRef<number>(0);
@@ -43,7 +42,47 @@ export default function InsertionSortPage() {
 		stepResolveRef.current = undefined;
 	}
 
-	async function insertionSort(arr: number[]) {}
+	async function insertionSort(arr: number[]) {
+		printToTerminal(`Index 0 assumed to be sorted (value: ${arr[0]})`);
+		setIndexComparison([0]);
+		await delay(delayTimeRef.current);
+		await stepThrough();
+		for (let i = 1; i < arr.length; i++) {
+			const key = arr[i];
+			let j = i - 1;
+			printToTerminal(
+				`Comparing index ${j} and ${i} (values: ${arr[j]} and ${arr[i]})`
+			);
+			setIndexComparison([j, i]);
+			await delay(delayTimeRef.current);
+			await stepThrough();
+
+			while (j >= 0 && arr[j] > key) {
+				printToTerminal(
+					`Moving value ${arr[j]} from index ${j} to index ${j + 1}`
+				);
+				setIndexComparison([j, j + 1]);
+				arr[j + 1] = arr[j];
+				setData([...arr]);
+				await delay(delayTimeRef.current);
+				await stepThrough();
+				j--;
+			}
+			if (i !== j + 1)
+				printToTerminal(
+					`Moved value ${key} from index ${i} to index ${j + 1}`
+				);
+			setIndexComparison([i, j + 1]);
+			arr[j + 1] = key;
+			setData([...arr]);
+			if (i !== j + 1) {
+				await delay(delayTimeRef.current);
+				await stepThrough();
+			}
+			setIndexComparison(undefined);
+		}
+		arr.forEach((_, i) => setSortedIndices((prev) => [...prev, i]));
+	}
 
 	function stepThrough() {
 		if (isPlayingRef.current) return;
