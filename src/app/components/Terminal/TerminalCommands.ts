@@ -36,6 +36,9 @@ export function getTerminalCommand(
 		case "selection-sort":
 			return selectionSortCommands(input, navigate);
 			break;
+		case "insertion-sort":
+			return selectionSortCommands(input, navigate);
+			break;
 		default:
 			return;
 	}
@@ -391,6 +394,45 @@ function selectionSortCommands(
 		}
 		case "pwd":
 			return `  /dsaviz/menu/selection-sort`;
+			break;
+		case "ls":
+			return "  SelectionSortPage.tsx\n  AlgoPageTemplate.tsx\n  ControlBox.tsx\n  Terminal.tsx\n  BarGraph.tsx\n  CodeEditor.tsx";
+			break;
+		case "code":
+			{
+				const url =
+					"https://github.com/lukereed1/dsaviz/blob/main/src/pages/algorithms/selection-sort/SelectionSort.tsx";
+				openNewTab(url);
+			}
+			break;
+		case "cd ..":
+			navigate("/menu");
+			break;
+		default:
+			return `  "${input}" command not found`;
+			break;
+	}
+}
+
+function insertionSortCommands(
+	input: string,
+	navigate: ReturnType<typeof useNavigate>
+) {
+	switch (input) {
+		case "help":
+			return "  Available Commands:\n  - help: display available commands\n  - info: more information on the selection sort algorithm\n  - time: display time complexity for the selection sort algorithm\n  - clear: clear terminal\n  - pwd: print working directory\n  - ls: list all files \n  - code: show source code\n  - cd .. : return to main menu";
+			break;
+		case "info": {
+			const url = "https://www.geeksforgeeks.org/insertion-sort/";
+			openNewTab(url);
+			break;
+		}
+		case "time": {
+			return "  Quadratic - O(n^2)";
+			break;
+		}
+		case "pwd":
+			return `  /dsaviz/menu/insertion-sort`;
 			break;
 		case "ls":
 			return "  SelectionSortPage.tsx\n  AlgoPageTemplate.tsx\n  ControlBox.tsx\n  Terminal.tsx\n  BarGraph.tsx\n  CodeEditor.tsx";
