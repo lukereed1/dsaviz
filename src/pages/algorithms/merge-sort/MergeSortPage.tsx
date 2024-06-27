@@ -5,6 +5,7 @@ import Terminal from "../../../app/components/terminal/TerminalWindow";
 import ControlBox from "../../../app/components/control-box/ControlBox";
 import { delay, generateRandomArray } from "../../../app/util/util";
 import CodeEditor from "../../../app/components/code-editor/CodeEditor";
+import { mergeSortFiles } from "./mergeSortFiles";
 
 export default function MergeSortPage() {
 	const [terminalOutputs, setTerminalOutputs] = useState<string[]>([
@@ -43,104 +44,88 @@ export default function MergeSortPage() {
 		stepResolveRef.current = undefined;
 	}
 
-	async function mergeSort(
-		arr: number[],
-		start = 0,
-		end = arr.length
-	): Promise<void> {
-		if (end - start <= 1) {
+	async function mergeSort(arr: number[]) {
+		await mergeSortHelper(arr, 0, arr.length - 1);
+		arr.forEach((_, i) => setSortedIndices((prev) => [...prev, i]));
+	}
+
+	async function mergeSortHelper(arr: number[], left: number, right: number) {
+		if (left >= right) {
 			return;
 		}
-
-		const mid = Math.floor((start + end) / 2);
-
-		await mergeSort(arr, start, mid);
-		await mergeSort(arr, mid, end);
-		await merge(arr, start, mid, end);
-		printToTerminal(
-			`Merged array from start=${start} to end=${end}: [${arr
-				.slice(start, end)
-				.join(", ")}]`
-		);
+		const mid = Math.floor((left + right) / 2);
+		await mergeSortHelper(arr, left, mid);
+		await mergeSortHelper(arr, mid + 1, right);
+		await merge(arr, left, mid, right);
 	}
 
 	async function merge(
 		arr: number[],
-		start: number,
+		left: number,
 		mid: number,
-		end: number
-	): Promise<void> {
-		const leftArray = arr.slice(start, mid);
-		const rightArray = arr.slice(mid, end);
+		right: number
+	) {
+		const L = arr.slice(left, mid + 1);
+		const R = arr.slice(mid + 1, right + 1);
 
-		let leftIndex = 0;
-		let rightIndex = 0;
-		let sortedIndex = start;
-
-		while (leftIndex < leftArray.length && rightIndex < rightArray.length) {
-			printToTerminal(
-				`Comparing index ${start + leftIndex} and ${
-					mid + rightIndex
-				} (values: ${leftArray[leftIndex]} and ${
-					rightArray[rightIndex]
-				})`
-			);
-			setIndexComparison([start + leftIndex, mid + rightIndex]);
+		let i = 0,
+			j = 0,
+			k = left;
+		while (i < L.length && j < R.length) {
+			printToTerminal(`Comparing ${L[i]} and ${R[j]}`);
+			setIndexComparison([left + i, mid + 1 + j]);
 			await delay(delayTimeRef.current);
 			await stepThrough();
 
-			if (leftArray[leftIndex] < rightArray[rightIndex]) {
-				printToTerminal(
-					`Inserting ${leftArray[leftIndex]} into index ${sortedIndex}`
-				);
-				setIndexComparison([start + leftIndex, sortedIndex]);
-				arr[sortedIndex] = leftArray[leftIndex];
-				leftIndex++;
+			if (L[i] <= R[j]) {
+				printToTerminal(`Setting index ${k} to ${L[i]}`);
+				arr[k] = L[i];
+				setIndexComparison([k]);
+				setData([...arr]);
+				await delay(delayTimeRef.current);
+				await stepThrough();
+				i++;
 			} else {
-				printToTerminal(
-					`Inserting ${rightArray[rightIndex]} into index ${sortedIndex}`
-				);
-				setIndexComparison([mid + rightIndex, sortedIndex]);
-				arr[sortedIndex] = rightArray[rightIndex];
-				rightIndex++;
+				printToTerminal(`Setting index ${k} to ${R[j]}`);
+				arr[k] = R[j];
+				setIndexComparison([k]);
+				setData([...arr]);
+				await delay(delayTimeRef.current);
+				await stepThrough();
+				j++;
 			}
+			k++;
+		}
+
+		while (i < L.length) {
+			printToTerminal(`Moving remaining ${L[i]} to index ${k}`);
+			setIndexComparison([k]);
+			arr[k] = L[i];
 			setData([...arr]);
 			await delay(delayTimeRef.current);
 			await stepThrough();
-			sortedIndex++;
+			i++;
+			k++;
 		}
 
-		while (leftIndex < leftArray.length) {
-			printToTerminal(
-				`Inserting remaining ${leftArray[leftIndex]} into index ${sortedIndex}`
-			);
-			setIndexComparison([start + leftIndex, sortedIndex]);
-			arr[sortedIndex] = leftArray[leftIndex];
-			leftIndex++;
-			sortedIndex++;
+		while (j < R.length) {
+			printToTerminal(`Moving remaining ${R[j]} to index ${k}`);
+			setIndexComparison([k]);
+			arr[k] = R[j];
 			setData([...arr]);
 			await delay(delayTimeRef.current);
 			await stepThrough();
+			j++;
+			k++;
 		}
 
-		while (rightIndex < rightArray.length) {
-			printToTerminal(
-				`Inserting remaining ${rightArray[rightIndex]} into index ${sortedIndex}`
-			);
-			setIndexComparison([mid + rightIndex, sortedIndex]);
-			arr[sortedIndex] = rightArray[rightIndex];
-			rightIndex++;
-			sortedIndex++;
-			setData([...arr]);
-			await delay(delayTimeRef.current);
-			await stepThrough();
-		}
-
+		setIndexComparison(undefined);
 		printToTerminal(
-			`Merged segment: [${arr.slice(start, end).join(", ")}]`
+			`Merged subarray from index ${left} to ${right}: ${arr
+				.slice(left, right + 1)
+				.join(", ")}`
 		);
 	}
-
 	function stepThrough() {
 		if (isPlayingRef.current) return;
 		return new Promise<void>((resolve) => {
@@ -195,7 +180,7 @@ export default function MergeSortPage() {
 					header="merge-sort"
 				/>
 			}
-			codeEditor={undefined}
+			codeEditor={<CodeEditor files={mergeSortFiles} />}
 		/>
 	);
 }
