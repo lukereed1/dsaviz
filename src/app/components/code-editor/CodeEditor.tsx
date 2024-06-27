@@ -66,7 +66,7 @@ export default function CodeEditor({ files }: Props) {
 		}
 	}, [defineCustomTheme, monaco]);
 
-	const handleTabChange = (event: SyntheticEvent, newValue: number) => {
+	const handleTabChange = (_event: SyntheticEvent, newValue: number) => {
 		setCurrentTab(newValue);
 		if (editorRef.current) {
 			editorRef.current.setValue(files[newValue].code);

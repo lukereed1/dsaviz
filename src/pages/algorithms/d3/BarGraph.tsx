@@ -47,11 +47,11 @@ export default function BarGraph(props: Props) {
 			.data(data)
 			.enter()
 			.append("rect")
-			.attr("x", (d, i) => i * barWidth)
+			.attr("x", (_, i) => i * barWidth)
 			.attr("y", (d) => height - yScale(d))
 			.attr("width", barWidth - 2)
 			.attr("height", (d) => yScale(d))
-			.attr("fill", (d, i) => {
+			.attr("fill", (_, i) => {
 				if (indexComparison && indexComparison.includes(i)) {
 					return "green";
 				} else if (sortedIndices && sortedIndices.includes(i)) {
@@ -67,7 +67,7 @@ export default function BarGraph(props: Props) {
 				.data(data)
 				.enter()
 				.append("text")
-				.attr("x", (d, i) => i * barWidth + barWidth / 2)
+				.attr("x", (_, i) => i * barWidth + barWidth / 2)
 				.attr("y", (d) => height - yScale(d) - 8)
 				.attr("text-anchor", "middle")
 				.attr("fill", theme.palette.text.primary)

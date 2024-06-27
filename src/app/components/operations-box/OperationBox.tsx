@@ -26,7 +26,7 @@ export default function OperationBox({
 }: Props) {
 	const [tabIndex, setTabIndex] = useState(0);
 
-	const handleChange = (event: SyntheticEvent, newValue: number) => {
+	const handleChange = (_event: SyntheticEvent, newValue: number) => {
 		setTabIndex(newValue);
 		setValue(undefined);
 		if (setIndex) {

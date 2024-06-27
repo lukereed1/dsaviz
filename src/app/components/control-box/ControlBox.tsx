@@ -43,7 +43,7 @@ export default function ControlBox(props: Props) {
 	const [playing, setPlaying] = useState<boolean>(false);
 
 	function handleArraySizeSlider(
-		event: SyntheticEvent | Event,
+		_event: SyntheticEvent | Event,
 		newValue: number | number[]
 	) {
 		setPlaying(false);
@@ -54,7 +54,7 @@ export default function ControlBox(props: Props) {
 	}
 
 	function handleTimeDelaySlider(
-		event: SyntheticEvent | Event,
+		_event: SyntheticEvent | Event,
 		newValue: number | number[]
 	) {
 		delayTimeRef.current = newValue as number;
