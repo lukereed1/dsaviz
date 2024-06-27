@@ -3,6 +3,7 @@
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
+	"homepage": "/dsaviz",
 	"scripts": {
 		"start": "vite",
 		"dev": "vite",
