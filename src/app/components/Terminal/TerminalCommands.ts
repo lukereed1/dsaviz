@@ -39,6 +39,9 @@ export function getTerminalCommand(
 		case "insertion-sort":
 			return insertionSortCommands(input, navigate);
 			break;
+		case "merge-sort":
+			return mergeSortCommands(input, navigate);
+			break;
 		default:
 			return;
 	}
@@ -441,6 +444,45 @@ function insertionSortCommands(
 			{
 				const url =
 					"https://github.com/lukereed1/dsaviz/blob/main/src/pages/algorithms/insertion-sort/InsertionSortPage.tsx";
+				openNewTab(url);
+			}
+			break;
+		case "cd ..":
+			navigate("/menu");
+			break;
+		default:
+			return `  "${input}" command not found`;
+			break;
+	}
+}
+
+function mergeSortCommands(
+	input: string,
+	navigate: ReturnType<typeof useNavigate>
+) {
+	switch (input) {
+		case "help":
+			return "  Available Commands:\n  - help: display available commands\n  - info: more information on the merge sort algorithm\n  - time: display time complexity for the merge sort algorithm\n  - clear: clear terminal\n  - pwd: print working directory\n  - ls: list all files \n  - code: show source code\n  - cd .. : return to main menu";
+			break;
+		case "info": {
+			const url = "https://www.geeksforgeeks.org/merge-sort/";
+			openNewTab(url);
+			break;
+		}
+		case "time": {
+			return "  Linearithmic - n log n";
+			break;
+		}
+		case "pwd":
+			return `  /dsaviz/menu/merge-sort`;
+			break;
+		case "ls":
+			return "  MergeSortPage.tsx\n  AlgoPageTemplate.tsx\n  ControlBox.tsx\n  Terminal.tsx\n  BarGraph.tsx\n  CodeEditor.tsx";
+			break;
+		case "code":
+			{
+				const url =
+					"https://github.com/lukereed1/dsaviz/blob/main/src/pages/algorithms/merge-sort/MergeSortPage.tsx";
 				openNewTab(url);
 			}
 			break;

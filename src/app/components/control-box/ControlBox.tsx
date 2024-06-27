@@ -106,9 +106,9 @@ export default function ControlBox(props: Props) {
 				<Divider sx={{ borderBottomWidth: 3 }} />
 			</Box>
 			<Box sx={styles.upperButtons}>
-				<ToolTipMessage title="Show Values" top={true}>
+				<ToolTipMessage title="Toggle Values" top={true}>
 					<IconButton
-						aria-label="show values"
+						aria-label="toggle values"
 						sx={styles.iconButton}
 						onClick={showValues}>
 						<QuestionMarkIcon sx={styles.icon} />

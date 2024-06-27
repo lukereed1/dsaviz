@@ -64,8 +64,7 @@ export default function SideMenu() {
 
 	return (
 		<>
-			{/* onMouseEnter={handleMenu} */}
-			<Box sx={styles.sideMenuBox}>
+			<Box onMouseEnter={handleMenu} sx={styles.sideMenuBox}>
 				<List sx={styles.sideMenuList}>
 					{sideMenuItems.map(({ label, icon }) => (
 						<React.Fragment key={label}>
