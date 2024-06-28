@@ -73,7 +73,7 @@ function menuCommands(input: string, navigate: ReturnType<typeof useNavigate>) {
 			return "  Available Commands:\n  - help: display available commands\n  - info: general information\n  - clear: clear terminal\n  - pwd: print working directory\n  - ls: list all files \n  - code: show source code\n  - cd: change directory";
 			break;
 		case "info": {
-			return "  Click on an item from one of the lists to get started. You can also use the terminal to navigate.";
+			return "Click on an item from one of the lists to get started. You can also use the terminal to navigate.";
 			break;
 		}
 		case "pwd":
