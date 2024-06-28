@@ -14,20 +14,20 @@ import MergeSortPage from "../../pages/algorithms/merge-sort/MergeSortPage";
 
 export const router = createBrowserRouter([
 	{
-		path: "/",
+		path: "/dsaviz/",
 		element: <App />,
 		children: [
-			{ path: "menu", element: <MenuPage /> },
-			{ path: "array", element: <ArrayPage /> },
-			{ path: "queue", element: <QueuePage /> },
-			{ path: "stack", element: <StackPage /> },
-			{ path: "hash-table", element: <HashTablePage /> },
-			{ path: "linked-list", element: <LinkedListPage /> },
-			{ path: "quick-sort", element: <QuickSortPage /> },
-			{ path: "bubble-sort", element: <BubbleSortPage /> },
-			{ path: "selection-sort", element: <SelectionSortPage /> },
-			{ path: "insertion-sort", element: <InsertionSortPage /> },
-			{ path: "merge-sort", element: <MergeSortPage /> },
+			{ path: "/dsaviz/menu", element: <MenuPage /> },
+			{ path: "/dsaviz/array", element: <ArrayPage /> },
+			{ path: "/dsaviz/queue", element: <QueuePage /> },
+			{ path: "/dsaviz/stack", element: <StackPage /> },
+			{ path: "/dsaviz/hash-table", element: <HashTablePage /> },
+			{ path: "/dsaviz/linked-list", element: <LinkedListPage /> },
+			{ path: "/dsaviz/quick-sort", element: <QuickSortPage /> },
+			{ path: "/dsaviz/bubble-sort", element: <BubbleSortPage /> },
+			{ path: "/dsaviz/selection-sort", element: <SelectionSortPage /> },
+			{ path: "/dsaviz/insertion-sort", element: <InsertionSortPage /> },
+			{ path: "/dsaviz/merge-sort", element: <MergeSortPage /> },
 		],
 	},
 ]);
