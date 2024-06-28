@@ -20,7 +20,6 @@ export default function App() {
 
 	function toggleMode() {
 		setMode((prevMode) => (prevMode === "dark" ? "light" : "dark"));
-		console.log(location.pathname);
 	}
 
 	const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);

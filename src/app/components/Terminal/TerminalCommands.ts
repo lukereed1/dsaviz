@@ -61,7 +61,7 @@ function menuCommands(input: string, navigate: ReturnType<typeof useNavigate>) {
 
 		if (path) {
 			if (DS.includes(path) || ALGO.includes(path)) {
-				navigate(`/${path}`);
+				navigate(`/dsaviz/${path}`);
 			} else {
 				return `  Directory: '${path}' does not exist`;
 			}
@@ -134,7 +134,7 @@ function arrayCommands(
 			}
 			break;
 		case "cd ..":
-			navigate("/menu");
+			navigate("/dsaviz/menu");
 			break;
 		default:
 			return `  "${input}" command not found`;
@@ -173,7 +173,7 @@ function queueCommands(
 			}
 			break;
 		case "cd ..":
-			navigate("/menu");
+			navigate("/dsaviz/menu");
 			break;
 		default:
 			return `  "${input}" command not found`;
@@ -212,7 +212,7 @@ function stackCommands(
 			}
 			break;
 		case "cd ..":
-			navigate("/menu");
+			navigate("/dsaviz/menu");
 			break;
 		default:
 			return `  "${input}" command not found`;
@@ -252,7 +252,7 @@ function hashTableCommands(
 			}
 			break;
 		case "cd ..":
-			navigate("/menu");
+			navigate("/dsaviz/menu");
 			break;
 		default:
 			return `  "${input}" command not found`;
@@ -292,7 +292,7 @@ function linkedListCommands(
 			}
 			break;
 		case "cd ..":
-			navigate("/menu");
+			navigate("/dsaviz/menu");
 			break;
 		default:
 			return `  "${input}" command not found`;
@@ -331,7 +331,7 @@ function quickSortCommands(
 			}
 			break;
 		case "cd ..":
-			navigate("/menu");
+			navigate("/dsaviz/menu");
 			break;
 		default:
 			return `  "${input}" command not found`;
@@ -370,7 +370,7 @@ function bubbleSortCommands(
 			}
 			break;
 		case "cd ..":
-			navigate("/menu");
+			navigate("/dsaviz/menu");
 			break;
 		default:
 			return `  "${input}" command not found`;
@@ -409,7 +409,7 @@ function selectionSortCommands(
 			}
 			break;
 		case "cd ..":
-			navigate("/menu");
+			navigate("/dsaviz/menu");
 			break;
 		default:
 			return `  "${input}" command not found`;
@@ -448,7 +448,7 @@ function insertionSortCommands(
 			}
 			break;
 		case "cd ..":
-			navigate("/menu");
+			navigate("/dsaviz/menu");
 			break;
 		default:
 			return `  "${input}" command not found`;
@@ -487,7 +487,7 @@ function mergeSortCommands(
 			}
 			break;
 		case "cd ..":
-			navigate("/menu");
+			navigate("/dsaviz/menu");
 			break;
 		default:
 			return `  "${input}" command not found`;
