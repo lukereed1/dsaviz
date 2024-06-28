@@ -32,7 +32,11 @@ export default function App() {
 				<SideMenu />
 				<Header mode={mode} toggleMode={toggleMode} />
 				<Container sx={{ flex: 1, minWidth: "100%" }}>
-					{location.pathname === "/" ? <HomePage /> : <Outlet />}
+					{location.pathname === "/dsaviz" ? (
+						<HomePage />
+					) : (
+						<Outlet />
+					)}
 				</Container>
 				<Footer />
 			</Box>
