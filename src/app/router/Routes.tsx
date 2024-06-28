@@ -17,7 +17,7 @@ export const router = createBrowserRouter([
 		path: "/dsaviz/",
 		element: <App />,
 		children: [
-			{ path: "/dsaviz/menu", element: <MenuPage /> },
+			{ path: "/menu", element: <MenuPage /> },
 			{ path: "/dsaviz/array", element: <ArrayPage /> },
 			{ path: "/dsaviz/queue", element: <QueuePage /> },
 			{ path: "/dsaviz/stack", element: <StackPage /> },
