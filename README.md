@@ -2,6 +2,6 @@
 
 [Live Demo](https://lukereed1.github.io/dsaviz/)
 
-Built to help visualise Data Structures and Algorithms for better understanding. Features a web-based Terminal for site navigation and displaying information about each Data Structure and Algorithm. Technologies used include TypeScript, React, and Material UI.
+Built to help visualise Data Structures and Algorithms for better understanding. Features a web-based Terminal for site navigation and displaying information about each Data Structure and Algorithm. Technologies used include TypeScript, React, and Material UI. Desktop only at the moment, not compatible on mobile.
 
 More to come!
