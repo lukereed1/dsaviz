@@ -28,7 +28,7 @@ export default function HomePage() {
 					</Typography>
 				</Typography>
 				<Button
-					onClick={() => navigate("/dsaviz/menu")}
+					onClick={() => navigate("menu")}
 					variant="contained"
 					sx={styles.button}>
 					Get Started
