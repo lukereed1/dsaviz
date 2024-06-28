@@ -161,7 +161,7 @@ Error generating stack: `+i.message+`
   - pwd: print working directory
   - ls: list all files 
   - code: show source code
-  - cd: change directory`;case"info":return"  Click on an item from one of the lists to get started. You can also use the terminal to navigate.";case"pwd":return"  /dsaviz/menu";case"ls":{let o="";return n.forEach(i=>o+=`  ${i}
+  - cd: change directory`;case"info":return"Click on an item from one of the lists to get started. You can also use the terminal to navigate.";case"pwd":return"  /dsaviz/menu";case"ls":{let o="";return n.forEach(i=>o+=`  ${i}
 `),r.forEach(i=>o+=`  ${i}
 `),o}case"code":Tt("https://github.com/lukereed1/dsaviz/blob/main/src/pages/menu/MenuPage.tsx");break;case"cd ..":t("/menu");break;default:return`  "${e}" command not found`}}function Aj(e,t){switch(e){case"help":return`  Available Commands:
   - help: display available commands
