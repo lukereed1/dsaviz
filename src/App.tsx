@@ -20,6 +20,7 @@ export default function App() {
 
 	function toggleMode() {
 		setMode((prevMode) => (prevMode === "dark" ? "light" : "dark"));
+		console.log(location.pathname);
 	}
 
 	const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
@@ -32,7 +33,7 @@ export default function App() {
 				<SideMenu />
 				<Header mode={mode} toggleMode={toggleMode} />
 				<Container sx={{ flex: 1, minWidth: "100%" }}>
-					{location.pathname === "/dsaviz" ? (
+					{location.pathname === "/dsaviz/" ? (
 						<HomePage />
 					) : (
 						<Outlet />
