@@ -23,7 +23,7 @@ export default function Header(props: Props) {
 
 	return (
 		<Box sx={styles.box}>
-			<Button sx={styles.logoButton} onClick={() => navigate("/dsaviz")}>
+			<Button sx={styles.logoButton} onClick={() => navigate("/dsaviz/")}>
 				<img
 					src={theme.palette.mode === "dark" ? DarkLogo : LightLogo}
 					alt="DsaViz Logo"
