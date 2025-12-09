@@ -23,7 +23,7 @@ export default function OperationButton({
 				borderRadius: "5px",
 				paddingX: 3,
 				fontSize: 16,
-				fontFamily: "menlo",
+				   fontFamily: "'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace",
 				"&:hover": {
 					backgroundColor: "background.default",
 					color: "text.primary",

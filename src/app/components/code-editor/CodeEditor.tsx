@@ -86,7 +86,7 @@ export default function CodeEditor({ files }: Props) {
 			boxShadow: 1,
 			marginRight: index !== files.length - 1 ? 0.5 : 0,
 			backgroundColor: "primary.main",
-			fontFamily: "menlo",
+			   fontFamily: "'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace",
 			fontSize: 12,
 			fontWeight: tabIndex === index ? "bold" : null,
 			color: "text.primary",

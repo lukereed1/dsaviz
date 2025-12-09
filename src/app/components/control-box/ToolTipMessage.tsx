@@ -17,7 +17,7 @@ export default function ToolTipMessage({ title, children, top }: Props) {
 					tooltip: {
 						sx: {
 							fontSize: "16px",
-							fontFamily: "menlo",
+							   fontFamily: "'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace",
 							backgroundColor: "secondary.main",
 							color: "text.secondary",
 							borderRadius: "4px",

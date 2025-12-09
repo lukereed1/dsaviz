@@ -20,14 +20,14 @@ export default function ValueTextInput({ setValue }: Props) {
 				style: {
 					color: theme.palette.text.primary,
 					fontSize: 16,
-					fontFamily: "menlo",
+					   fontFamily: "'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace",
 				},
 			}}
 			InputLabelProps={{
 				style: {
 					color: theme.palette.text.primary,
 					fontSize: 16,
-					fontFamily: "menlo",
+					   fontFamily: "'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace",
 				},
 			}}
 			id="outlined-basic"

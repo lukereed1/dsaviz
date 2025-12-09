@@ -70,7 +70,7 @@ export default function HashTable({
 						: theme.palette.text.primary
 				)
 				.attr("font-size", "16px")
-				.attr("font-family", "menlo")
+				   .attr("font-family", "'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace")
 				.text("H");
 
 			// Indexes
@@ -82,7 +82,7 @@ export default function HashTable({
 				.attr("fill", theme.palette.text.primary)
 				.attr("font-size", "12px")
 				.attr("font-family", "monospace")
-				.attr("font-family", "menlo")
+				   .attr("font-family", "'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace")
 				.text(index);
 
 			// Chains/Nodes
@@ -119,7 +119,7 @@ export default function HashTable({
 							: theme.palette.text.primary
 					)
 					.attr("font-size", "14px")
-					.attr("font-family", "menlo")
+					   .attr("font-family", "'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace")
 					.text(value);
 
 				if (chainIndex === 0) {

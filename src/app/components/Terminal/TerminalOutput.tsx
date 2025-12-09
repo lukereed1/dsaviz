@@ -9,7 +9,7 @@ export default function TerminalOutput({ children }: Props) {
 		<pre
 			style={{
 				margin: 0,
-				fontFamily: "menlo",
+				   fontFamily: "'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace",
 				wordWrap: "break-word",
 				whiteSpace: "pre-wrap",
 			}}>

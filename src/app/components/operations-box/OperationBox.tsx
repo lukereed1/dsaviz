@@ -85,7 +85,7 @@ const styles = {
 		borderColor: "divider",
 	},
 	headerText: {
-		fontFamily: "menlo",
+		fontFamily: "'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace",
 		fontWeight: "bold",
 		fontSize: 16,
 		paddingTop: 1.5,
@@ -95,7 +95,7 @@ const styles = {
 		borderRadius: "7px",
 		fontSize: 16,
 		padding: 2,
-		fontFamily: "menlo",
+		fontFamily: "'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace",
 
 		color: "text.primary",
 		...(tabIndex === index && {

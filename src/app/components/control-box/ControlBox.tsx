@@ -192,7 +192,7 @@ const styles = {
 		height: "100%",
 	},
 	headerText: {
-		fontFamily: "menlo",
+		fontFamily: "'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace",
 		fontWeight: "bold",
 		fontSize: 16,
 		paddingTop: 1.5,
@@ -232,7 +232,7 @@ const styles = {
 	tooltip: {
 		[`& .MuiTooltip-tooltip`]: {
 			fontSize: "24px",
-			fontFamily: "menlo",
+			   fontFamily: "'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace",
 			backgroundColor: "blue",
 			color: "white",
 			borderRadius: "4px",
@@ -241,5 +241,5 @@ const styles = {
 			color: "blue",
 		},
 	},
-	sliderText: { fontFamily: "menlo", fontSize: 16 },
+	sliderText: { fontFamily: "'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace", fontSize: 16 },
 };

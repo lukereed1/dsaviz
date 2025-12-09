@@ -69,7 +69,7 @@ export default function LinkedListVisual({
 				.attr("text-anchor", "middle")
 				.attr("dominant-baseline", "middle")
 				.attr("font-size", "12px")
-				.attr("font-family", "menlo")
+				   .attr("font-family", "'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace")
 				.attr("fill", theme.palette.text.primary)
 				.text(index);
 
@@ -80,7 +80,7 @@ export default function LinkedListVisual({
 				.attr("text-anchor", "middle")
 				.attr("dominant-baseline", "middle")
 				.attr("font-size", "20px")
-				.attr("font-family", "menlo")
+				   .attr("font-family", "'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace")
 				.attr(
 					"fill",
 					index === highlightIndex
@@ -96,7 +96,7 @@ export default function LinkedListVisual({
 					.attr("text-anchor", "middle")
 					.attr("dominant-baseline", "middle")
 					.attr("font-size", "12")
-					.attr("font-family", "menlo")
+					   .attr("font-family", "'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace")
 					.attr("fill", theme.palette.text.primary)
 					.text("head");
 			} else if (index === dataLength - 1) {
@@ -106,7 +106,7 @@ export default function LinkedListVisual({
 					.attr("text-anchor", "middle")
 					.attr("dominant-baseline", "middle")
 					.attr("font-size", "12px")
-					.attr("font-family", "menlo")
+					   .attr("font-family", "'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace")
 					.attr("fill", theme.palette.text.primary)
 					.text("tail");
 			}

@@ -67,7 +67,7 @@ export default function Array({
 					: theme.palette.text.primary
 			)
 			.attr("font-size", "28")
-			.attr("font-family", "menlo")
+			   .attr("font-family", "'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace")
 			.text((d) => d);
 
 		// Draws indexes
@@ -81,7 +81,7 @@ export default function Array({
 			.attr("text-anchor", "middle")
 			.attr("dominant-baseline", "middle")
 			.attr("font-size", "18px")
-			.attr("font-family", "menlo")
+			   .attr("font-family", "'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace")
 			.attr("fill", theme.palette.text.primary)
 			.text((_, i) => i);
 

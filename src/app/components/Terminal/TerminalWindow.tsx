@@ -106,7 +106,7 @@ export default function Terminal({
 				))}
 				<pre
 					style={{
-						fontFamily: "menlo",
+						   fontFamily: "'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace",
 						fontSize: 11,
 						wordWrap: "break-word",
 						whiteSpace: "pre-wrap",
@@ -161,7 +161,7 @@ const styles = {
 		whiteSpace: "pre-wrap",
 	},
 	headerText: {
-		fontFamily: "menlo",
+		fontFamily: "'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace",
 		fontSize: 16,
 		paddingTop: 1.5,
 		paddingBottom: 1.25,
@@ -173,7 +173,7 @@ const styles = {
 		textAlign: "left",
 		paddingX: 2,
 		paddingY: 1.5,
-		fontFamily: "menlo",
+		fontFamily: "'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace",
 		fontSize: 11,
 		overflow: "auto",
 	},

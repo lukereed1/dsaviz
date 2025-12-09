@@ -98,7 +98,7 @@ const styles = {
 		height: "100%",
 	},
 	subHeaderText: {
-		fontFamily: "menlo",
+		fontFamily: "'Fira Mono', 'Menlo', 'Consolas', 'Liberation Mono', 'Courier New', monospace",
 		fontSize: 16,
 		fontWeight: "bold",
 		paddingTop: 2.4,
